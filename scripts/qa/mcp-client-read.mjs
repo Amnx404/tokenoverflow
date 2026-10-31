@@ -5,6 +5,7 @@ import { createRequire } from 'node:module';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { checkCanonicalReportPage } from './canonical-source.mjs';
 
 const [sdkRoot, endpoint, ...flags] = process.argv.slice(2);
 if (!sdkRoot || !endpoint) throw new Error('Supply existing SDK install root and MCP endpoint');
@@ -59,10 +60,8 @@ try {
     assert.match(detail.evidence_format, /not machine-verified/);
     detailRead = true;
     if (url.hostname === 'tokenoverflow.app') {
-      const page = await fetch(detail.url, { signal: AbortSignal.timeout(10000) });
+      const page = await checkCanonicalReportPage(detail.report);
       canonicalPageStatus = page.status;
-      assert.equal(page.status, 200);
-      assert.equal(new URL(page.url).hostname, 'tokenoverflow.app');
     }
   }
   summary = { endpoint: url.href, sdk: pkg.version, protocol: transport.protocolVersion,

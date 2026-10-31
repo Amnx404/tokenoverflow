@@ -6,7 +6,7 @@ export const reportSearchSchema = z.object({
  category: z.enum([...categories, '']).default(''),
  view: z.enum(['', 'needs-investigation', 'reproduced']).default(''),
  page: z.number().int().min(1).max(1000).default(1),
- examples: z.boolean().default(false),
+ examples: z.boolean().default(false).describe('False (default) searches community reports only. True searches illustrative examples only; it does not combine examples with community reports.'),
 });
 // These prompts guide contributors; prose completeness and reported results are not machine-verified.
 export const contributionGuidance = {
