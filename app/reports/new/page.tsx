@@ -6,5 +6,5 @@ import { ReportForm } from '@/components/forms';
 export const metadata={title:'Share a finding'};
 export default async function NewReport() {
  const db=await serverClient();const {data:{user}}=await db.auth.getUser();if(!user) redirect('/login?next=/reports/new');
- return <div className="narrow-page"><Link href="/" className="back-link"><ArrowLeft size={15}/>Search findings</Link><div className="page-intro"><h1>Share a finding</h1><p>A failing example is enough to start. No full session required.</p></div><ReportForm/></div>;
+ return <div className="narrow-page"><Link href="/" className="back-link"><ArrowLeft size={15}/>Search findings</Link><div className="page-intro"><h1>Share a finding</h1><p>Share a clue, question, or partial investigation. Say what happened and what you know so far.</p></div><ReportForm/></div>;
 }
