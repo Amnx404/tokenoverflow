@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "executor": "Quinn (Quality intern)",
+  "parent": "Jules (Quality engineer)",
+  "authorization": "Explicit parent post-restriction READY relaying Leon (Platform and data engineer)",
+  "association": {
+    "deployment": "dpl_4pYcKLnWzDwrcA9vr2kEfw9ZC1sJ",
+    "main": "687da4670e0999b687025e4c9f3074eff918087c",
+    "tree": "da47f6662e55ada9a5200cbf7fd6799423d5b2d9",
+    "source": "Leon supplied via Jules; not inferred from health",
+    "stage": "Restrictive SQL bb31 reported APPLIED/verified by Leon; SQL/grant evidence is not this run"
+  },
+  "started_at": "2026-10-31T01:54:12.337Z",
+  "transport": {
+    "base": "https://tokenoverflow.app",
+    "redirect": "error",
+    "host_override": false,
+    "dns_override": false,
+    "authenticated": false,
+    "synthetic": true
+  },
+  "collector_sha256": "905eb6abb008f9492d87539b04699b9d475a5f07a7dd1d40132cf03584ed3fc0",
+  "contract_sources": {
+    "lib/api.ts": "c07362a984f355a62f16a59461dc2b58a3148ed8ea3eb705db64983fa7f49a98",
+    "server/api/root.ts": "33e0e29423a9a92c2a35f7715b6c100743357fb8b7f7fda39b59f25f3a0bbcfc",
+    "server/api/trpc.ts": "3b487fd84d8b86b8f4d47fe818251048424e12aec156ccc095178ca2c72256f7",
+    "app/api/health/route.ts": "2bbd6881b44c1ecdb69298bea1e8ffb60187d73db20d9c620006fd72e8fbc979",
+    "server/services/reports.ts": "b8dfeb217faa9adee9c38a841722b8b5442483e70380ff6e7c9d247721f0f047"
+  },
+  "cases": [
+    {
+      "name": "post-restriction-health",
+      "executed_once": true,
+      "requests": [
+        {
+          "path": "/api/health",
+          "method": "GET",
+          "started_at": "2026-10-31T01:54:12.339Z",
+          "finished_at": "2026-10-31T01:54:12.682Z",
+          "status": 200,
+          "headers": {
+            "cache-control": "no-store",
+            "content-type": "application/json",
+            "x-request-id": "23b50440-e906-462e-a58a-e976c246a973",
+            "x-content-type-options": "nosniff"
+          }
+        }
+      ],
+      "assertions": [
+        "http-200",
+        "no-store",
+        "generated-uuid-request-id",
+        "exact-ok-status"
+      ],
+      "result": "pass"
+    },
+    {
+      "name": "post-restriction-REST-community-search-feed",
+      "executed_once": true,
+      "requests": [
+        {
+          "path": "/api/v1/reports?q=ElevenLabs",
+          "method": "GET",
+          "started_at": "2026-10-31T01:54:12.687Z",
+          "finished_at": "2026-10-31T01:54:12.851Z",
+          "status": 200,
+          "headers": {
+            "cache-control": "no-store",
+            "content-type": "application/json",
+            "x-request-id": "ecfca833-eebf-453c-b5e0-33fe2e039cd7",
+            "x-content-type-options": "nosniff"
+          }
+        }
+      ],
+      "assertions": [
+        "http-200",
+        "no-store",
+        "generated-uuid-request-id",
+        "reports-array",
+        "default-community-only",
+        "bounded-page",
+        "valid-count",
+        "public-report-IDs-valid",
+        "search-summaries-no-bundle",
+        "private-account-key-stack-fields-absent"
+      ],
+      "result": "pass",
+      "observed": {
+        "returned_reports": 0,
+        "count": 0
+      }
+    },
+    {
+      "name": "post-restriction-REST-legacy-detail",
+      "executed_once": true,
+      "requests": [
+        {
+          "path": "/api/v1/reports/5faec121-7a73-4779-b22f-b908b5620442",
+          "method": "GET",
+          "started_at": "2026-10-31T01:54:12.852Z",
+          "finished_at": "2026-10-31T01:54:13.001Z",
+          "status": 200,
+          "headers": {
+            "cache-control": "no-store",
+            "content-type": "application/json",
+            "x-request-id": "bf87404d-fa88-407e-90f6-8a6bf3ed61f8",
+            "x-content-type-options": "nosniff"
+          }
+        }
+      ],
+      "assertions": [
+        "http-200",
+        "no-store",
+        "generated-uuid-request-id",
+        "known-illustrative-public-report-id",
+        "detail-fixes-array",
+        "bundle-absent-at-all-actual-legacy-nodes",
+        "private-account-key-stack-fields-absent",
+        "trust-warning"
+      ],
+      "result": "pass",
+      "node_counts": {
+        "reports": 1,
+        "fixes": 0,
+        "verifications": 0
+      },
+      "child_assertions_vacuous": true
+    },
+    {
+      "name": "post-restriction-installed-tRPC-legacy-detail",
+      "executed_once": true,
+      "requests": [
+        {
+          "path": "/api/trpc/reports.byId?input=%7B%22id%22%3A%225faec121-7a73-4779-b22f-b908b5620442%22%7D",
+          "method": "GET",
+          "started_at": "2026-10-31T01:54:13.004Z",
+          "finished_at": "2026-10-31T01:54:13.141Z",
+          "status": 200,
+          "headers": {
+            "cache-control": "no-store",
+            "content-type": "application/json",
+            "x-request-id": "490818a9-b79b-474c-ab9b-8d5fee523028",
+            "x-content-type-options": "nosniff"
+          }
+        }
+      ],
+      "assertions": [
+        "http-200",
+        "no-store",
+        "generated-uuid-request-id",
+        "known-illustrative-public-report-id",
+        "detail-fixes-array",
+        "bundle-absent-at-all-actual-legacy-nodes",
+        "private-account-key-stack-fields-absent",
+        "anonymous-own-fix-false-at-actual-children",
+        "REST-reference-available",
+        "REST-tRPC-full-public-legacy-value-parity"
+      ],
+      "result": "pass",
+      "node_counts": {
+        "reports": 1,
+        "fixes": 0,
+        "verifications": 0
+      },
+      "child_assertions_vacuous": true,
+      "ownership_assertion_vacuous": true
+    }
+  ],
+  "limitations": [
+    "Read-only legacy illustrative record; no hosted supplied-bundle roundtrip or successful write",
+    "SQL/grants/RLS/raw Data API identifier denials are Leon evidence, not duplicated here",
+    "Zero child nodes makes child bundle/privacy and ownership assertions vacuous; no ownership-helper execution proof",
+    "No authentication/session/signup/account/key/browser interaction",
+    "No guidance/login/invalid400/MCP/schema/full-suite/telemetry/CSS/performance checks",
+    "Timestamps attribute execution, not latency or reliability",
+    "Earlier seven-GET pre-restriction artifact and local PG17/PG18 evidence remain separate"
+  ],
+  "finished_at": "2026-10-31T01:54:13.143Z",
+  "counts": {
+    "groups": 4,
+    "requests": 4,
+    "passed": 4,
+    "failed": 0
+  },
+  "result": "pass"
+}

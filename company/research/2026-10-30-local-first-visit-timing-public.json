@@ -1,0 +1,1547 @@
+{
+  "schema_version": 1,
+  "executor": "Quinn (Quality intern)",
+  "parent": "Jules (Quality engineer)",
+  "authorization": "Explicit Jules lease relaying Leon/Rafael stable-target timing authorization",
+  "started_at": "2026-10-31T01:59:49.658Z",
+  "collector_sha256": "27b874743f3bdca3e0a448f9f0a2ca629e5e18e82df2367029076cd927a80f4e",
+  "targets": {
+    "before": {
+      "base": "http://127.0.0.1:3307",
+      "root": "Immutable tree 0404c36057ef64b0b6f19593279c7ec5dd0b6265; compiled build es4s_p3CYO-BAPTdiOccm (source location omitted)",
+      "tree": "0404c36057ef64b0b6f19593279c7ec5dd0b6265",
+      "build": "es4s_p3CYO-BAPTdiOccm",
+      "status": "Immutable A baseline"
+    },
+    "after": {
+      "base": "http://127.0.0.1:3306",
+      "root": "Immutable tree 2a0b50447d5751eb29ea7791cfd7dd2f805aa190; compiled build PkK16sMYH9vVJzi3hTHEP (source location omitted)",
+      "tree": "2a0b50447d5751eb29ea7791cfd7dd2f805aa190",
+      "build": "PkK16sMYH9vVJzi3hTHEP",
+      "status": "INTERMEDIATE auth + selected CSS + lean cohort; not final release"
+    }
+  },
+  "environment": {
+    "attribution": "Leon/Rafael supplied stable owner process/cwd/API-count bindings; not independently re-probed",
+    "compiled_production": true,
+    "adapter": "Drizzle",
+    "pool_max": 1,
+    "database": "Same local PostgreSQL17 canonical-equivalence database; empty community/same labeled example",
+    "credentials": "No environment files, credentials or cookies read/sent"
+  },
+  "method": {
+    "warmups": "One GET per target per case before measurements; four total",
+    "measurements": "Ten serial pairs per case; before→after for odd pair, after→before for even; forty GET total; no concurrency",
+    "headers_ms": "Monotonic fetch start to response headers; TTFB proxy, includes local transport and fetch overhead",
+    "full_html_ms": "Monotonic fetch start to fully read decoded UTF-8 HTML",
+    "deadline_ms": 20000,
+    "median": "Sorted n=10 midpoint average",
+    "empirical_p90": "Nearest rank: sorted[ceil(0.9*n)-1], n=10",
+    "difference_sign": "AFTER minus BEFORE; negative means smaller observed duration for after",
+    "redirects": "error",
+    "host_override": false
+  },
+  "warmups": [
+    {
+      "sequence": 1,
+      "phase": "warmup",
+      "case": "default-empty",
+      "route": "/",
+      "target": "before",
+      "pair": null,
+      "order": null,
+      "started_at": "2026-10-31T01:59:49.659Z",
+      "status": 200,
+      "headers_ms": 82.956292,
+      "full_html_ms": 99.93670900000001,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21283,
+      "finished_at": "2026-10-31T01:59:49.759Z"
+    },
+    {
+      "sequence": 2,
+      "phase": "warmup",
+      "case": "default-empty",
+      "route": "/",
+      "target": "after",
+      "pair": null,
+      "order": null,
+      "started_at": "2026-10-31T01:59:49.759Z",
+      "status": 200,
+      "headers_ms": 56.00070800000002,
+      "full_html_ms": 73.50670800000002,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21180,
+      "finished_at": "2026-10-31T01:59:49.833Z"
+    },
+    {
+      "sequence": 3,
+      "phase": "warmup",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "before",
+      "pair": null,
+      "order": null,
+      "started_at": "2026-10-31T01:59:49.833Z",
+      "status": 200,
+      "headers_ms": 6.774457999999981,
+      "full_html_ms": 11.306832999999983,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18852,
+      "finished_at": "2026-10-31T01:59:49.844Z"
+    },
+    {
+      "sequence": 4,
+      "phase": "warmup",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "after",
+      "pair": null,
+      "order": null,
+      "started_at": "2026-10-31T01:59:49.844Z",
+      "status": 200,
+      "headers_ms": 6.301166999999992,
+      "full_html_ms": 9.105166999999994,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18749,
+      "finished_at": "2026-10-31T01:59:49.853Z"
+    }
+  ],
+  "measured": [
+    {
+      "sequence": 5,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "before",
+      "pair": 1,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:49.853Z",
+      "status": 200,
+      "headers_ms": 5.404208000000011,
+      "full_html_ms": 12.140625,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21283,
+      "finished_at": "2026-10-31T01:59:49.865Z"
+    },
+    {
+      "sequence": 6,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "after",
+      "pair": 1,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:49.865Z",
+      "status": 200,
+      "headers_ms": 5.098582999999991,
+      "full_html_ms": 11.186958000000004,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21180,
+      "finished_at": "2026-10-31T01:59:49.877Z"
+    },
+    {
+      "sequence": 7,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "after",
+      "pair": 2,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:49.877Z",
+      "status": 200,
+      "headers_ms": 4.045665999999983,
+      "full_html_ms": 9.971291000000008,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21180,
+      "finished_at": "2026-10-31T01:59:49.887Z"
+    },
+    {
+      "sequence": 8,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "before",
+      "pair": 2,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:49.887Z",
+      "status": 200,
+      "headers_ms": 4.734666000000004,
+      "full_html_ms": 10.953082999999992,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21283,
+      "finished_at": "2026-10-31T01:59:49.898Z"
+    },
+    {
+      "sequence": 9,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "before",
+      "pair": 3,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:49.898Z",
+      "status": 200,
+      "headers_ms": 4.796375000000012,
+      "full_html_ms": 10.081457999999998,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21283,
+      "finished_at": "2026-10-31T01:59:49.908Z"
+    },
+    {
+      "sequence": 10,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "after",
+      "pair": 3,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:49.908Z",
+      "status": 200,
+      "headers_ms": 5.323582999999985,
+      "full_html_ms": 10.541499999999985,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21180,
+      "finished_at": "2026-10-31T01:59:49.919Z"
+    },
+    {
+      "sequence": 11,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "after",
+      "pair": 4,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:49.919Z",
+      "status": 200,
+      "headers_ms": 3.831624999999974,
+      "full_html_ms": 9.210208999999963,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21180,
+      "finished_at": "2026-10-31T01:59:49.928Z"
+    },
+    {
+      "sequence": 12,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "before",
+      "pair": 4,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:49.928Z",
+      "status": 200,
+      "headers_ms": 3.8240000000000123,
+      "full_html_ms": 9.83525000000003,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21283,
+      "finished_at": "2026-10-31T01:59:49.938Z"
+    },
+    {
+      "sequence": 13,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "before",
+      "pair": 5,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:49.938Z",
+      "status": 200,
+      "headers_ms": 4.155040999999983,
+      "full_html_ms": 9.91116599999998,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21283,
+      "finished_at": "2026-10-31T01:59:49.948Z"
+    },
+    {
+      "sequence": 14,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "after",
+      "pair": 5,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:49.948Z",
+      "status": 200,
+      "headers_ms": 3.9127090000000067,
+      "full_html_ms": 9.370750000000044,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21180,
+      "finished_at": "2026-10-31T01:59:49.957Z"
+    },
+    {
+      "sequence": 15,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "after",
+      "pair": 6,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:49.957Z",
+      "status": 200,
+      "headers_ms": 3.8665419999999813,
+      "full_html_ms": 9.148832999999968,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21180,
+      "finished_at": "2026-10-31T01:59:49.966Z"
+    },
+    {
+      "sequence": 16,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "before",
+      "pair": 6,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:49.966Z",
+      "status": 200,
+      "headers_ms": 4.441417000000001,
+      "full_html_ms": 9.728542000000004,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21283,
+      "finished_at": "2026-10-31T01:59:49.976Z"
+    },
+    {
+      "sequence": 17,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "before",
+      "pair": 7,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:49.976Z",
+      "status": 200,
+      "headers_ms": 3.881834000000026,
+      "full_html_ms": 9.254584000000023,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21283,
+      "finished_at": "2026-10-31T01:59:49.986Z"
+    },
+    {
+      "sequence": 18,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "after",
+      "pair": 7,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:49.986Z",
+      "status": 200,
+      "headers_ms": 4.311458000000016,
+      "full_html_ms": 9.344417000000021,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21180,
+      "finished_at": "2026-10-31T01:59:49.995Z"
+    },
+    {
+      "sequence": 19,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "after",
+      "pair": 8,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:49.995Z",
+      "status": 200,
+      "headers_ms": 4.041375000000016,
+      "full_html_ms": 8.938540999999987,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21180,
+      "finished_at": "2026-10-31T01:59:50.004Z"
+    },
+    {
+      "sequence": 20,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "before",
+      "pair": 8,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:50.004Z",
+      "status": 200,
+      "headers_ms": 4.945042000000001,
+      "full_html_ms": 10.146334000000024,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21283,
+      "finished_at": "2026-10-31T01:59:50.014Z"
+    },
+    {
+      "sequence": 21,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "before",
+      "pair": 9,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:50.014Z",
+      "status": 200,
+      "headers_ms": 2.987583000000029,
+      "full_html_ms": 7.8808329999999955,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21283,
+      "finished_at": "2026-10-31T01:59:50.022Z"
+    },
+    {
+      "sequence": 22,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "after",
+      "pair": 9,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:50.022Z",
+      "status": 200,
+      "headers_ms": 3.466000000000008,
+      "full_html_ms": 8.674250000000029,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21180,
+      "finished_at": "2026-10-31T01:59:50.031Z"
+    },
+    {
+      "sequence": 23,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "after",
+      "pair": 10,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:50.031Z",
+      "status": 200,
+      "headers_ms": 3.421042,
+      "full_html_ms": 8.311667,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21180,
+      "finished_at": "2026-10-31T01:59:50.039Z"
+    },
+    {
+      "sequence": 24,
+      "phase": "measured",
+      "case": "default-empty",
+      "route": "/",
+      "target": "before",
+      "pair": 10,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:50.039Z",
+      "status": 200,
+      "headers_ms": 3.765207999999973,
+      "full_html_ms": 9.515083000000004,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "default_empty_text": true,
+        "illustrative_warning": true,
+        "elevenlabs_title": true,
+        "example_preview_present": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 21283,
+      "finished_at": "2026-10-31T01:59:50.049Z"
+    },
+    {
+      "sequence": 25,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "before",
+      "pair": 1,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:50.049Z",
+      "status": 200,
+      "headers_ms": 2.965917000000047,
+      "full_html_ms": 6.2721670000000245,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18852,
+      "finished_at": "2026-10-31T01:59:50.055Z"
+    },
+    {
+      "sequence": 26,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "after",
+      "pair": 1,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:50.055Z",
+      "status": 200,
+      "headers_ms": 4.134707999999989,
+      "full_html_ms": 6.296457999999973,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18749,
+      "finished_at": "2026-10-31T01:59:50.062Z"
+    },
+    {
+      "sequence": 27,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "after",
+      "pair": 2,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:50.062Z",
+      "status": 200,
+      "headers_ms": 2.7176660000000084,
+      "full_html_ms": 4.7191250000000196,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18749,
+      "finished_at": "2026-10-31T01:59:50.066Z"
+    },
+    {
+      "sequence": 28,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "before",
+      "pair": 2,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:50.066Z",
+      "status": 200,
+      "headers_ms": 3.0430409999999597,
+      "full_html_ms": 6.569874999999968,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18852,
+      "finished_at": "2026-10-31T01:59:50.073Z"
+    },
+    {
+      "sequence": 29,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "before",
+      "pair": 3,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:50.073Z",
+      "status": 200,
+      "headers_ms": 3.05766600000004,
+      "full_html_ms": 8.383291000000042,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18852,
+      "finished_at": "2026-10-31T01:59:50.081Z"
+    },
+    {
+      "sequence": 30,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "after",
+      "pair": 3,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:50.081Z",
+      "status": 200,
+      "headers_ms": 3.1731249999999704,
+      "full_html_ms": 5.711291999999958,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18749,
+      "finished_at": "2026-10-31T01:59:50.087Z"
+    },
+    {
+      "sequence": 31,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "after",
+      "pair": 4,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:50.087Z",
+      "status": 200,
+      "headers_ms": 2.7841660000000275,
+      "full_html_ms": 4.9697909999999865,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18749,
+      "finished_at": "2026-10-31T01:59:50.092Z"
+    },
+    {
+      "sequence": 32,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "before",
+      "pair": 4,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:50.092Z",
+      "status": 200,
+      "headers_ms": 3.590915999999993,
+      "full_html_ms": 6.72366599999998,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18852,
+      "finished_at": "2026-10-31T01:59:50.099Z"
+    },
+    {
+      "sequence": 33,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "before",
+      "pair": 5,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:50.099Z",
+      "status": 200,
+      "headers_ms": 2.813250000000039,
+      "full_html_ms": 6.405542000000025,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18852,
+      "finished_at": "2026-10-31T01:59:50.105Z"
+    },
+    {
+      "sequence": 34,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "after",
+      "pair": 5,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:50.105Z",
+      "status": 200,
+      "headers_ms": 4.087291999999991,
+      "full_html_ms": 6.216957999999977,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18749,
+      "finished_at": "2026-10-31T01:59:50.112Z"
+    },
+    {
+      "sequence": 35,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "after",
+      "pair": 6,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:50.112Z",
+      "status": 200,
+      "headers_ms": 2.592540999999983,
+      "full_html_ms": 4.4492499999999495,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18749,
+      "finished_at": "2026-10-31T01:59:50.116Z"
+    },
+    {
+      "sequence": 36,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "before",
+      "pair": 6,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:50.116Z",
+      "status": 200,
+      "headers_ms": 2.886166000000003,
+      "full_html_ms": 6.727874999999983,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18852,
+      "finished_at": "2026-10-31T01:59:50.123Z"
+    },
+    {
+      "sequence": 37,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "before",
+      "pair": 7,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:50.123Z",
+      "status": 200,
+      "headers_ms": 3.6888329999999883,
+      "full_html_ms": 7.5232919999999694,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18852,
+      "finished_at": "2026-10-31T01:59:50.130Z"
+    },
+    {
+      "sequence": 38,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "after",
+      "pair": 7,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:50.131Z",
+      "status": 200,
+      "headers_ms": 2.907209000000023,
+      "full_html_ms": 6.040875000000028,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18749,
+      "finished_at": "2026-10-31T01:59:50.137Z"
+    },
+    {
+      "sequence": 39,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "after",
+      "pair": 8,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:50.137Z",
+      "status": 200,
+      "headers_ms": 5.239000000000033,
+      "full_html_ms": 7.707208000000037,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18749,
+      "finished_at": "2026-10-31T01:59:50.144Z"
+    },
+    {
+      "sequence": 40,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "before",
+      "pair": 8,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:50.144Z",
+      "status": 200,
+      "headers_ms": 3.077124999999967,
+      "full_html_ms": 7.00404199999997,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18852,
+      "finished_at": "2026-10-31T01:59:50.151Z"
+    },
+    {
+      "sequence": 41,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "before",
+      "pair": 9,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:50.151Z",
+      "status": 200,
+      "headers_ms": 2.772874999999999,
+      "full_html_ms": 6.341207999999995,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18852,
+      "finished_at": "2026-10-31T01:59:50.158Z"
+    },
+    {
+      "sequence": 42,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "after",
+      "pair": 9,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:50.158Z",
+      "status": 200,
+      "headers_ms": 3.1422090000000935,
+      "full_html_ms": 5.63879200000008,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18749,
+      "finished_at": "2026-10-31T01:59:50.164Z"
+    },
+    {
+      "sequence": 43,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "after",
+      "pair": 10,
+      "order": 1,
+      "started_at": "2026-10-31T01:59:50.164Z",
+      "status": 200,
+      "headers_ms": 2.9439579999999523,
+      "full_html_ms": 5.0613329999999905,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18749,
+      "finished_at": "2026-10-31T01:59:50.169Z"
+    },
+    {
+      "sequence": 44,
+      "phase": "measured",
+      "case": "filtered-no-match",
+      "route": "/?q=__no_matching_synthetic_query__",
+      "target": "before",
+      "pair": 10,
+      "order": 2,
+      "started_at": "2026-10-31T01:59:50.169Z",
+      "status": 200,
+      "headers_ms": 3.439208000000008,
+      "full_html_ms": 6.677917000000093,
+      "semantic_flags": {
+        "http200": true,
+        "html_content_type": true,
+        "filtered_empty_text": true,
+        "no_example_preview": true
+      },
+      "result": "pass",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+        "x-nextjs-cache": null
+      },
+      "decoded_utf8_html_bytes": 18852,
+      "finished_at": "2026-10-31T01:59:50.175Z"
+    }
+  ],
+  "summaries": [
+    {
+      "case": "default-empty",
+      "target": "before",
+      "executed_n": 10,
+      "complete_ten_sample_summary": true,
+      "headers_ms": {
+        "n": 10,
+        "median": 4.298228999999992,
+        "empirical_nearest_rank_p90": 4.945042000000001
+      },
+      "full_html_ms": {
+        "n": 10,
+        "median": 9.873208000000005,
+        "empirical_nearest_rank_p90": 10.953082999999992
+      }
+    },
+    {
+      "case": "default-empty",
+      "target": "after",
+      "executed_n": 10,
+      "complete_ten_sample_summary": true,
+      "headers_ms": {
+        "n": 10,
+        "median": 3.9770420000000115,
+        "empirical_nearest_rank_p90": 5.098582999999991
+      },
+      "full_html_ms": {
+        "n": 10,
+        "median": 9.277312999999992,
+        "empirical_nearest_rank_p90": 10.541499999999985
+      }
+    },
+    {
+      "case": "filtered-no-match",
+      "target": "before",
+      "executed_n": 10,
+      "complete_ten_sample_summary": true,
+      "headers_ms": {
+        "n": 10,
+        "median": 3.0503535,
+        "empirical_nearest_rank_p90": 3.590915999999993
+      },
+      "full_html_ms": {
+        "n": 10,
+        "median": 6.700791500000037,
+        "empirical_nearest_rank_p90": 7.5232919999999694
+      }
+    },
+    {
+      "case": "filtered-no-match",
+      "target": "after",
+      "executed_n": 10,
+      "complete_ten_sample_summary": true,
+      "headers_ms": {
+        "n": 10,
+        "median": 3.043083500000023,
+        "empirical_nearest_rank_p90": 4.134707999999989
+      },
+      "full_html_ms": {
+        "n": 10,
+        "median": 5.675042000000019,
+        "empirical_nearest_rank_p90": 6.296457999999973
+      }
+    }
+  ],
+  "paired_differences": [
+    {
+      "case": "default-empty",
+      "pair": 1,
+      "sign": "after-minus-before",
+      "headers_ms": -0.30562500000002046,
+      "full_html_ms": -0.9536669999999958
+    },
+    {
+      "case": "default-empty",
+      "pair": 2,
+      "sign": "after-minus-before",
+      "headers_ms": -0.6890000000000214,
+      "full_html_ms": -0.9817919999999845
+    },
+    {
+      "case": "default-empty",
+      "pair": 3,
+      "sign": "after-minus-before",
+      "headers_ms": 0.5272079999999733,
+      "full_html_ms": 0.4600419999999872
+    },
+    {
+      "case": "default-empty",
+      "pair": 4,
+      "sign": "after-minus-before",
+      "headers_ms": 0.007624999999961801,
+      "full_html_ms": -0.625041000000067
+    },
+    {
+      "case": "default-empty",
+      "pair": 5,
+      "sign": "after-minus-before",
+      "headers_ms": -0.24233199999997623,
+      "full_html_ms": -0.5404159999999365
+    },
+    {
+      "case": "default-empty",
+      "pair": 6,
+      "sign": "after-minus-before",
+      "headers_ms": -0.57487500000002,
+      "full_html_ms": -0.5797090000000367
+    },
+    {
+      "case": "default-empty",
+      "pair": 7,
+      "sign": "after-minus-before",
+      "headers_ms": 0.4296239999999898,
+      "full_html_ms": 0.08983299999999872
+    },
+    {
+      "case": "default-empty",
+      "pair": 8,
+      "sign": "after-minus-before",
+      "headers_ms": -0.9036669999999845,
+      "full_html_ms": -1.2077930000000379
+    },
+    {
+      "case": "default-empty",
+      "pair": 9,
+      "sign": "after-minus-before",
+      "headers_ms": 0.478416999999979,
+      "full_html_ms": 0.7934170000000336
+    },
+    {
+      "case": "default-empty",
+      "pair": 10,
+      "sign": "after-minus-before",
+      "headers_ms": -0.3441659999999729,
+      "full_html_ms": -1.2034160000000043
+    },
+    {
+      "case": "filtered-no-match",
+      "pair": 1,
+      "sign": "after-minus-before",
+      "headers_ms": 1.168790999999942,
+      "full_html_ms": 0.024290999999948326
+    },
+    {
+      "case": "filtered-no-match",
+      "pair": 2,
+      "sign": "after-minus-before",
+      "headers_ms": -0.32537499999995134,
+      "full_html_ms": -1.8507499999999482
+    },
+    {
+      "case": "filtered-no-match",
+      "pair": 3,
+      "sign": "after-minus-before",
+      "headers_ms": 0.11545899999993026,
+      "full_html_ms": -2.671999000000085
+    },
+    {
+      "case": "filtered-no-match",
+      "pair": 4,
+      "sign": "after-minus-before",
+      "headers_ms": -0.8067499999999654,
+      "full_html_ms": -1.7538749999999936
+    },
+    {
+      "case": "filtered-no-match",
+      "pair": 5,
+      "sign": "after-minus-before",
+      "headers_ms": 1.2740419999999517,
+      "full_html_ms": -0.1885840000000485
+    },
+    {
+      "case": "filtered-no-match",
+      "pair": 6,
+      "sign": "after-minus-before",
+      "headers_ms": -0.29362500000002,
+      "full_html_ms": -2.2786250000000337
+    },
+    {
+      "case": "filtered-no-match",
+      "pair": 7,
+      "sign": "after-minus-before",
+      "headers_ms": -0.7816239999999652,
+      "full_html_ms": -1.4824169999999413
+    },
+    {
+      "case": "filtered-no-match",
+      "pair": 8,
+      "sign": "after-minus-before",
+      "headers_ms": 2.161875000000066,
+      "full_html_ms": 0.703166000000067
+    },
+    {
+      "case": "filtered-no-match",
+      "pair": 9,
+      "sign": "after-minus-before",
+      "headers_ms": 0.3693340000000944,
+      "full_html_ms": -0.7024159999999142
+    },
+    {
+      "case": "filtered-no-match",
+      "pair": 10,
+      "sign": "after-minus-before",
+      "headers_ms": -0.4952500000000555,
+      "full_html_ms": -1.6165840000001026
+    }
+  ],
+  "limitations": [
+    "Local compiled HTTP only; no browser/assets/render/user speed/production latency claim",
+    "Intermediate cohorts differ in auth/CSS/lean changes; not an isolated causal lean-read test or final next release",
+    "Small fixed warm local samples; no population p90/SLA/reliability claim",
+    "No raw HTML retained; semantic flags check markup after scripts/styles removed",
+    "No health/API/auth/forms/MCP/other network paths, source changes, dependencies, instrumentation, server/DB/cloud mutations"
+  ],
+  "result": "pass",
+  "finished_at": "2026-10-31T01:59:50.176Z",
+  "counts": {
+    "warmups": 4,
+    "measured": 40,
+    "total": 44,
+    "failed": 0
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "base_commit": "790862f919cd853c09998217f2587a8d8a88fb94",
+  "integrated_sha256": {
+    "app/actions.ts": "0c7b01f6509e120e6d02f73ea7585b3deda2ddd724051f990354a1d2439a48cc",
+    "app/login/page.tsx": "0e326e69fe80254af09d7c202581401c66b9d422171400663f1159571f0ad90b",
+    "app/auth/callback/route.ts": "eb6e0085ce1fcd91952837554abbb2a5a4e26c867e86c3bcb5442b8ad3c3f7f9",
+    "app/auth/confirm/route.ts": "385cd7d022411a99d2252253942ac4d4b6c6e15a0ec46c9dd28a419ab565790f",
+    "components/forms.tsx": "cb28c92f13cd1b9b289cd821a65a01f44a517dd99e7cf3bd76df110f58b05ce6",
+    "server/services/contributions.ts": "365f0f12e5aa3e2cbf833837f8979db8f4c094305d5ee9ece85270b331eb35be",
+    "components/email-auth-form.tsx": "675779c6e98ce7f7fd9031c450cb577fe90a861095c029059b19ef9bb2e00d2f",
+    "app/signup/page.tsx": "105d6e27a1fe97a2f32b35ba8d74785fea2a11e13ca8c07ac7e23417a919d42b",
+    "scripts/qa/email-auth.mjs": "7d2905c7b8ff2f09a617ea0f359fe27075125c3920972a5808a7f79051c3dcb1",
+    "scripts/qa/auth-attribution.mjs": "3d839416cb6dd8ec489c18ab862b73947b60192f7977a36dce3421bded10973c"
+  },
+  "patch_sha256": "94d41627dae5a9c32f86dca073abb7871bd4952ef6e580b88c0650c46266a20e",
+  "standalone_C_sha256": {
+    "app/actions.ts": "669b7d6fdb48e8c3851b529ec6321d518138d9ab93952bbf65e1757e6fd9f136",
+    "app/login/page.tsx": "0e326e69fe80254af09d7c202581401c66b9d422171400663f1159571f0ad90b",
+    "app/auth/callback/route.ts": "eb6e0085ce1fcd91952837554abbb2a5a4e26c867e86c3bcb5442b8ad3c3f7f9",
+    "app/auth/confirm/route.ts": "385cd7d022411a99d2252253942ac4d4b6c6e15a0ec46c9dd28a419ab565790f",
+    "components/forms.tsx": "76388b73caaa1780e64f90709f581781067e980c0c055c705998a0e4bb45a65e",
+    "server/services/contributions.ts": "4cc73c6c719393c7f3b184744aa0a9479473ef95dbae2510435100bc73ebaaa3",
+    "components/email-auth-form.tsx": "675779c6e98ce7f7fd9031c450cb577fe90a861095c029059b19ef9bb2e00d2f",
+    "app/signup/page.tsx": "105d6e27a1fe97a2f32b35ba8d74785fea2a11e13ca8c07ac7e23417a919d42b",
+    "scripts/qa/email-auth.mjs": "7d2905c7b8ff2f09a617ea0f359fe27075125c3920972a5808a7f79051c3dcb1",
+    "scripts/qa/auth-attribution.mjs": "3d839416cb6dd8ec489c18ab862b73947b60192f7977a36dce3421bded10973c"
+  }
+}

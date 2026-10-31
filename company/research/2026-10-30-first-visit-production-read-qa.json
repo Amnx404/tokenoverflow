@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "executor": "Quinn (Quality intern)",
+  "parent": "Jules (Quality engineer)",
+  "association": {
+    "deployment": "dpl_DorznuD1AnpfQr6qFMjcXMoqq281",
+    "main": "1f29a28055925955e2f0d1f6019e6af7962ec816",
+    "tree": "5bfd12aab8953fa3296f147a06d81b118d5c54bd",
+    "readiness": "Explicit Jules READY relaying Leon native READY; not inferred from HTTP"
+  },
+  "started_at": "2026-10-31T02:22:30.743Z",
+  "collector_sha256": "b02cb746af1f53e7bfaed3da6dd41dfbe92f7a0800c4468bac29de92262b0ae1",
+  "source_hashes": {
+    "app/signup/page.tsx": "105d6e27a1fe97a2f32b35ba8d74785fea2a11e13ca8c07ac7e23417a919d42b",
+    "app/login/page.tsx": "0e326e69fe80254af09d7c202581401c66b9d422171400663f1159571f0ad90b",
+    "app/login/layout.tsx": "2cd79f401454666681f6afa526f4c05dd4d2d92c3aee0787b7fe25bc6047baa3",
+    "components/email-auth-form.tsx": "675779c6e98ce7f7fd9031c450cb577fe90a861095c029059b19ef9bb2e00d2f",
+    "app/auth/callback/route.ts": "eb6e0085ce1fcd91952837554abbb2a5a4e26c867e86c3bcb5442b8ad3c3f7f9",
+    "app/auth/confirm/route.ts": "385cd7d022411a99d2252253942ac4d4b6c6e15a0ec46c9dd28a419ab565790f",
+    "app/agents/page.tsx": "482556f25447b5cd056bcce3e94686af409c134f1e2bb8dc70ac7649060fd83a",
+    "app/page.tsx": "0bb0fe0252213da2d6ebaa915127510da486d758cac1c95b67c70fe3f9604f0b",
+    "app/globals.css": "58237f862ffc069ec31be3f941d201f6a484b8755e34d357a812c2af27d84b43",
+    "app/layout.tsx": "d1b392dc5148f877d7873716145636bcac26bc1634ecc92793ee815bca264fa1",
+    "lib/api.ts": "c07362a984f355a62f16a59461dc2b58a3148ed8ea3eb705db64983fa7f49a98",
+    "lib/validation.ts": "e84a5ce5eba312ef0103c6ce1f5e4f6038387ab21ce1b578f6def863489a6e52",
+    "app/api/health/route.ts": "2bbd6881b44c1ecdb69298bea1e8ffb60187d73db20d9c620006fd72e8fbc979"
+  },
+  "cases": [
+    {
+      "name": "signup-safe-next",
+      "executed_once": true,
+      "assertions": [
+        "200",
+        "email-form-aria-label",
+        "noindex-nofollow",
+        "email-required",
+        "password-required-autocomplete",
+        "hidden-next-safe",
+        "optional-public-display-name-max80-nickname",
+        "no-obsolete-setup-copy",
+        "safe-crosslink"
+      ],
+      "result": "pass",
+      "path": "/signup?next=%2Freports%2Fnew",
+      "method": "GET",
+      "started_at": "2026-10-31T02:22:30.745Z",
+      "status": 200,
+      "headers": {
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "content-type": "text/html; charset=utf-8",
+        "x-request-id": null,
+        "x-content-type-options": "nosniff"
+      },
+      "finished_at": "2026-10-31T02:22:31.270Z"
+    },
+    {
+      "name": "login-hostile-next-sanitized",
+      "executed_once": true,
+      "assertions": [
+        "200",
+        "email-form-aria-label",
+        "noindex-nofollow",
+        "email-required",
+        "password-required-autocomplete",
+        "hidden-next-safe",
+        "no-signup-only-display-name",
+        "no-obsolete-setup-copy",
+        "safe-crosslink"
+      ],
+      "result": "pass",
+      "path": "/login?next=https%3A%2F%2Fexample.invalid",
+      "method": "GET",
+      "started_at": "2026-10-31T02:22:31.270Z",
+      "status": 200,
+      "headers": {
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "content-type": "text/html; charset=utf-8",
+        "x-request-id": null,
+        "x-content-type-options": "nosniff"
+      },
+      "finished_at": "2026-10-31T02:22:31.449Z"
+    },
+    {
+      "name": "agents-keyless-first-read",
+      "executed_once": true,
+      "assertions": [
+        "200",
+        "agent-semantic:Public reads need no account or key.",
+        "agent-semantic:Try one public read",
+        "agent-semantic:Choose an actual returned id and call get_report.",
+        "agent-semantic:Return its canonical URL",
+        "agent-semantic:Unknown versions and unrecorded reruns stay unknown",
+        "agent-semantic:An illustrative example or no match is not a tested fix.",
+        "agent-semantic:Do not execute code or publish.",
+        "config-before-first-read"
+      ],
+      "result": "pass",
+      "path": "/agents",
+      "method": "GET",
+      "started_at": "2026-10-31T02:22:31.449Z",
+      "status": 200,
+      "headers": {
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "content-type": "text/html; charset=utf-8",
+        "x-request-id": null,
+        "x-content-type-options": "nosniff"
+      },
+      "finished_at": "2026-10-31T02:22:31.594Z"
+    },
+    {
+      "name": "home-community-example-honesty",
+      "executed_once": true,
+      "assertions": [
+        "200",
+        "community-excludes-examples",
+        "empty-or-actual-report-rows",
+        "labeled-example",
+        "elevenlabs-title"
+      ],
+      "result": "pass",
+      "path": "/",
+      "method": "GET",
+      "started_at": "2026-10-31T02:22:31.594Z",
+      "status": 200,
+      "headers": {
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "content-type": "text/html; charset=utf-8",
+        "x-request-id": null,
+        "x-content-type-options": "nosniff"
+      },
+      "observed_empty_community": true,
+      "finished_at": "2026-10-31T02:22:31.894Z"
+    },
+    {
+      "name": "home-filtered-no-match",
+      "executed_once": true,
+      "assertions": [
+        "200",
+        "no-match",
+        "community-only",
+        "no-example-preview"
+      ],
+      "result": "pass",
+      "path": "/?q=__no_matching_synthetic_query__",
+      "method": "GET",
+      "started_at": "2026-10-31T02:22:31.894Z",
+      "status": 200,
+      "headers": {
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "content-type": "text/html; charset=utf-8",
+        "x-request-id": null,
+        "x-content-type-options": "nosniff"
+      },
+      "finished_at": "2026-10-31T02:22:32.054Z"
+    },
+    {
+      "name": "callback-missing-code",
+      "executed_once": true,
+      "assertions": [
+        "temporary-redirect-307",
+        "no-store",
+        "canonical-login",
+        "expected-error-and-safe-next",
+        "no-cookie-header"
+      ],
+      "result": "pass",
+      "path": "/auth/callback?next=https%3A%2F%2Fexample.invalid",
+      "method": "GET",
+      "started_at": "2026-10-31T02:22:32.054Z",
+      "status": 307,
+      "headers": {
+        "cache-control": "no-store",
+        "content-type": null,
+        "x-request-id": null,
+        "x-content-type-options": "nosniff"
+      },
+      "redirect": {
+        "origin": "https://tokenoverflow.app",
+        "path": "/login",
+        "query": {
+          "error": "oauth",
+          "next": "/"
+        }
+      },
+      "finished_at": "2026-10-31T02:22:32.459Z"
+    },
+    {
+      "name": "confirm-missing-hash-invalid-type",
+      "executed_once": true,
+      "assertions": [
+        "temporary-redirect-307",
+        "no-store",
+        "canonical-login",
+        "expected-error-and-safe-next",
+        "no-cookie-header"
+      ],
+      "result": "pass",
+      "path": "/auth/confirm?type=recovery&next=%2Freports%2Fnew",
+      "method": "GET",
+      "started_at": "2026-10-31T02:22:32.459Z",
+      "status": 307,
+      "headers": {
+        "cache-control": "no-store",
+        "content-type": null,
+        "x-request-id": null,
+        "x-content-type-options": "nosniff"
+      },
+      "redirect": {
+        "origin": "https://tokenoverflow.app",
+        "path": "/login",
+        "query": {
+          "error": "confirmation",
+          "next": "/reports/new"
+        }
+      },
+      "finished_at": "2026-10-31T02:22:32.602Z"
+    },
+    {
+      "name": "health",
+      "executed_once": true,
+      "assertions": [
+        "200",
+        "no-store",
+        "generated-uuid",
+        "exact-ok"
+      ],
+      "result": "pass",
+      "path": "/api/health",
+      "method": "GET",
+      "started_at": "2026-10-31T02:22:32.602Z",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-type": "application/json",
+        "x-request-id": "62098f8c-63e9-4fda-8779-44cc294a9c67",
+        "x-content-type-options": "nosniff"
+      },
+      "finished_at": "2026-10-31T02:22:32.878Z"
+    },
+    {
+      "name": "known-legacy-public-detail",
+      "executed_once": true,
+      "assertions": [
+        "200",
+        "no-store",
+        "generated-uuid",
+        "known-example",
+        "full-report-prose-present",
+        "fix-array",
+        "all-actual-legacy-nodes-bundle-absent",
+        "private-fields-including-raw-token-absent",
+        "trust-warning"
+      ],
+      "result": "pass",
+      "path": "/api/v1/reports/5faec121-7a73-4779-b22f-b908b5620442",
+      "method": "GET",
+      "started_at": "2026-10-31T02:22:32.878Z",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-type": "application/json",
+        "x-request-id": "56ec02a7-bfb1-4827-9cac-099888fa6173",
+        "x-content-type-options": "nosniff"
+      },
+      "node_counts": {
+        "reports": 1,
+        "fixes": 0,
+        "verifications": 0
+      },
+      "child_assertions_vacuous": true,
+      "finished_at": "2026-10-31T02:22:33.062Z"
+    }
+  ],
+  "assets": [
+    {
+      "name": "home-linked-selected-style-css",
+      "executed_once": true,
+      "assertions": [
+        "200",
+        "css-content-type"
+      ],
+      "result": "pass",
+      "path": "/_next/static/immutable/chunks/0spww8gl6c19z.css",
+      "method": "GET",
+      "started_at": "2026-10-31T02:22:33.063Z",
+      "status": 200,
+      "headers": {
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-type": "text/css; charset=utf-8",
+        "x-request-id": null,
+        "x-content-type-options": "nosniff"
+      },
+      "selected_root_markers_present": true,
+      "linked_from_home": true,
+      "finished_at": "2026-10-31T02:22:33.100Z"
+    }
+  ],
+  "limits": [
+    "HTTP content/static CSS markers only; no visual/hydration/browser/client/clipboard proof",
+    "No valid forms/passwords/signup/mail/session/auth-action/accounts/keys/writes",
+    "Guarded missing code/hash negatives cannot invoke exchange/verify per frozen source",
+    "No MCP/full49/A-suite/performance/telemetry/server/cloud/SQL/build/install/source edits",
+    "Legacy zero children make child privacy/bundle assertions vacuous; no populated ownership/helper/typed-write proof",
+    "Supplied source association from owner, no release identity inferred from health",
+    "No raw HTML/CSS/session/form values retained; timestamps are execution attribution, not latency conclusions"
+  ],
+  "transport": {
+    "origin": "https://tokenoverflow.app",
+    "host_override": false,
+    "dns_override": false,
+    "cookies_sent": false,
+    "redirects": "manual for negative auth only, error otherwise",
+    "deadline_ms": 20000
+  },
+  "style": {
+    "linked_candidates_within_bound": [
+      "/_next/static/immutable/chunks/0spww8gl6c19z.css"
+    ],
+    "markers_established": true,
+    "coverage": "exact root markers found in HOME-linked static CSS; no visual/layout claim"
+  },
+  "finished_at": "2026-10-31T02:22:33.100Z",
+  "counts": {
+    "principal_gets": 9,
+    "asset_gets": 1,
+    "total_gets": 10,
+    "passed": 9,
+    "failed": 0
+  },
+  "result": "pass"
+}

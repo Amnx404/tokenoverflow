@@ -1,0 +1,20 @@
+{
+  "prompt": "Make ONE very small label correction to this classic teal/silver desktop UI screenshot. Preserve every visual design decision, layout, type size, logo, color, chrome, controls, list, code, values, results and image proportions. Replace the label 'Run the same check' immediately above the command field with exactly 'Same check · expected 1.5'. Do not modify the command 'node example.mjs --input 1.5', before1, after1.5, worked input1.5 or failed input1,5→NaN. Do not change anything else. This is one text label correction, not a redesign.",
+  "referenced_image_paths": [
+    "local artifact path omitted; unselected evidence 1"
+  ],
+  "transparent_background": false,
+  "public_export": {
+    "kind": "path-redacted publication provenance export",
+    "non_runnable_input_paths": true,
+    "unmodified_raw_tool_arguments": false,
+    "statement": "Only local input/output path metadata was replaced or made portable. Exact prompt strings, order, flags, dimensions, image hashes and reported results/numbers remain unchanged. Omitted source locations are not executable paths or a promise that unselected original/intermediate artifacts are published.",
+    "path_redactions": [
+      {
+        "pointer": "/referenced_image_paths/0",
+        "source_match_sha256": "49f32a1dfb53b645ccc1247e80c2338f1170f13de02323e87c40fb725044666f",
+        "replacement": "local artifact path omitted; unselected evidence 1"
+      }
+    ]
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "status": "review-only source queue; not app records or import approval",
+  "prepared_by": "Casey (Test user)",
+  "accessed_on": "2026-10-30",
+  "scope": "Ten publicly readable Reddit primary threads; paraphrases only. No joining, contacting, posting, application writes, provisioning, local execution or verification.",
+  "source_date_basis": "Post dates are absolute dates in indexed public-thread rendering only; original post timestamps were not independently extracted or verified. Opened-page relative ages sometimes differ. Do not promote these dates to verified exact timestamps.",
+  "attribution_rule": "All source_author values credit external SOURCE authors only. They are not application personas, app account holders, imported reporters or independent verifiers.",
+  "common_limits": {
+    "app_persona": null,
+    "local_test_performed": false,
+    "independent_verification_performed": false,
+    "fix_validated_by_us": false,
+    "production_upload_authorized": false,
+    "source_code_executed": false,
+    "unknown_versions_inferred": false,
+    "source_claims_are_current_product_facts": false
+  },
+  "candidates": [
+    {
+      "id": "casey-reddit-01",
+      "candidate_title": "AzureChatOpenAI returns 404 while a direct AzureOpenAI call works",
+      "canonical_url": "https://www.reddit.com/r/LangChain/comments/1faknzu/does_microsoft_ever_make_anything_easy_azure/",
+      "post_date": "2024-09-06",
+      "source_author": "u/pixelatedbase (SOURCE only)",
+      "subreddit": "r/LangChain",
+      "symptom": "Reporter receives HTTP 404 after moving a Node.js integration to AzureChatOpenAI; a direct openai-package Azure client reportedly works.",
+      "reported_environment": "Node.js/JavaScript, Azure GPT4o deployment, @langchain/openai; documentation family 0.2, installed package version unknown.",
+      "exact_reported_versions": {
+        "deployment_api_version_as_described_by_reporter": "2024-05-13",
+        "script_api_version": "2024-02-15-preview",
+        "node": null,
+        "langchain_package": null
+      },
+      "source_only_reproduction": "Configure AzureChatOpenAI using instance/deployment/API-version variables and call it; compare the reporter's working direct AzureOpenAI path. Exact endpoint and full minimal input are not supplied here.",
+      "reported_attempts": [
+        "Replaced the older ChatOpenAI import with AzureChatOpenAI.",
+        "Compared against a non-LangChain AzureOpenAI script."
+      ],
+      "source_supported_proposed_fix": {
+        "change": "Set a custom BasePath rather than relying only on instance name.",
+        "attribution": "Suggestion by a now-deleted commenter; original poster replied that it solved their case.",
+        "status": "source-reported workaround, no exact before/after check transcript"
+      },
+      "supporting_comment_url": "https://www.reddit.com/r/LangChain/comments/1faknzu/comment/llue7g1/",
+      "uncertainty": "The API-version distinction remained unresolved; no exact custom URL is preserved. Not a current Azure/LangChain configuration recommendation.",
+      "duplicate_key": "reddit:t3_1faknzu:azurechatopenai-404-basepath",
+      "proposed_report_body": "Synthetic application test content. Curator is not the source reporter. SOURCE: u/pixelatedbase; https://www.reddit.com/r/LangChain/comments/1faknzu/does_microsoft_ever_make_anything_easy_azure/ . Source date 2024-09-06 is indexed-only; original timestamp unverified. Inspected 2026-10-30. AzureChatOpenAI reportedly returned 404 in a Node.js integration while a direct AzureOpenAI client worked. Installed LangChain/Node versions are unknown; the source describes API versions 2024-05-13 and 2024-02-15-preview without resolving their relationship. A deleted commenter suggested custom BasePath; the reporter said it worked, without exact endpoint or same-check outputs. Follow-up: https://www.reddit.com/r/LangChain/comments/1faknzu/comment/llue7g1/. This is a source-reported workaround, not our repair. Local reproduction, code execution and independent verification by our test operators: none. Review-only draft; no app record or upload authorization."
+    },
+    {
+      "id": "casey-reddit-02",
+      "candidate_title": "Mistral tool-call history is rejected with assistant content/tool_calls error",
+      "canonical_url": "https://www.reddit.com/r/LangChain/comments/1hki0uo/issue_in_langchainmistralai/",
+      "post_date": "2024-12-23",
+      "source_author": "u/Witty-Growth-8858 (SOURCE only)",
+      "subreddit": "r/LangChain",
+      "symptom": "Passing full agent state to Mistral raises HTTP 400 stating assistant messages must contain content or tool_calls, not both.",
+      "reported_environment": "Google Colab, Python 3.10, LangChain/Mistral agent.",
+      "exact_reported_versions": {
+        "python": "3.10",
+        "langchain-mistralai": "0.2.4",
+        "langchain_as_typed": ".3.13",
+        "mistral_model": null
+      },
+      "source_only_reproduction": "Send full conversation state with tool calls to the Mistral chat-completions endpoint. Failing complete message list is absent.",
+      "reported_attempts": [
+        "Reporter said packages were updated and referenced an earlier upstream fix while still seeing the error."
+      ],
+      "source_supported_proposed_fix": {
+        "change": "Reporter later said they inserted an empty assistant message to preserve Human–Assistant–Tool ordering when adjacent assistant/tool messages occurred.",
+        "attribution": "Original poster follow-up dated 2025-06-11 in the source rendering.",
+        "status": "source-reported workaround; no same-check outputs or pinned follow-up versions"
+      },
+      "supporting_comment_url": "https://www.reddit.com/r/LangChain/comments/1hki0uo/comment/mx6qq1v/",
+      "uncertainty": "Do not normalize the typed .3.13 version silently or endorse inserting messages without checking actual API requirements. Original error and later history-order explanation are not independently reconciled.",
+      "duplicate_key": "reddit:t3_1hki0uo:mistral-content-toolcalls-history",
+      "proposed_report_body": "Synthetic application test content. Curator is not the source reporter. SOURCE: u/Witty-Growth-8858; https://www.reddit.com/r/LangChain/comments/1hki0uo/issue_in_langchainmistralai/ . Source date 2024-12-23 is indexed-only; original timestamp unverified. Inspected 2026-10-30. The source reports a Mistral 400 content/tool_calls rejection when passing full agent state in Colab/Python 3.10. Versions as typed: langchain-mistralai 0.2.4 and langchain .3.13; model and failing full history unknown. The reporter later described inserting an empty assistant message to preserve message order: https://www.reddit.com/r/LangChain/comments/1hki0uo/comment/mx6qq1v/. Follow-up versions and same-check outputs were not supplied. This is an attributed workaround, not a recommended message transformation or our verification. Local reproduction, code execution and independent verification by our test operators: none. Review-only draft; no app record or upload authorization."
+    },
+    {
+      "id": "casey-reddit-03",
+      "candidate_title": "Prompt-cache counters remain zero; reporter compares shared-prefix lengths",
+      "canonical_url": "https://www.reddit.com/r/ClaudeAI/comments/1sf2yrc/anthropic_prompt_caching_fails_silently_when_your/",
+      "post_date": "2026-04-07",
+      "source_author": "u/Glittering-Pie6039 (SOURCE only)",
+      "subreddit": "r/ClaudeAI",
+      "symptom": "Parallel Anthropic API requests report zero cache creation/read tokens despite an ephemeral cache directive.",
+      "reported_environment": "5–10 parallel requests share an approximately 1,500-token system block; exact model and SDK version unknown.",
+      "exact_reported_versions": {
+        "model": null,
+        "sdk": null,
+        "api_version": null
+      },
+      "source_only_reproduction": "Reporter varied shared-prefix length; described no hits around 2,000–4,000 tokens and hits at about 4,100 and above. No executable test script is supplied in the opened post.",
+      "reported_attempts": [
+        "Per-block/top-level directives, sequential seeding and beta headers.",
+        "An isolated token-length comparison."
+      ],
+      "source_supported_proposed_fix": {
+        "change": "Move shared master content into the cached system block and issue the first request sequentially before parallel calls.",
+        "attribution": "Original poster's reported change and outcome.",
+        "status": "source-reported observation, exact model-dependent threshold unverified"
+      },
+      "uncertainty": "A 4,096-token threshold is the reporter's explanation, not a universal current limit. No measured savings or local verification by us.",
+      "duplicate_key": "reddit:t3_1sf2yrc:anthropic-prefix-minimum-zero-cache",
+      "proposed_report_body": "Synthetic application test content. Curator is not the source reporter. SOURCE: u/Glittering-Pie6039; https://www.reddit.com/r/ClaudeAI/comments/1sf2yrc/anthropic_prompt_caching_fails_silently_when_your/ . Source date 2026-04-07 is indexed-only; original timestamp unverified. Inspected 2026-10-30. The reporter saw zero cache creation/read counters with an approximately 1500-token shared system prefix and parallel Anthropic API calls. Exact model, SDK and API versions are unknown. The source describes changing prefix length, then moving shared master content into the cached block and seeding sequentially before parallel calls. This is a reported comparison/workaround; a model-specific threshold, runnable script and current universal minimum are not established here. Local reproduction, code execution and independent verification by our test operators: none. Review-only draft; no app record or upload authorization."
+    },
+    {
+      "id": "casey-reddit-04",
+      "candidate_title": "Claude Code resumed sessions reportedly rebuild the prompt cache",
+      "canonical_url": "https://www.reddit.com/r/ClaudeAI/comments/1s7mkn3/psa_claude_code_has_two_cache_bugs_that_can/",
+      "post_date": "2026-03-30",
+      "source_author": "u/skibidi-toaleta-2137 (SOURCE only)",
+      "subreddit": "r/ClaudeAI",
+      "symptom": "Reporter describes a cache miss on the first resumed request despite prior conversation context.",
+      "reported_environment": "Claude Code standalone/npm comparisons; fresh/resumed sessions and payload comparisons. No raw payloads copied into this queue.",
+      "exact_reported_versions": {
+        "reported_regression_boundary": "2.1.69",
+        "reported_workaround": "2.1.68",
+        "comparison_range_as_reported": "1.0.0–2.1.87",
+        "runtime": null
+      },
+      "source_only_reproduction": "Author describes comparing cache counters and initial-message placement for fresh versus first-resumed sessions. No self-contained runnable reproduction is retained in this queue.",
+      "reported_attempts": [
+        "Author reports comparing package versions and fresh/resumed requests."
+      ],
+      "source_supported_proposed_fix": {
+        "change": "Author reports pinning 2.1.68 avoids the resume regression.",
+        "attribution": "Original poster; later edit says linked issues were closed but they could not verify the resolution.",
+        "status": "historical source claim, not a recommended downgrade or current fixed-version assertion"
+      },
+      "uncertainty": "Later commenter reports a passing diagnostic on 2.1.178; not independently checked. Historical claims, not current fixed-version, measured-cost or downgrade guidance.",
+      "counterevidence_comment_url": "https://www.reddit.com/r/ClaudeAI/comments/1s7mkn3/comment/ory5rny/",
+      "duplicate_key": "reddit:t3_1s7mkn3:claude-resume-prefix",
+      "duplicate_sources_not_counted_separately": [
+        "https://www.reddit.com/r/ClaudeCode/comments/1s7mitf/psa_claude_code_has_two_cache_bugs_that_can/"
+      ],
+      "proposed_report_body": "Synthetic application test content. Curator is not the source reporter. SOURCE: u/skibidi-toaleta-2137; https://www.reddit.com/r/ClaudeAI/comments/1s7mkn3/psa_claude_code_has_two_cache_bugs_that_can/ . Source date 2026-03-30 is indexed-only; original timestamp unverified. Inspected 2026-10-30. The source describes a prompt-cache miss on the first resumed Claude Code request, with a reported regression boundary at 2.1.69 and a reported 2.1.68 workaround. Runtime and exact consumer conditions are unknown. No self-contained runnable reproduction is retained here. The author later said linked issues were closed but could not verify resolution; another commenter reported a passing diagnostic on 2.1.178: https://www.reddit.com/r/ClaudeAI/comments/1s7mkn3/comment/ory5rny/. These are historical source claims, not current downgrade/fixed-version guidance. Local reproduction, code execution and independent verification by our test operators: none. Review-only draft; no app record or upload authorization."
+    },
+    {
+      "id": "casey-reddit-05",
+      "candidate_title": "ElevenLabs iOS agent changes to English after silence or missed speech",
+      "canonical_url": "https://www.reddit.com/r/ElevenLabs/comments/1jjuwnf/set_agent_language/",
+      "post_date": "2025-03-25",
+      "source_author": "u/Educational-Mud4525 (SOURCE only)",
+      "subreddit": "r/ElevenLabs",
+      "symptom": "An agent starts in an API-selected language, then sometimes switches to English after silence or unrecognized speech.",
+      "reported_environment": "iOS app using an ElevenLabs Agent; language overridden by API; Italian also tried as default.",
+      "exact_reported_versions": {
+        "agent_model": null,
+        "sdk": null,
+        "ios": null
+      },
+      "source_only_reproduction": "Start an agent conversation in a chosen language, then encounter silence/missed speech. Exact audio, duration, request and settings are absent.",
+      "reported_attempts": [
+        "With and without multilingual models.",
+        "With and without language detection.",
+        "Italian as default language."
+      ],
+      "source_supported_proposed_fix": null,
+      "uncertainty": "Open question with no solution in the opened thread. Distinct from the founding speech-generation-to-Chinese illustration; neither cause nor common mechanism established.",
+      "duplicate_key": "reddit:t3_1jjuwnf:agent-language-english-after-silence",
+      "proposed_report_body": "Synthetic application test content. Curator is not the source reporter. SOURCE: u/Educational-Mud4525; https://www.reddit.com/r/ElevenLabs/comments/1jjuwnf/set_agent_language/ . Source date 2025-03-25 is indexed-only; original timestamp unverified. Inspected 2026-10-30. An iOS developer reports an ElevenLabs Agent switching to English after silence or missed speech despite an API-selected language. Agent model, SDK and iOS versions, exact audio/request and silence duration are unknown. The source reports trying multilingual models, language detection and Italian as default in different configurations without resolving it. No supported fix or runnable minimal reproduction appears in the inspected thread. This is distinct from the founding Chinese speech-generation illustration. Local reproduction, code execution and independent verification by our test operators: none. Review-only draft; no app record or upload authorization."
+    },
+    {
+      "id": "casey-reddit-06",
+      "candidate_title": "Gemini API returns an empty response; a commenter reports a thinking-level boundary",
+      "canonical_url": "https://www.reddit.com/r/GeminiAI/comments/1rkf42h/api_giving_empty_responses/",
+      "post_date": "2026-03-04",
+      "source_author": "u/Top_Toe8606 (SOURCE only)",
+      "subreddit": "r/GeminiAI",
+      "symptom": "Reporter sees response=None rather than prior 503 errors.",
+      "reported_environment": "Gemini API integration; original reporter model/SDK/input unknown.",
+      "exact_reported_versions": {
+        "original_reporter_model": null,
+        "sdk": null,
+        "commenter_model_as_typed": "Gemini-3.1"
+      },
+      "source_only_reproduction": "Make the unspecified Gemini API call; no request payload or repeatable failing input is given.",
+      "reported_attempts": [
+        "Original poster mentions defensive exception checks, without a specific repair."
+      ],
+      "source_supported_proposed_fix": {
+        "change": "Commenter zerothunder94 reports empty output at thinking_level=high but output at medium.",
+        "attribution": "Separate source commenter, 2026-03-05; not a result from the original reporter.",
+        "status": "candidate setting comparison only, not a verified fix"
+      },
+      "supporting_comment_url": "https://www.reddit.com/r/GeminiAI/comments/1rkf42h/comment/o8q49a2/",
+      "uncertainty": "Original report and commenter may involve different causes. No same-input outputs or exact model snapshot are supplied.",
+      "duplicate_key": "reddit:t3_1rkf42h:gemini-empty-response-thinking",
+      "proposed_report_body": "Synthetic application test content. Curator is not the source reporter. SOURCE: u/Top_Toe8606; https://www.reddit.com/r/GeminiAI/comments/1rkf42h/api_giving_empty_responses/ . Source date 2026-03-04 is indexed-only; original timestamp unverified. Inspected 2026-10-30. The source reports Gemini API response=None; original model, SDK, request and exact versions are unknown. A separate commenter describes Gemini-3.1 producing empty output with thinking_level=high but output with medium: https://www.reddit.com/r/GeminiAI/comments/1rkf42h/comment/o8q49a2/. This is an attributed setting comparison, not proof the original reporter has the same cause or a verified fix. No same-input outputs are supplied. Local reproduction, code execution and independent verification by our test operators: none. Review-only draft; no app record or upload authorization."
+    },
+    {
+      "id": "casey-reddit-07",
+      "candidate_title": "Gemini with LangChain structured output intermittently returns missing or malformed JSON",
+      "canonical_url": "https://www.reddit.com/r/LangChain/comments/1ozi7ky/gemini_dont_give_structured_outputs_always/",
+      "post_date": "2025-11-17",
+      "source_author": "u/gaureshai (SOURCE only)",
+      "subreddit": "r/LangChain",
+      "symptom": "Reporter says structured JSON output is intermittent despite withStructuredOutput and streaming disabled.",
+      "reported_environment": "Next.js/TypeScript, Zod, ChatGoogleGenerativeAI; exact packages/model unknown.",
+      "exact_reported_versions": {
+        "gemini_model": null,
+        "langchain": null,
+        "nextjs": null,
+        "zod": null
+      },
+      "source_only_reproduction": "Call the described structured-output path; source does not supply schema, prompt or minimal code.",
+      "reported_attempts": [
+        "Streaming disabled.",
+        "Reporter considered switching providers and later mentioned an OpenRouter/baseUrl problem, not a demonstrated correction."
+      ],
+      "source_supported_proposed_fix": null,
+      "uncertainty": "No established cause or before/after result. Provider-switch recommendations in comments are not evidence of a fix for this integration.",
+      "duplicate_key": "reddit:t3_1ozi7ky:langchain-gemini-structured-output",
+      "proposed_report_body": "Synthetic application test content. Curator is not the source reporter. SOURCE: u/gaureshai; https://www.reddit.com/r/LangChain/comments/1ozi7ky/gemini_dont_give_structured_outputs_always/ . Source date 2025-11-17 is indexed-only; original timestamp unverified. Inspected 2026-10-30. The reporter describes intermittent missing/malformed JSON with ChatGoogleGenerativeAI and withStructuredOutput in Next.js/TypeScript with Zod and streaming disabled. Exact model, package versions, prompt, schema and failing outputs are unknown. Provider-switch suggestions are not a demonstrated correction. No supported fix, runnable minimal reproduction or before/after comparison is established by the inspected source. Local reproduction, code execution and independent verification by our test operators: none. Review-only draft; no app record or upload authorization."
+    },
+    {
+      "id": "casey-reddit-08",
+      "candidate_title": "LangChain events appear inside streamed frontend text after moving execution behind FastAPI",
+      "canonical_url": "https://www.reddit.com/r/LangChain/comments/1dohi7o/need_help_with_streaming_agent_output_and_am_i/",
+      "post_date": "2024-06-25",
+      "source_author": "u/upandfastLFGG (SOURCE only)",
+      "subreddit": "r/LangChain",
+      "symptom": "Reporter intermittently sees event JSON in the displayed AI response after moving a RemoteRunnable to a backend.",
+      "reported_environment": "Python, FastAPI StreamingResponse/text-event-stream, ChatOpenAI, astream_events version=v1 and custom serializer.",
+      "exact_reported_versions": {
+        "events_protocol_argument": "v1",
+        "langchain": null,
+        "python": null,
+        "fastapi": null
+      },
+      "source_only_reproduction": "Backend iterates model-stream and tool/model-end events, yielding text chunks and serialized JSON. The source includes partial code, not a deterministic failing fixture.",
+      "reported_attempts": [
+        "Moved RemoteRunnable from frontend to FastAPI.",
+        "Used custom recursive serialization with message .dict()."
+      ],
+      "source_supported_proposed_fix": null,
+      "uncertainty": "A source reply notes that JSON is explicitly yielded; the reporter says context is missing. No installed package version, exact correction or confirmed repair is established by the inspected thread content.",
+      "duplicate_key": "reddit:t3_1dohi7o:astream-events-fastapi-json-leak",
+      "proposed_report_body": "Synthetic application test content. Curator is not the source reporter. SOURCE: u/upandfastLFGG; https://www.reddit.com/r/LangChain/comments/1dohi7o/need_help_with_streaming_agent_output_and_am_i/ . Source date 2024-06-25 is indexed-only; original timestamp unverified. Inspected 2026-10-30. The reporter describes event JSON appearing in streamed frontend output after moving a RemoteRunnable behind FastAPI. The shown path uses astream_events version=v1 and custom serialization that yields both text and JSON. Installed Python/LangChain/FastAPI versions and a deterministic failing input are unknown. A source reply questions the explicit JSON yield; no exact correction or confirmed repair is established. No indexed-only version-upgrade suggestion is retained as evidence. Local reproduction, code execution and independent verification by our test operators: none. Review-only draft; no app record or upload authorization."
+    },
+    {
+      "id": "casey-reddit-09",
+      "candidate_title": "AgentExecutor import fails in a first LangChain agent setup",
+      "canonical_url": "https://www.reddit.com/r/AI_Agents/comments/1rvs7nx/currently_having_trouble_with_imports/",
+      "post_date": "2026-03-17",
+      "source_author": "u/Competitive-Ear5385 (SOURCE only)",
+      "subreddit": "r/AI_Agents",
+      "symptom": "ImportError for AgentExecutor imported from langchain.agents.",
+      "reported_environment": "Python/LangChain first-agent setup; tutorial/install versions absent.",
+      "exact_reported_versions": {
+        "langchain": null,
+        "python": null,
+        "tutorial_version": null
+      },
+      "source_only_reproduction": "Attempt to import AgentExecutor and create_tool_calling_agent from langchain.agents, as shown in the source.",
+      "reported_attempts": [],
+      "source_supported_proposed_fix": null,
+      "uncertainty": "Commenters suggest upgrading or matching tutorial/package versions, but their generic advice is not a precise supported fix for the unknown installed version. Collect version/import-path facts first.",
+      "duplicate_key": "reddit:t3_1rvs7nx:langchain-agentexecutor-import",
+      "proposed_report_body": "Synthetic application test content. Curator is not the source reporter. SOURCE: u/Competitive-Ear5385; https://www.reddit.com/r/AI_Agents/comments/1rvs7nx/currently_having_trouble_with_imports/ . Source date 2026-03-17 is indexed-only; original timestamp unverified. Inspected 2026-10-30. The source shows an ImportError for AgentExecutor imported from langchain.agents in a first-agent setup. Installed Python/LangChain and tutorial versions are unknown. Commenters give generic version/import-path advice without establishing a precise correction for this installation. No fix is claimed; the next missing fact is the actual package/tutorial version pair, not an inferred latest version. Local reproduction, code execution and independent verification by our test operators: none. Review-only draft; no app record or upload authorization."
+    },
+    {
+      "id": "casey-reddit-10",
+      "candidate_title": "API web-search extraction omits fields more often than a differently configured ChatGPT UI task",
+      "canonical_url": "https://www.reddit.com/r/OpenAI/comments/1nv856m/why_does_the_api_fail_40_of_the_time_for_our_data/",
+      "post_date": "2025-10-01",
+      "source_author": "u/jcarlson2007 (SOURCE only)",
+      "subreddit": "r/OpenAI",
+      "symptom": "Reporter says some API extraction results omit one required field while manual UI lookups appear more complete.",
+      "reported_environment": "API gpt-4o with web_search_preview, 4,000 output tokens, 180-second timeout and one-second request spacing; UI described as ChatGPT-5 Auto.",
+      "exact_reported_versions": {
+        "api_model_as_reported": "gpt-4o",
+        "ui_model_as_reported": "ChatGPT-5 Auto",
+        "sdk": null,
+        "model_snapshots": null
+      },
+      "source_only_reproduction": "Request two data fields for named places/addresses using a JSON-schema prompt. Complete prompt, ground truth and failing response are absent.",
+      "reported_attempts": [
+        "Reporter compared small API test sets to manual UI requests; model and product paths differ."
+      ],
+      "source_supported_proposed_fix": null,
+      "uncertainty": "Reporter asks about two-pass extraction and other configurations but does not report a successful repair. Source percentages are anecdotal; no comparable-model controlled experiment or measured savings established.",
+      "duplicate_key": "reddit:t3_1nv856m:websearch-extraction-missing-fields",
+      "proposed_report_body": "Synthetic application test content. Curator is not the source reporter. SOURCE: u/jcarlson2007; https://www.reddit.com/r/OpenAI/comments/1nv856m/why_does_the_api_fail_40_of_the_time_for_our_data/ . Source date 2025-10-01 is indexed-only; original timestamp unverified. Inspected 2026-10-30. The reporter describes missing extraction fields with API gpt-4o/web_search_preview compared with a UI described as ChatGPT-5 Auto. API settings reported: 4000 output tokens, 180-second timeout, one-second spacing. SDK and exact model snapshots, full prompt, failing outputs and ground truth are unknown. Product/model paths differ; no controlled comparison or successful two-pass repair was reported. Anecdotal percentages are not validated reliability or savings measurements. Local reproduction, code execution and independent verification by our test operators: none. Review-only draft; no app record or upload authorization."
+    }
+  ]
+}

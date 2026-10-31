@@ -1,0 +1,79 @@
+{
+  "kind": "authored deterministic fetch simulation, not a network incident",
+  "runtime": {
+    "node": "v26.11.1",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "sources": {
+    "released_commit": "3c48c19682ee9fd0764caeef70a736d0cabb861d",
+    "fixed_tree": "63eabdcbdc362821ec69867643fcb9f899806671"
+  },
+  "sha256": {
+    "released-client-read.snapshot.mjs": "aa40a94bbc813676bb03045d65026625b976ed8f3c1fe59396c9e810ac83af55",
+    "fixed-canonical-source.snapshot.mjs": "3b4fea95f894c223df3c53f26c124d8d65415edd8048f80700655be212b64721",
+    "fixture.json": "96fd4a0b2216b93e402b5c91743d29e035fa6bed4311135cd9c08c34eef1271b",
+    "replay.mjs": "f3cef5fc7f78edcf53fde8fd2ef0c3a12d9913d987b4c396acbf301db36d013d",
+    "extracted_released_predicate": "1644e2024382cd9d2b7d391b8ecb65a0a43b032d6ffd67dc57242e0d44e28e2b"
+  },
+  "criterion": "Accept the exact report HTTP 200 with matching heading; reject a same-host redirect to home.",
+  "observations": [
+    {
+      "case": "exact-report-control",
+      "implementation": "released",
+      "accepted": true,
+      "correct_acceptance": true,
+      "criterion_satisfied": true,
+      "diagnostic": "accepted HTTP 200 at https://tokenoverflow.app/reports/10000000-0000-4000-8000-000000000001",
+      "calls": [
+        {
+          "requested_url": "https://tokenoverflow.app/reports/10000000-0000-4000-8000-000000000001",
+          "redirect": "follow (default)"
+        }
+      ]
+    },
+    {
+      "case": "exact-report-control",
+      "implementation": "fixed",
+      "accepted": true,
+      "correct_acceptance": true,
+      "criterion_satisfied": true,
+      "diagnostic": "accepted HTTP 200 at https://tokenoverflow.app/reports/10000000-0000-4000-8000-000000000001",
+      "calls": [
+        {
+          "requested_url": "https://tokenoverflow.app/reports/10000000-0000-4000-8000-000000000001",
+          "redirect": "manual"
+        }
+      ]
+    },
+    {
+      "case": "same-host-redirect-to-home",
+      "implementation": "released",
+      "accepted": true,
+      "correct_acceptance": false,
+      "criterion_satisfied": false,
+      "diagnostic": "accepted HTTP 200 at https://tokenoverflow.app/",
+      "calls": [
+        {
+          "requested_url": "https://tokenoverflow.app/reports/10000000-0000-4000-8000-000000000001",
+          "redirect": "follow (default)"
+        }
+      ]
+    },
+    {
+      "case": "same-host-redirect-to-home",
+      "implementation": "fixed",
+      "accepted": false,
+      "correct_acceptance": false,
+      "criterion_satisfied": true,
+      "diagnostic": "Canonical report must return 200 without redirect",
+      "calls": [
+        {
+          "requested_url": "https://tokenoverflow.app/reports/10000000-0000-4000-8000-000000000001",
+          "redirect": "manual"
+        }
+      ]
+    }
+  ],
+  "scope": "New authored deterministic replay of exact first-party QA source. No actual redirect, deployed wrong page, MCP session or independent fix verification is claimed."
+}

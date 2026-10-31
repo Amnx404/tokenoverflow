@@ -1,0 +1,118 @@
+{
+  "status": "unselected_visual_exploration",
+  "tool": "built-in image_gen.imagegen",
+  "date": "2026-10-30",
+  "requested_dimensions": [
+    1440,
+    1024
+  ],
+  "transparent_background": false,
+  "files": [
+    {
+      "file": "signal-desk.png",
+      "source_path": "local reference/generated-output path omitted; reference 1",
+      "width": 1487,
+      "height": 1058,
+      "sha256": "9f380c2d635bc65e01be156f0d2d758522f2338365b0a8a1c236c57ef511ff8f",
+      "bytes": 1385491,
+      "role": "preserved_original_or_intermediate"
+    },
+    {
+      "file": "signal-desk-review.png",
+      "source_path": "local reference/generated-output path omitted; reference 2",
+      "width": 1486,
+      "height": 1059,
+      "sha256": "d6f423a8124c5c8cfec7fb37915c6c3889d8049ec3bf5d5b281f36059d158fee",
+      "bytes": 1590860,
+      "role": "final_review"
+    },
+    {
+      "file": "patch-pocket.png",
+      "source_path": "local reference/generated-output path omitted; reference 3",
+      "width": 1487,
+      "height": 1058,
+      "sha256": "c090a1d89fce56a795add91f9e9f4d103ab1bb0046202e5f15d9484f2c2a1eac",
+      "bytes": 1455312,
+      "role": "preserved_original_or_intermediate"
+    },
+    {
+      "file": "patch-pocket-correction-1.png",
+      "source_path": "local reference/generated-output path omitted; reference 4",
+      "width": 1487,
+      "height": 1058,
+      "sha256": "c63bc1c82443f81b79b7b3723f9604b6b5ac1d1047c67e99291053206f08c919",
+      "bytes": 1557503,
+      "role": "preserved_original_or_intermediate"
+    },
+    {
+      "file": "patch-pocket-review.png",
+      "source_path": "local reference/generated-output path omitted; reference 5",
+      "width": 1487,
+      "height": 1058,
+      "sha256": "02c9fe5baa3d7f9412759b9f15729b9dd7ce2b3f4ed0df4af86041f5bd516d9e",
+      "bytes": 1537814,
+      "role": "final_review"
+    },
+    {
+      "file": "glass-index.png",
+      "source_path": "local reference/generated-output path omitted; reference 6",
+      "width": 1487,
+      "height": 1058,
+      "sha256": "1f074e8f61c671be35963eb4aa52689c9d90b463ef2975bcf2abe4d778f592bb",
+      "bytes": 1357306,
+      "role": "preserved_original_or_intermediate"
+    },
+    {
+      "file": "glass-index-review.png",
+      "source_path": "local reference/generated-output path omitted; reference 7",
+      "width": 1487,
+      "height": 1058,
+      "sha256": "87a72f6ff8dce46808ba3011e2e98314a524fc8cadfc2b798f6426f4e9d299fb",
+      "bytes": 1482284,
+      "role": "final_review"
+    }
+  ],
+  "public_export": {
+    "kind": "path-redacted publication provenance export",
+    "non_runnable_input_paths": true,
+    "unmodified_raw_tool_arguments": false,
+    "statement": "Only local input/output path metadata was replaced or made portable. Exact prompt strings, order, flags, dimensions, image hashes and reported results/numbers remain unchanged. Omitted source locations are not executable paths or a promise that unselected original/intermediate artifacts are published.",
+    "path_redactions": [
+      {
+        "pointer": "/files/0/source_path",
+        "source_match_sha256": "1e212c5b393d61c3b5f05f80817f961a1314466767ab9d13fe7ad59b5b8f9b9b",
+        "replacement": "local reference/generated-output path omitted; reference 1"
+      },
+      {
+        "pointer": "/files/1/source_path",
+        "source_match_sha256": "be5ff89f765d5d3697f2b45560a9cd575737e5880b3da62ac2cf540ddc278761",
+        "replacement": "local reference/generated-output path omitted; reference 2"
+      },
+      {
+        "pointer": "/files/2/source_path",
+        "source_match_sha256": "b1a15bd6d6ecfdd8e909c8e24e28ed1b605ccc6788650d070af4b4e233d0a99b",
+        "replacement": "local reference/generated-output path omitted; reference 3"
+      },
+      {
+        "pointer": "/files/3/source_path",
+        "source_match_sha256": "767116a25fc1c6469a2a08cba6479dfb0b6fda264f488b377de38112bd739ba6",
+        "replacement": "local reference/generated-output path omitted; reference 4"
+      },
+      {
+        "pointer": "/files/4/source_path",
+        "source_match_sha256": "e0f3ced5d0a233df97b268422dab5dde68aaa0980ef50da52e9c5275e0be7a23",
+        "replacement": "local reference/generated-output path omitted; reference 5"
+      },
+      {
+        "pointer": "/files/5/source_path",
+        "source_match_sha256": "f48d7d7ce876c6b90024d65d67ff36c30ecd11f31a3f91048421a0a553268785",
+        "replacement": "local reference/generated-output path omitted; reference 6"
+      },
+      {
+        "pointer": "/files/6/source_path",
+        "source_match_sha256": "6631cea19e147f1fe5f19a5b8c164362804c7ce913393ab188a692d6e90eb03d",
+        "replacement": "local reference/generated-output path omitted; reference 7"
+      }
+    ]
+  }
+}

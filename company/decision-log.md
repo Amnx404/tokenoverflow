@@ -122,3 +122,81 @@ Owners read one another's Markdown outputs and coordinate routine dependencies d
 Status: founder requirement accepted; supported title workflow identified, complete nickname-badge change not claimed. Owner: Sasha (Executive assistant), with hiring parents.
 
 Documentation labels alone do not satisfy the founder's UI requirement. For future hires use the actual session UUID and supported app `set_thread_title` with `Name (Role)`; verify the displayed result. Never mutate internal app state. A session-title update does not prove the separate agent nickname badge changed; report platform limits honestly. Stable lowercase identifiers/file paths and historical quotes remain unchanged.
+
+
+## 2026-10-30 — D024: peer employees, product management and technical leadership
+
+Status: accepted staffing/working direction; roles and reported hires registered. Owner: Codex (CEO), coordinated by Morgan (Product manager), Rafael (Engineering lead) and Sasha (Executive assistant).
+
+Each engineering/research workstream has two peer employees, independently working then reciprocally reviewing actual output. Morgan (Product manager) recruited the nine authorized medium-reasoning/fresh-context peers and Test users recorded in [team](team.md), owns [plan](plan.md)/workboard and direct Casey (Test user)/Robin (Test user) interviews. Rafael (Engineering lead) owns long-term technical direction, deliberate scope with product management, shared interfaces and independent quality; system owners keep implementation boundaries. These peer employees are not interns. Codex (CEO) retains consequential tradeoffs, conflicts and release; useful throughput and quality are judged by reviewed outcomes, supported defects and resolution, not task/check counts.
+
+## 2026-10-30 — D025: reviewed public-read production release
+
+Status: implemented and owner-verified on canonical production. Owner: Codex (CEO), Leon (Platform and data engineer), Jules (Quality engineer), Rowan (MCP engineer).
+
+PR1 merged to main `3c48c19682ee9fd0764caeef70a736d0cabb861d` with exact approved tree `f23e7018e01ae5f9f1086196538e98b374f647a2`; automatic production `dpl_3zxFnUbzQc8wmAZYsuHUVBiCNzuG` is READY at `https://tokenoverflow.app`. Exact-candidate CI/preview and Codex (CEO) desktop interactions passed; Jules (Quality engineer) recorded normal remote public-read/health/SEO/pending-login checks and Rowan (MCP engineer) official SDK retrieval plus exact canonical report identity. [Verification](verification.md) holds evidence and limits. Preserve protections/free tiers. Empty corpus and illustrative detail proof do not establish real reuse, populated results, OAuth or valid writes.
+
+## 2026-10-30 — D026: complete core MVP before marketing
+
+Status: latest operating direction accepted; supersedes immediate postlaunch acquisition sequencing, not the completed public-read release. Owner: Codex (CEO), with Morgan (Product manager) and Rafael (Engineering lead).
+
+Pause marketing, outreach/recruitment, registry and public ingestion. Finish substantial outcome packages: reusable finding/change/independent-result evidence, real identity/key/contribution lifecycle, and trustworthy retrieval. [The plan](plan.md) owns current package scope, dependency and acceptance. Optional typed same-check evidence on existing resources is a reviewed proposal pending material schema/rollout approval; defer a new baseline resource from the first slice and never count inability to reproduce as a failed fix. GitHub provider setup and explicitly authorized safe fixtures remain separate dependencies; no auth bypass or fabricated public records. Casey (Test user)/Robin (Test user) assess meaningful changed slices and discuss actual results with Morgan (Product manager); internal scenarios remain excluded from adoption. Existing acquisition drafts remain historical/review-only until this pause is explicitly lifted and exact actions are authorized.
+
+
+## 2026-10-30 — D027: actual high employee reasoning and safe same-identity renewal
+
+Status: Aman standing requirement accepted; actual transition recorded per employee. Owner: Sasha (Executive assistant), coordinated with Morgan (Product manager)/Rafael (Engineering lead).
+
+All employees run actual high, Codex (CEO) extra-high, interns medium. This supersedes earlier task-dependent low/medium employee guidance, including historical recruitment settings. Current follow-up tools cannot change effort; a prompt is not a setting change. Prefer any supported actual update, otherwise finish/hand off file/release leases before a high/fresh successor starts the same employee's next substantial package. Never interrupt merge/deploy or overlap edits. Replacements retain names/ownership/evidence and are not added headcount; obey21 active. [The directory](people/README.md) records actual checked settings, current handles and unfinished transitions; old sessions are superseded through official titles. All future employee hires use high. No internal-state hacks or nickname-badge claims.
+
+## 2026-10-30 — D028: existing specialist council continuously challenges the working model
+
+Status: assigned and operating; not an added consensus gate. Owner: Morgan (Product manager), with existing specialists.
+
+Rowan (MCP engineer)/Imani (MCP engineer) own integration, Niko (Product engineer) agent-facing UX/interaction, Iris (Researcher) evidence/learning behavior; Wren (Researcher) stays external technical research. Morgan (Product manager) debates assumptions against actual Casey (Test user)/Robin (Test user) observations and records alternatives, real disagreement, decisions and remaining uncertainty. Product retrieves/retests evidence; it does not train model weights. [The plan](plan.md) records actual discussions and revisions; [Iris's council memo](research/2026-10-30-council-evidence-learning.md) supplies evidence rationale. Leads own substantial next assignments, ask testers/research when unclear, then escalate precise unresolved consequential decisions to Codex (CEO) and persistent founder-level bottlenecks to Aman. Free peer-level Markdown-first communication continues; no forced consensus, uncontrolled hiring or marketing before full MVP.
+
+## 2026-10-30 — D029: reject all prior logos and reopen a broader full-brand round
+
+Status: all three prior logo candidates rejected by Aman; no new mark selected. Owner: Nina (Frontend engineer), independent review by Felix (Frontend engineer), reference capture coordinated by Codex (CEO).
+
+Aman wants materially broader Mobbin-inspired ideas and a complete brand foundation, not three cosmetic variants. Preserve rejected originals/prompts/provenance as history; apply none of those marks. Prior guide mechanics passed CEO desktop review but do not select a logo. Current Mobbin tools are unavailable to the host; root-owned public browser/reference capture is the fallback, without paywall bypass or a false archive-inspection claim. [Design](design.md) records the current boundary. Brand proceeds in parallel, introduces no new app layout and does not stop core A/B/C outcomes.
+
+## 2026-10-30 — D030: authorize narrowed A code and local acceptance, retain production SQL gate
+
+Status: Codex (CEO) approved implementation/local acceptance under the final reviewed evidence memo; production DDL not approved. Owner: Rafael (Engineering lead) with system pairs.
+
+The final [evidence contract](research/2026-10-30-evidence-contract.md) governs optional typed same-check evidence on existing resources, preserving legacy/open/unknown and negative observations. No new baseline resource in the first slice. Code and isolated local acceptance can proceed with precise file/fixture leases; actual reviewed migration and PostgreSQL17 target compatibility are required before any production DDL decision. Local PostgreSQL18, source/synthetic tests and anonymous public reads do not establish PG17 migration, real OAuth or complete stored contribution lifecycle. [Plan](plan.md)/owner notes hold current source and acceptance status. This supersedes D026's earlier pending implementation approval, while marketing pause and safe-fixture/privacy boundaries remain.
+
+
+## 2026-10-30 — D031: reject current brand-guide presentation and language
+
+Status: latest explicit Aman feedback; supersedes the narrower logo-only rejection scope in D029. Owner: Nina (Frontend engineer), independently reviewed by Felix (Frontend engineer), reference capture by Codex (CEO).
+
+Aman rejects the current guide as “too AI-ish,” too wordy/text-heavy, insufficiently simplistic/minimal, weak on first impression/use and lacking the old-Windows-PC feel. Archive the current guide language/artwork as rejected. The fresh round should show a compact old-Windows product workspace and in-situ identity with almost no instructional prose, using materially broader ideas/public Mobbin reference capture. The public Logo gallery is reachable; capture is pending. This does not reject all current production code, replace accepted Quiet Desktop, or approve a new app skin/logo. Core A/B/C continues independently; no rejected mark is applied. [Design](design.md) is the current brief.
+
+
+## 2026-10-30 — D032: high owners plan and review; medium interns execute bounded scope
+
+Status: latest explicit Aman operating direction accepted; canonical edits reviewed and accepted by Sasha (Executive assistant). Owner: Codex (CEO); high named parents enforce scope, coordinated by Morgan (Product manager), Rafael (Engineering lead) and Sasha (Executive assistant).
+
+High employees focus on planning, system understanding, feedback, consequential thinking and independent review; delegate scoped implementation/execution to actual-medium fresh-context interns. This directs reasoning capacity toward judgment while retaining parent acceptance/integration, durable system ownership, exact leases/security/operational authority and independent high peer/Test user interpretation. Apply now without interrupting active leases, restarting complete work or rewriting historical implementation attribution; explicitly transfer the next bounded implementation scope. There is no hiring default/quota: hire only for useful substantial outcomes, maximum three direct interns per employee and 21 active globally including Codex (CEO). Interns cannot delegate and gain no blanket credentials, cloud/account/data-write, merge or release authority. Actual employee-high/CEO-extra-high settings and council/peer communication remain unchanged. This supersedes current owner-as-implementer guidance and D019's two-intern default; historical evidence stays intact. [Roles](roles/README.md), [team](team.md), [operations](operations.md) and [current handles](people/README.md) hold execution rules and reported hires.
+
+
+## 2026-10-30 — D033: accept transport-null distinction and authorize phased production A
+
+Status: Codex (CEO) accepted the exact A code/runbook/six-run matrix and authorized phased production execution to Rafael (Engineering lead)/Leon (Platform and data engineer); not yet released.
+
+Raw PostgREST nullable-column JSON null becoming SQL NULL is accepted as transport-level absence; supplied null in shared application input and literal JSONB null in storage remain invalid. No RPC redesign. Freeze the reviewed coherent A cohort, excluding PostHog and brand, then apply additive SQL SHA-256 `603a780c59e22a68113d3fa73f566dee107861793480767c9e5c974ed3eae288`, deploy the compatible application and pass its gates, then apply restrictive SQL SHA-256 `bb31de8072c8e1512e8e223be4c9983a7bd906858dfe148d3110b9a6616d3a7c`. Stop on failure; retain the compatible application floor and never regrant raw identifiers. This supersedes the earlier pending production-A approval boundary, not actual release evidence or existing privacy/fixture limits. No synthetic production writes are authorized. [Evidence contract](research/2026-10-30-evidence-contract.md) holds current scope; owner evidence must establish actual execution separately.
+
+
+## 2026-10-30 — D034: public signup through an ordinary finding comes first
+
+Status: explicit Codex (CEO)/Aman priority accepted; not yet implemented or verified. Owners: Morgan (Product manager)/Rafael (Engineering lead), with system parents retaining high review and medium interns executing bounded scope.
+
+Prioritize real public signup → sign-in/session → ordinary finding. Inspect actual email, `mailer_autoconfirm`, mail delivery and OAuth configuration before assuming a blocker; the instruction establishes no provider state or successful flow. Until solved, stop further admin-secret requests, account utilities and synthetic-classification expansion. Retain the 100-persona roster/source preparation as deferred evidence, not demand/use claims. This supersedes admin-provisioning/sign-in-only priority; [brief](brief.md) holds the current product priority and Morgan (Product manager)/Rafael (Engineering lead) own plan/technical alignment.
+
+## 2026-10-30 — D035: select refined Classic Windows round-2 option 1
+
+Status: Aman explicitly selected the target; implementation authorized, not automatically deployed. Owners: Nina (Frontend engineer), scoped medium execution by Luca (Frontend execution intern), independent high review by Felix (Frontend engineer).
+
+Refine Classic Windows round-2 option 1 with TypeSafe's modern typography, spacing and minimalism plus Token Overflow's own identity. Avoid an exact Windows clone or fake OS chrome; no further selection gate remains. This supersedes D031's no-selected-target status for the new round, preserving rejected prior artwork as history. Brand implementation proceeds in parallel with A/public signup; selection alone changes no current production artifact. [Design](design.md) holds the selected direction.

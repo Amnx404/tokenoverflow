@@ -6,9 +6,9 @@ Date: 2026-10-30. Reviewer: Nina; browser capture and interaction owner: CEO.
 
 ## Visual truth and implementation
 
-- Selected source: `/Users/amansa/Documents/tokenoverflow/company/design/2026-10-30/quiet-desktop-hybrid.png`.
+- Selected source: `company/design/2026-10-30/quiet-desktop-hybrid.png`.
 - Implementation: production runtime `http://127.0.0.1:3100`, build `lp7Ae0aGcPQzv-5v2g2Ov`, captured by CEO at CSS viewport **1487 × 1058** as reported in handoff.
-- Actual screenshot: `/Users/amansa/Documents/tokenoverflow/company/design/2026-10-30/qa/home-desktop.jpg`.
+- Actual screenshot: `company/design/2026-10-30/qa/home-desktop.jpg`.
 - Source pixels: **1487 × 1058**. Actual saved screenshot pixels: **923 × 657** (confirmed from file, regardless of requested CSS viewport). Device scale factor was not supplied. Do not infer 1:1 pixel density from the saved image.
 - Normalization: source downsampled to **923 × 657**, preserving the ratio to export rounding. Actual capture left unchanged; no enlargement. Combined comparison puts source **left**, implementation **right**, separated by 16 white pixels. No geometry changes to application code.
 - State difference: source depicts a populated illustrative timeout search and fictional completed evidence. Implementation depicts empty search, zero real community findings and the actual founding ElevenLabs example expanded. These are intentionally different data states, not a claim of exact state fidelity.
@@ -75,3 +75,5 @@ Phone support explicitly removed by founder; no mobile gate, no further phone wo
 final result: passed
 
 Desktop design and supplied primary interaction evidence pass the requested scope. This is not a claim that authentication or production deployment passed.
+
+Public provenance note: local machine/reference/output paths in this publication copy are omitted or portable. This is a path-redacted, non-runnable provenance export, not unmodified raw tool arguments; prompt text, results, numbers and recorded artifact hashes are preserved. Third-party reference pixels and unselected original/intermediate outputs are not included merely because they are described.

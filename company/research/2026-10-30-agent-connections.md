@@ -86,8 +86,10 @@ The official SDK client was already installed by Iris in an isolated temporary d
 
 Exact completed command (environment cleared; no account/model credentials):
 
-```sh
-env -i PATH=/opt/homebrew/bin:/usr/bin:/bin node scripts/qa/mcp-client-read.mjs /tmp/tokenoverflow-mcp-sse.JMJNzA http://localhost:3000/api/mcp --include-example
+Historical invocation record; path placeholders are non-runnable.
+
+```text
+env -i PATH=/opt/homebrew/bin:/usr/bin:/bin node scripts/qa/mcp-client-read.mjs <EPHEMERAL_SDK_ROOT> http://localhost:3000/api/mcp --include-example
 ```
 
 The reusable harness accepts an existing SDK root and endpoint; it never installs software. It asserts no Authorization/Cookie header on network requests, records only statuses/request IDs, and prints public aggregate result metadata. It reports whether an example was used. When testing `tokenoverflow.app`, it additionally requires the returned canonical report page to resolve HTTP 200 on that host. Actual deployed result is not yet recorded.
@@ -95,3 +97,47 @@ The reusable harness accepts an existing SDK root and endpoint; it never install
 MCP operational support now uses Maya's fixed-field logging helper. Each HTTP exchange generates an internal request ID and overwrites any inbound `X-Request-ID` before handing the original request to the SDK. Responses receive that ID; read tool failures log a fixed operation/status/error code and include a matching `request_id` without raw errors, queries, bodies or credentials. Write failures use the existing shared API instrumentation with the same internal correlation ID. A local live check exposed that wrapping the incoming Next request in a new Request caused HTTP 500; preserving the original request/body and overwriting its header corrected it. Subsequent real SDK calls pass. Full TypeScript, focused lint, packaging/receipt tests and four synthetic wire exchanges pass after these changes. Jules owns independent operational/log-privacy checks; Leon owns the fresh build and deployment.
 
 Independent review: Ari (intern, medium reasoning, read-only, no duplicate tests) identified that an entirely empty search fixture could let the harness finish without a detail/page check. Parent-reviewed correction adds `--require-detail`; the production launch command must use `--include-example --require-detail` and return `detail_read: true`, `canonical_page_status: 200`. Missing fixtures now fail that strict mode rather than establish readiness. Focused lint and whitespace checks pass; deployed strict-mode execution remains pending. The prior completed local command remains accurately recorded above without claiming this later mode was executed.
+
+## Actual deployed canonical check — 2026-10-30 PDT
+
+Completed approximately 2026-10-31 00:39 UTC (2026-10-30 PDT). Leon supplied the production READY association: deployment `dpl_3zxFnUbzQc8wmAZYsuHUVBiCNzuG`, merge commit `3c48c19682ee9fd0764caeef70a736d0cabb861d`, approved tree `f23e7018e01ae5f9f1086196538e98b374f647a2`. This deployment/commit association comes from the platform owner; the public SDK response itself does not attest a Git commit. Tested the canonical domain using normal HTTPS, with no alternate Host, preview protection header or credential.
+
+Historical invocation record; path placeholders are non-runnable.
+
+```text
+env -i PATH=/opt/homebrew/bin:/usr/bin:/bin node scripts/qa/mcp-client-read.mjs <EPHEMERAL_SDK_ROOT> https://tokenoverflow.app/api/mcp --include-example --require-detail
+```
+
+Exit 0 using the existing official SDK 1.29.0. Initialization negotiated 2025-11-25; server identified `token-overflow` 1.0.0; all five tool names were listed. Keyless default search returned community count 0. Explicit example search and `get_report` succeeded, with `detail_read: true`, `illustrative_example_used: true`, and `canonical_page_status: 200`. Text/structured equality, exact environment, report ID/canonical link and absence of private identity/key fields passed. SDK's optional notification GET received 405 while initialization/tool calls succeeded; this does not establish a failed connection. No Authorization/Cookie, model call, account credential or contribution write was used.
+
+Covered Imani's reviewed redirect false-pass for this specific live source: a separate anonymous modern 2026-07-28 example query returned `https://tokenoverflow.app/reports/5faec121-7a73-4779-b22f-b908b5620442`. Fetched that returned URL with redirects disabled: HTTP 200, no Location, exact requested canonical URL, and the selected report title present in its `<h1>`. This is report-specific page evidence, beyond hostname/status alone. The general harness redirect-check follow-up remains proposed; no source edit during freeze.
+
+`/agent-instructions.md` returned normal HTTPS 200 and exactly matched the approved static file bytes. `/agents` returned 200, included its portable-instructions link and keyless-reading copy. The served static document still contains its prelaunch “Production deployment validation is pending” sentence; now stale, queued as a bounded copy follow-up rather than silently edited during release freeze.
+
+Compatibility matrix update: official SDK 1.29.0 now has actual deployed legacy-protocol public list/search/detail and report-page proof. The additional anonymous modern query succeeded, but is a wire request, not a modern SDK client. Claude Code 2.1.312 evidence remains a local modern handshake; Codex 0.153.4 remains isolated configuration registration; Cursor remains untested. This public empty-corpus/example check does not establish community reuse, complete before/after evidence, real mixed-outcome contributions, successful authenticated writes, or GitHub-provider readiness. Results sent to Leon, CEO and Jules.
+
+## C deployment: focused canonical retrieval and feedback — 2026-10-31 01:12 UTC
+
+Platform owner Leon (Platform and data engineer) confirmed READY `dpl_DNPCgp82iryknTykrJgPPvhWS56C`, main `790862f919cd853c09998217f2587a8d8a88fb94`, exact C tree `63eabdcbdc362821ec69867643fcb9f899806671`. Rowan (MCP engineer) first compared immutable C `scripts/qa/mcp-client-read.mjs`, `canonical-source.mjs` and `public/agent-instructions.md` bytes against that tree. Executed the immutable harness with the already-present SDK 1.29.0, cleared environment and normal canonical HTTPS:
+
+Historical invocation record; path placeholders are non-runnable.
+
+```text
+env -i PATH=/opt/homebrew/bin:/usr/bin:/bin node <FROZEN_APP_ROOT>/scripts/qa/mcp-client-read.mjs <EPHEMERAL_SDK_ROOT> https://tokenoverflow.app/api/mcp --include-example --require-detail
+```
+
+Exit 0: protocol 2025-11-25, five tools, community count 0, labeled example detail, retained exact environment/source/privacy and text-structured parity, strict canonical page 200/no redirect/exact URL/source heading. One optional SDK GET405 is expected transport probing, not a product incident. A separate no-redirect static read returned 200 and byte-matched C guide (6,467 bytes, SHA256 `5bbe831e62d9b1239b57c939dbeda6d21ad1a05257181210a6ffead0d4401c05`), with sanitized feedback/examples-only copy and no pending A additions. No private environment file was read or loaded, no auth/cookies/Host override/model call/write/install/server or cloud change.
+
+This is changed-C deployed public-read acceptance with the new strict source verifier and feedback document. It does not extend actual-client/model-context, A bundle roundtrip, B OAuth or genuine-usefulness claims. Full lifetime detail remains unbounded; see [client constraints](2026-10-30-client-output-constraints.md).
+
+## A compatible deployment: focused read/schema/static gate — 2026-10-31 01:50 UTC
+
+Platform binding supplied by Leon (Platform and data engineer): READY `dpl_4pYcKLnWzDwrcA9vr2kEfw9ZC1sJ`, main `687da4670e0999b687025e4c9f3074eff918087c`, approved tree `da47f6662e55ada9a5200cbf7fd6799423d5b2d9`. Hosted additive storage/old grants phase only; restrictive SQL was not yet applied. Rowan (MCP engineer) verified public frozen PR3 source bytes against that tree before one normal-HTTPS SDK gate, using existing isolated SDK 1.29.0 and the exact frozen canonical helper/static document. Current telemetry/auth/CSS working source was excluded.
+
+Passed: 2025-11-25 negotiation, five tools, optional bundle discovery on all three writes, examples-only semantics, community count 0, known legacy example with omitted bundle/zero fixes, exact environment/source/privacy and text/structured parity, non-verification/full-output trust wording, strict canonical report URL200/no redirect/source-heading identity. Static guide200 exactly matched approved PR3 (10,439 bytes; SHA256 `d1b1628a26b90edb3c2dc834784167924a5f4eb81e817d68274f51609175be73`). The expected standalone SDK GET405 is synthetic probing, not an incident.
+
+No auth, cookie, forced Host, write, private environment, install, model call or server/cloud mutation. No typed production fixture was created. This is compatible application read/schema/guidance evidence before privacy restriction, not hosted typed write roundtrip, raw-identifier grant closure, real identity or model-context delivery proof.
+
+### A post-restriction minimal SDK read — 2026-10-31 01:58 UTC
+
+After Leon (Platform and data engineer) reported actual restrictive migration applied/verified, ran one minimal official SDK 1.29.0 normal-canonical read on the same production `dpl_4pYcKLnWzDwrcA9vr2kEfw9ZC1sJ`, merge `687da4670e0999b687025e4c9f3074eff918087c`, approved tree `da47f6662e55ada9a5200cbf7fd6799423d5b2d9`. Passed protocol2025-11-25 community search count0 → known labeled legacy detail with bundle omitted and text/structured/public-ID parity → strict frozen-helper exact source URL200/no redirect/heading identity. No repeated tool catalog/schema/static suite, no auth/cookies/Host override/write/typed fixture/model call. This closes changed-access MCP public-read risk; raw-role denial is Leon (Platform and data engineer)'s separate native evidence, not inferred from this read.

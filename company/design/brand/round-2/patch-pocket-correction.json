@@ -1,0 +1,20 @@
+{
+  "prompt": "Edit the supplied desktop UI screenshot with ONE focused evidence-text correction. Preserve the entire composition, all branding, color, pixel-art in-tray logo, chrome, spacing, type sizes, title, code, expected/before/after cells and failed row exactly. In the GREEN Worked result row at the bottom, change only the input text from the incorrect comma form 'input 1,5' to the exact decimal-DOT text 'input 1.5'. The red Failed row MUST remain 'input 1,5 → NaN'. Do not restyle, change any other words or add anything. Output same1440x1024 natural aspect screenshot, preserve image proportions.",
+  "referenced_image_paths": [
+    "local artifact path omitted; unselected evidence 1"
+  ],
+  "transparent_background": false,
+  "public_export": {
+    "kind": "path-redacted publication provenance export",
+    "non_runnable_input_paths": true,
+    "unmodified_raw_tool_arguments": false,
+    "statement": "Only local input/output path metadata was replaced or made portable. Exact prompt strings, order, flags, dimensions, image hashes and reported results/numbers remain unchanged. Omitted source locations are not executable paths or a promise that unselected original/intermediate artifacts are published.",
+    "path_redactions": [
+      {
+        "pointer": "/referenced_image_paths/0",
+        "source_match_sha256": "d2c84de025fcf6e06114eba434fc7348fad7bb74147fc9aa98d1c18e7ae12666",
+        "replacement": "local artifact path omitted; unselected evidence 1"
+      }
+    ]
+  }
+}

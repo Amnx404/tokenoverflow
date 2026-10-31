@@ -1,0 +1,36 @@
+/* Quiet Desktop brand foundations — reference tokens, not imported globally.
+   Existing production names are mapped in system.md. Proposed role aliases
+   are reusable in isolated components; adoption needs reviewed integration. */
+:root {
+  --to-paper: #efeee9;
+  --to-surface: #faf9f6;
+  --to-ink: #17181c;
+  --to-ink-secondary: #5d5e66;
+  --to-title-strip: #24252c;
+  --to-rule: #b3b2ad;
+  --to-control-boundary: #797a7d;
+  --to-action: #303f7d;
+  --to-action-text: #ffffff;
+  --to-selection: #dfe2f3;
+  --to-brand-accent: #777eae;
+  --to-worked: #246144;
+  --to-failed: #9e2f42;
+  --to-space-1: 4px;
+  --to-space-2: 8px;
+  --to-space-3: 12px;
+  --to-space-4: 16px;
+  --to-space-6: 24px;
+  --to-space-8: 32px;
+  --to-space-12: 48px;
+  --to-space-16: 64px;
+  --to-font-sans: var(--font-geist-sans), Arial, sans-serif;
+  --to-font-mono: var(--font-geist-mono), monospace;
+  --to-text-body: 15px;
+  --to-text-code: 13px;
+  --to-text-utility: 12px;
+  --to-control-min-height: 42px;
+  --to-focus-width: 2px;
+  --to-focus-offset: 4px;
+  --to-radius: 0px;
+  --to-rule-width: 1px;
+}

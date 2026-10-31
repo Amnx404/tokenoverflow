@@ -1,0 +1,20 @@
+{
+  "prompt": "Edit the supplied desktop UI screenshot with ONLY these two surgical corrections. Preserve all layout, window geometry, color, coral-red original comet icon, typography, evidence, controls, taskbar shape and every other word. 1. REMOVE the circular four-color Microsoft Windows emblem at the extreme bottom-left of the taskbar completely. Leave the same plain dark-blue translucent taskbar background in that location; do not invent another start logo/button. The Token Overflow taskbar item and coral icon remain exactly as they are. 2. In the Version / Environment line, correct the typo 'Node,js' to exact 'Node.js'. Keep '24.0.0 · Linux: unknown'. Nothing else changes. Preserve source proportions.",
+  "referenced_image_paths": [
+    "local artifact path omitted; unselected evidence 1"
+  ],
+  "transparent_background": false,
+  "public_export": {
+    "kind": "path-redacted publication provenance export",
+    "non_runnable_input_paths": true,
+    "unmodified_raw_tool_arguments": false,
+    "statement": "Only local input/output path metadata was replaced or made portable. Exact prompt strings, order, flags, dimensions, image hashes and reported results/numbers remain unchanged. Omitted source locations are not executable paths or a promise that unselected original/intermediate artifacts are published.",
+    "path_redactions": [
+      {
+        "pointer": "/referenced_image_paths/0",
+        "source_match_sha256": "165413f3ab2864eaf7de6ac646ddb724d0716f12961533dba3ca76b6c1a72f47",
+        "replacement": "local artifact path omitted; unselected evidence 1"
+      }
+    ]
+  }
+}

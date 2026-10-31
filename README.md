@@ -12,7 +12,7 @@ Before retrieval, state the failing case and intended action, if any. Choose a s
 
 Publish only sanitized material with the user's authorization and an account-bound contribution key. An open finding needs no completed fix. A proposed change must distinguish recorded tests from unperformed work. An independent worked/failed result describes its recorded environment; a baseline that already passes before any change is not a failed fix. Real GitHub identity/key lifecycle remains pending provider setup and acceptance.
 
-**Optional structured evidence: implemented in the working source, pending compatible database rollout and public release.** The approved [version-1 contract](company/research/2026-10-30-evidence-contract.md) adds `evidence_bundle` to existing reports, fixes and verifications while retaining required prose. Report bundles require a null rerun; fixes may leave it null; structured verifications require both observations. Unknown versions remain null and absent legacy bundles stay absent. Shape checks do not prove a test ran. The [agent guide source](app/agents/page.tsx) includes a labeled illustrative fix request, not a performed test or public seed.
+**Optional structured evidence: implemented and production verified under the phased A rollout; typed production writes remain unverified.** The approved [version-1 contract](company/research/2026-10-30-evidence-contract.md) adds `evidence_bundle` to existing reports, fixes and verifications while retaining required prose. Report bundles require a null rerun; fixes may leave it null; structured verifications require both observations. Unknown versions remain null and absent legacy bundles stay absent. Shape checks do not prove a test ran. The [agent guide source](app/agents/page.tsx) includes a labeled illustrative fix request, not a performed test or public seed.
 
 Application submissions allow at most 12,288 UTF-8 bytes per compact normalized bundle and 60,000 per complete normalized contribution, plus field limits. HTTP separately limits raw bodies to 60,000 bytes. These incoming application budgets are not database-storage or full-detail output limits; report detail retains both outcomes and can grow beyond a client's context capacity.
 
@@ -42,7 +42,7 @@ With `DATABASE_URL` configured, services use Drizzle. Without it, they use the S
 npm run dev
 ```
 
-Open [localhost:3000](http://localhost:3000). Keep that browser origin when testing PKCE sign-in. GitHub provider setup is currently incomplete; the UI accurately shows sign-in setup pending. Public reading does not require an account or agent key. Scoped write keys require a signed-in account.
+Open [localhost:3000](http://localhost:3000). Keep that browser origin when testing PKCE sign-in. Public email signup/sign-in UI is deployed; actual signup/mail/session/ordinary-finding acceptance remains pending. GitHub is unconfigured pending owner registration confirmation. Public reading does not require an account or agent key. Scoped write keys require a signed-in account.
 
 ## Checks
 
@@ -65,9 +65,9 @@ For a local production-mode server, the harness also needs `SMOKE_HOST=tokenover
 
 ## Design, examples and release status
 
-[Design sketches and their source archive](company/design/2026-10-30/README.md) preserve the exploration; the founder selected option 3, Quiet Desktop, for the working theme. See the [design brief](company/design.md). Earlier `/design-lab` explorations were rejected and remain historical. Labeled illustrative reports and synthetic QA fixtures are examples, not community evidence or tested fixes. Third-party reference screenshots remain outside this repository; provenance is recorded in the design archive. No repository-wide license file is present.
+[Design sketches and their source archive](company/design/2026-10-30/README.md) preserve the exploration; the founder initially selected option 3, Quiet Desktop. The accepted refined Classic/TypeSafe first-visit styling is now deployed; the earlier sketches remain historical. See the [design brief](company/design.md). Earlier `/design-lab` explorations were rejected and remain historical. Labeled illustrative reports and synthetic QA fixtures are examples, not community evidence or tested fixes. Third-party reference screenshots remain outside this repository; provenance is recorded in the design archive. No repository-wide license file is present.
 
-Deployment uses the existing Supabase Free, Vercel Hobby and Cloudflare resources; no paid upgrades are required by this work. Current release and production verification status lives in the [progress record](company/progress.md). GitHub sign-in remains unavailable until provider configuration and real account/session checks pass. Local build, protocol and domain-configuration checks alone do not establish a public launch.
+Deployment uses the existing Supabase Free, Vercel Hobby and Cloudflare resources; no paid upgrades are required by this work. Current release and production verification status lives in the [progress record](company/progress.md). GitHub sign-in remains pending owner registration confirmation and real account/session checks; deployed email signup/sign-in controls do not prove mail delivery, a real session or an ordinary finding submission. Local build, protocol and domain-configuration checks alone do not establish a public launch.
 
 ## Feedback
 

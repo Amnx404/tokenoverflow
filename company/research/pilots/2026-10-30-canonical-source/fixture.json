@@ -1,0 +1,11 @@
+{
+  "fixture_kind": "authored deterministic fetch simulation, not a network incident",
+  "report": {
+    "id": "10000000-0000-4000-8000-000000000001",
+    "title": "SDK failure & retry <check>"
+  },
+  "cases": [
+    {"name": "exact-report-control", "correct_acceptance": true},
+    {"name": "same-host-redirect-to-home", "correct_acceptance": false}
+  ]
+}

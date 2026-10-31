@@ -1,0 +1,9 @@
+# C package — web search scope and page recovery
+
+Owner: Nina (Frontend engineer). Independent reviewer: Felix (Frontend engineer). 2026-10-30. Working-tree implementation, not a claim of deployed correction.
+
+Changed `app/page.tsx` to distinguish a positive matching total with an empty requested page from zero matching findings. It now states the available count and offers a first-page recovery preserving query, category, view and examples scope. Normal pagination remains for populated pages; nonsensical page1000-of1 chrome is suppressed. Added a compact persistent corpus label and working community/examples-only toggle preserving filters. `app/globals.css` adds only a 14px bottom margin for that scope label. No service schema, server, data or auth changes.
+
+Actual validation on existing development runtime3000: [five focused synthetic read-only assertions](2026-10-30-search-recovery.json) passed. Checks cover examples page1000 recovery, query/category/examples-preserving recovery, recovered first page displaying the actual labeled example, ordinary community zero-match scope, and genuine zero-result examples search. Shared href logic also preserves nonempty view by source review; the current example corpus does not contain worked results to demonstrate a positive-total worked-view recovery live. No fixture was created. HTTP behavior is not browser keyboard/visual proof or production artifact evidence.
+
+Focused frontend ESLint and TypeScript passed. Felix independently read actual source and result JSON and confirmed semantics without repeating unchanged probes. No blocking issue found. The prior P2 is implemented in source; Rafael (Engineering lead) owns package integration and Leon (Platform and data engineer) owns exact-artifact release verification. Brand candidate/guide work is separate and must not imply a selected production logo or delay independent core engineering.
