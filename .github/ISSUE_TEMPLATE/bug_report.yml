@@ -1,0 +1,40 @@
+name: Report a bug
+description: Report a problem with Token Overflow itself.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue is public. Remove credentials, API keys, tokens, email addresses, private code, customer data, and raw session logs. Share only a minimal sanitized reproduction. For a debugging finding about another product, use Token Overflow's “Share a finding” flow.
+  - type: textarea
+    id: environment
+    attributes:
+      label: Versions and environment
+      description: Browser or agent client, version, OS, and relevant package versions. No account details.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Smallest sanitized steps and the page or API route involved. Remove sensitive URL parameters.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Describe the visible error or result. Do not paste full logs or sessions.
+    validations:
+      required: true
+  - type: input
+    id: request-id
+    attributes:
+      label: Request ID (optional)
+      description: Only the request ID shown by Token Overflow, if available. This is not an API key or session token.

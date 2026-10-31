@@ -1,0 +1,373 @@
+{
+  "node": "v26.11.1",
+  "platform": "darwin",
+  "arch": "arm64",
+  "package": "@modelcontextprotocol/sdk@1.29.0",
+  "mock_only": true,
+  "observations": [
+    {
+      "mode": "json",
+      "timeout_ms": 300,
+      "repetition": 1,
+      "events": [
+        {
+          "name": "ping_received",
+          "elapsed_ms": 0.09,
+          "request_id": 1
+        }
+      ],
+      "protocol": {
+        "initialize_requested": "2025-11-25",
+        "initialize_returned": "2025-11-25"
+      },
+      "server_info": {
+        "name": "local-mock",
+        "version": "1"
+      },
+      "result": {
+        "settlement": "resolved",
+        "elapsed_ms": 0.35
+      }
+    },
+    {
+      "mode": "eof",
+      "timeout_ms": 300,
+      "repetition": 1,
+      "events": [
+        {
+          "name": "ping_received",
+          "elapsed_ms": 0.04,
+          "request_id": 1
+        },
+        {
+          "name": "sse_closed",
+          "elapsed_ms": 1.66,
+          "response_frames": 0
+        }
+      ],
+      "protocol": {
+        "initialize_requested": "2025-11-25",
+        "initialize_returned": "2025-11-25"
+      },
+      "server_info": {
+        "name": "local-mock",
+        "version": "1"
+      },
+      "result": {
+        "settlement": "sdk_rejected",
+        "elapsed_ms": 301.06,
+        "code": -32001,
+        "message": "MCP error -32001: Request timed out"
+      }
+    },
+    {
+      "mode": "error",
+      "timeout_ms": 300,
+      "repetition": 1,
+      "events": [
+        {
+          "name": "ping_received",
+          "elapsed_ms": 0.08,
+          "request_id": 1
+        },
+        {
+          "name": "sse_errored",
+          "elapsed_ms": 1.52,
+          "response_frames": 0
+        },
+        {
+          "name": "client_onerror",
+          "elapsed_ms": 1.99,
+          "message": "SSE stream disconnected: Error: diagnostic stream ended unexpectedly"
+        }
+      ],
+      "protocol": {
+        "initialize_requested": "2025-11-25",
+        "initialize_returned": "2025-11-25"
+      },
+      "server_info": {
+        "name": "local-mock",
+        "version": "1"
+      },
+      "result": {
+        "settlement": "sdk_rejected",
+        "elapsed_ms": 307.96,
+        "code": -32001,
+        "message": "MCP error -32001: Request timed out"
+      }
+    },
+    {
+      "mode": "json",
+      "timeout_ms": 300,
+      "repetition": 2,
+      "events": [
+        {
+          "name": "ping_received",
+          "elapsed_ms": 0.06,
+          "request_id": 1
+        }
+      ],
+      "protocol": {
+        "initialize_requested": "2025-11-25",
+        "initialize_returned": "2025-11-25"
+      },
+      "server_info": {
+        "name": "local-mock",
+        "version": "1"
+      },
+      "result": {
+        "settlement": "resolved",
+        "elapsed_ms": 0.35
+      }
+    },
+    {
+      "mode": "eof",
+      "timeout_ms": 300,
+      "repetition": 2,
+      "events": [
+        {
+          "name": "ping_received",
+          "elapsed_ms": 0.06,
+          "request_id": 1
+        },
+        {
+          "name": "sse_closed",
+          "elapsed_ms": 1.51,
+          "response_frames": 0
+        }
+      ],
+      "protocol": {
+        "initialize_requested": "2025-11-25",
+        "initialize_returned": "2025-11-25"
+      },
+      "server_info": {
+        "name": "local-mock",
+        "version": "1"
+      },
+      "result": {
+        "settlement": "sdk_rejected",
+        "elapsed_ms": 301.9,
+        "code": -32001,
+        "message": "MCP error -32001: Request timed out"
+      }
+    },
+    {
+      "mode": "error",
+      "timeout_ms": 300,
+      "repetition": 2,
+      "events": [
+        {
+          "name": "ping_received",
+          "elapsed_ms": 0.02,
+          "request_id": 1
+        },
+        {
+          "name": "sse_errored",
+          "elapsed_ms": 1.31,
+          "response_frames": 0
+        },
+        {
+          "name": "client_onerror",
+          "elapsed_ms": 1.39,
+          "message": "SSE stream disconnected: Error: diagnostic stream ended unexpectedly"
+        }
+      ],
+      "protocol": {
+        "initialize_requested": "2025-11-25",
+        "initialize_returned": "2025-11-25"
+      },
+      "server_info": {
+        "name": "local-mock",
+        "version": "1"
+      },
+      "result": {
+        "settlement": "sdk_rejected",
+        "elapsed_ms": 300.63,
+        "code": -32001,
+        "message": "MCP error -32001: Request timed out"
+      }
+    },
+    {
+      "mode": "json",
+      "timeout_ms": 1200,
+      "repetition": 1,
+      "events": [
+        {
+          "name": "ping_received",
+          "elapsed_ms": 0.02,
+          "request_id": 1
+        }
+      ],
+      "protocol": {
+        "initialize_requested": "2025-11-25",
+        "initialize_returned": "2025-11-25"
+      },
+      "server_info": {
+        "name": "local-mock",
+        "version": "1"
+      },
+      "result": {
+        "settlement": "resolved",
+        "elapsed_ms": 0.12
+      }
+    },
+    {
+      "mode": "eof",
+      "timeout_ms": 1200,
+      "repetition": 1,
+      "events": [
+        {
+          "name": "ping_received",
+          "elapsed_ms": 0.01,
+          "request_id": 1
+        },
+        {
+          "name": "sse_closed",
+          "elapsed_ms": 1.33,
+          "response_frames": 0
+        }
+      ],
+      "protocol": {
+        "initialize_requested": "2025-11-25",
+        "initialize_returned": "2025-11-25"
+      },
+      "server_info": {
+        "name": "local-mock",
+        "version": "1"
+      },
+      "result": {
+        "settlement": "sdk_rejected",
+        "elapsed_ms": 1201.63,
+        "code": -32001,
+        "message": "MCP error -32001: Request timed out"
+      }
+    },
+    {
+      "mode": "error",
+      "timeout_ms": 1200,
+      "repetition": 1,
+      "events": [
+        {
+          "name": "ping_received",
+          "elapsed_ms": 0.08,
+          "request_id": 1
+        },
+        {
+          "name": "sse_errored",
+          "elapsed_ms": 0.51,
+          "response_frames": 0
+        },
+        {
+          "name": "client_onerror",
+          "elapsed_ms": 0.73,
+          "message": "SSE stream disconnected: Error: diagnostic stream ended unexpectedly"
+        }
+      ],
+      "protocol": {
+        "initialize_requested": "2025-11-25",
+        "initialize_returned": "2025-11-25"
+      },
+      "server_info": {
+        "name": "local-mock",
+        "version": "1"
+      },
+      "result": {
+        "settlement": "sdk_rejected",
+        "elapsed_ms": 1201.57,
+        "code": -32001,
+        "message": "MCP error -32001: Request timed out"
+      }
+    },
+    {
+      "mode": "json",
+      "timeout_ms": 1200,
+      "repetition": 2,
+      "events": [
+        {
+          "name": "ping_received",
+          "elapsed_ms": 0.09,
+          "request_id": 1
+        }
+      ],
+      "protocol": {
+        "initialize_requested": "2025-11-25",
+        "initialize_returned": "2025-11-25"
+      },
+      "server_info": {
+        "name": "local-mock",
+        "version": "1"
+      },
+      "result": {
+        "settlement": "resolved",
+        "elapsed_ms": 0.32
+      }
+    },
+    {
+      "mode": "eof",
+      "timeout_ms": 1200,
+      "repetition": 2,
+      "events": [
+        {
+          "name": "ping_received",
+          "elapsed_ms": 0.08,
+          "request_id": 1
+        },
+        {
+          "name": "sse_closed",
+          "elapsed_ms": 1.91,
+          "response_frames": 0
+        }
+      ],
+      "protocol": {
+        "initialize_requested": "2025-11-25",
+        "initialize_returned": "2025-11-25"
+      },
+      "server_info": {
+        "name": "local-mock",
+        "version": "1"
+      },
+      "result": {
+        "settlement": "sdk_rejected",
+        "elapsed_ms": 1201.57,
+        "code": -32001,
+        "message": "MCP error -32001: Request timed out"
+      }
+    },
+    {
+      "mode": "error",
+      "timeout_ms": 1200,
+      "repetition": 2,
+      "events": [
+        {
+          "name": "ping_received",
+          "elapsed_ms": 0.04,
+          "request_id": 1
+        },
+        {
+          "name": "sse_errored",
+          "elapsed_ms": 1.46,
+          "response_frames": 0
+        },
+        {
+          "name": "client_onerror",
+          "elapsed_ms": 1.61,
+          "message": "SSE stream disconnected: Error: diagnostic stream ended unexpectedly"
+        }
+      ],
+      "protocol": {
+        "initialize_requested": "2025-11-25",
+        "initialize_returned": "2025-11-25"
+      },
+      "server_info": {
+        "name": "local-mock",
+        "version": "1"
+      },
+      "result": {
+        "settlement": "sdk_rejected",
+        "elapsed_ms": 1202.1,
+        "code": -32001,
+        "message": "MCP error -32001: Request timed out"
+      }
+    }
+  ]
+}

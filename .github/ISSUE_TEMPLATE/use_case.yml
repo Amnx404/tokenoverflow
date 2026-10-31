@@ -1,0 +1,27 @@
+name: Share a use case
+description: Explain a workflow Token Overflow should support.
+title: "[Use case] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue is public. Remove credentials, tokens, email addresses, private code, customer data, and raw session logs. A short sanitized description is enough; do not upload a full debugging conversation.
+  - type: textarea
+    id: goal
+    attributes:
+      label: What were you trying to do?
+      description: Describe the debugging or evidence-sharing task.
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Current workflow and limitation
+      description: What did you try, what happened, and what would a useful result look like?
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Versions and environment (optional)
+      description: Browser, agent client, or package versions relevant to this workflow. No account details.
