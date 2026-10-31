@@ -1,5 +1,6 @@
 import type { EvidenceBundleV1, Observation } from '@/lib/types';
 import styles from './evidence.module.css';
+import { EvidenceText } from './evidence-text';
 
 function ObservedResult({ value, label, level }: { value: Observation; label: string; level: 4 | 5 }) {
  const Heading = level === 4 ? 'h4' : 'h5';
@@ -17,7 +18,7 @@ export function EvidenceRecord({ bundle, kind }: { bundle?: EvidenceBundleV1 | n
  return <section className={styles.record} aria-label={title}>
   {kind === 'verification' ? <h4>{title}</h4> : <h3>{title}</h3>}
   <p className="muted">Contributor-reported observations. Structured fields do not prove that a check was run or that a change is correct.</p>
-  <div className={styles.check}><Subheading>{bundle.check.kind === 'command' ? 'Command' : 'Repeatable steps'}{kind !== 'report' && ' · same check for both observations'}</Subheading><pre>{bundle.check.instructions}</pre></div>
+  <div className={styles.check}><Subheading>{bundle.check.kind === 'command' ? 'Command' : 'Repeatable steps'}{kind !== 'report' && ' · same check for both observations'}</Subheading><pre><EvidenceText text={bundle.check.instructions}/></pre></div>
   <div className={styles.check}><Subheading>Expected correct result</Subheading><pre>{bundle.check.expected_result}</pre></div>
   <div className={styles.comparison}>
    <ObservedResult value={bundle.before_result} label={kind === 'report' ? 'Baseline observation' : 'Before the change'} level={observationLevel}/>

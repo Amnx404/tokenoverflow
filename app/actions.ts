@@ -4,11 +4,13 @@ import { serverClient } from '@/lib/supabase/server';
 import { authCallbackUrl, authSiteOrigin, githubAuthEnabled } from '@/lib/auth-config';
 import { reportSchema, fixSchema, verificationSchema, safeNext } from '@/lib/validation';
 import { api } from '@/trpc/server';
+import { contributionReportId } from '@/server/services/contribution-source';
 import { TRPCError } from '@trpc/server';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { z, ZodError } from 'zod';
-export type FormState = { error?: string; message?: string; token?: string };
+export type ContributionReceipt = { kind:'fix'|'verification'; id:string; report_id:string|null; url:string|null };
+export type FormState = { error?: string; message?: string; token?: string; receipt?:ContributionReceipt };
 export async function beginGitHubSignIn(_state: FormState, form: FormData): Promise<FormState> {
  if(!await githubAuthEnabled()) return {error:'GitHub sign-in is being set up. Please check back shortly.'};
  let destination: string;
@@ -119,19 +121,34 @@ export async function contribute(_state: FormState, form: FormData): Promise<For
  const kind=String(form.get('kind'));
  const raw:Record<string,unknown>=Object.fromEntries(form.entries());
  let result: {id:string};
+ let reportId:string|null=null;
  try {
   const evidence_bundle=formEvidence(form,kind);
   if(evidence_bundle!==undefined) raw.evidence_bundle=evidence_bundle;
   if(kind==='report') result=await api.contributions.report(reportSchema.omit({author_name:true}).parse({...raw,tags:String(form.get('tags')??'').split(',').map(t=>t.trim()).filter(Boolean)}));
-  else if(kind==='fix') result=await api.contributions.fix(fixSchema.omit({author_name:true}).parse(raw));
+  else if(kind==='fix') {
+   const data=fixSchema.omit({author_name:true}).parse(raw);
+   result=await api.contributions.fix(data);
+   reportId=data.report_id;
+  }
   else if(kind==='verification') result=await api.contributions.verify(verificationSchema.omit({author_name:true}).parse(raw));
   else return {error:'Choose a valid contribution type.'};
  } catch(error) { return {error:actionError(error)}; }
- revalidatePath('/');
+ // A completed write remains a save even when optional refresh/link discovery fails.
+ try { revalidatePath('/'); } catch { /* The known saved receipt is still valid. */ }
  if(kind==='report') redirect(`/reports/${result.id}`);
- const reportId=String(form.get('return_report_id')??form.get('report_id')??'');
- if(z.uuid().safeParse(reportId).success) revalidatePath(`/reports/${reportId}`);
- return {message:kind==='fix'?'Fix published. Independent contributors can now test it.':'Result recorded with your environment and notes.'};
+ if(kind==='verification') {
+  try {
+   const parent=await contributionReportId('verification',result.id);
+   reportId=z.uuid().safeParse(parent).success?parent:null;
+  } catch { /* Show the saved result ID without claiming an unavailable link. */ }
+ }
+ if(reportId) {
+  try { revalidatePath(`/reports/${reportId}`); } catch { /* Do not invite a duplicate save. */ }
+ }
+ const receipt:ContributionReceipt={kind:kind==='fix'?'fix':'verification',id:result.id,report_id:reportId,
+  url:reportId?`/reports/${reportId}#${kind==='fix'?'fix':'verification'}-${result.id}`:null};
+ return {message:kind==='fix'?'Fix published. Independent contributors can now test it.':'Result recorded with your environment and notes.',receipt};
 }
 
 export async function createAgentKey(_state: FormState, form: FormData): Promise<FormState> {
