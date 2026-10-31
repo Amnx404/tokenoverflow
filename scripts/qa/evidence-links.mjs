@@ -28,6 +28,7 @@ function load(relative, imports) {
 }
 const css = new Proxy({}, { get: (_target, key) => `fixture-${String(key)}` });
 const { EvidenceText } = load('components/evidence-text.tsx', {});
+const fragmentLanding = load('components/report-fragment-landing.tsx', {});
 const { ContributionDisclosure } = load('components/contribution-disclosure.tsx', {});
 const { EvidenceRecord } = load('components/evidence-record.tsx', {
  './evidence-text': { EvidenceText }, './evidence.module.css': css,
@@ -160,6 +161,7 @@ const finding = { report: { ...draft.report, id: reportId, author_name: 'Fixture
  verifications: [{ id: resultId, author_name: 'Fixture result', outcome: 'failed', environment: 'Unknown', notes: 'Not a global verdict', evidence_bundle: null }],
 }] };
 const { default: Detail } = load('app/reports/[id]/page.tsx', {
+ '@/components/report-fragment-landing': fragmentLanding,
  'next/link': ({ children, ...props }) => createElement('a', props, children),
  'next/navigation': { notFound: () => { throw new Error('Unexpected notFound'); } },
  zod: { z: { uuid: () => ({ safeParse: () => ({ success: true }) }) } },
