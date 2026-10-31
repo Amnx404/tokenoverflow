@@ -36,3 +36,12 @@ Original source: the founder supplied an exported Reddit discussion. A researche
 - Design decisions, engineering choices and important work must be consolidated, stored and actually used. The company entrypoint and AGENTS.md startup/handoff practice implement that requirement (D014).
 - The founder requested an MCP engineer specifically focused on getting data out, like Mobbin, so engineers can connect and forget. Rowan now owns that system; Maya retains shared backend rules. See D015.
 - The founder expects the CEO to keep useful parallel work assigned, reassign completed owners promptly, and continue independent work around blockers. They explicitly requested properly defined company/roles that are captured and consulted. Role files and startup instructions implement D016.
+
+
+## 2026-10-30 — actual reasoning, council and broader brand direction
+
+- Aman requires actual high reasoning for all employees, medium for interns and extra-high for Codex (CEO). Prompt wording is insufficient; safe same-identity renewal at substantial-package handoffs must preserve ownership/evidence and active releases. D027 and the current people directory record policy versus actual transitions.
+- Existing specialists, rather than uncontrolled hires, form the council: MCP integration, agent-facing UX and evidence/learning behavior. Morgan (Product manager) must continuously debate assumptions using Casey (Test user)/Robin (Test user) observations and record actual disagreement/model revision. Product retrieves/retests evidence rather than training model weights. Peer-level Markdown communication and precise escalation are required (D028).
+- Aman rejects all three previous logos and requests a fresh, materially broader Mobbin-inspired complete brand foundation. Do not apply rejected marks; the accepted Quiet Desktop app direction remains. Brand work runs in parallel without a new layout or stopping full-MVP A/B/C work (D029).
+
+- Subsequent brand feedback rejects the entire current guide presentation/language as “too AI-ish,” too text-heavy, insufficiently simple/minimal, weak on first impression/use and lacking old-Windows-PC feel. Fresh work should be a compact old-Windows workspace with identity in use and almost no instructional prose. This is not rejection of all current production code or approval of a replacement skin (D031).

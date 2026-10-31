@@ -1,0 +1,39 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Use case: logo-brand. Create ONE original professional brand direction for Token Overflow, an empirical debugging evidence library for humans and agents. Direction name Relay, do NOT print direction name. Asset is one clean horizontal symbol + lowercase wordmark lockup, transparent background, target 1600 x 640. Exact wordmark text 'tokenoverflow'. Actual attached references in order: selected Quiet Desktop concept, actual working app desktop capture, TypeSafe website, PostHog website. They are context for typographic restraint/familiar desktop precision, NOT logos to copy. Keep original identity, no Stack Overflow rays/basket, no PostHog mascot, no TypeSafe symbol, no Microsoft/OS branding. Design a bold abstract small symbol from two offset open rectangular strokes, sharing a short connecting bridge, evoking one reproducible observation handed onward; balanced asymmetry and a recognizable open corner. It must read at 16–24px as a simple distinctive mark, NOT a stack of cards, database cylinder, checkmark, shield, magnifier, token coin, infinity sign, generic brackets or AI sparkle. Draw it as crisp flat vector-like artwork, graphite #24252c with a single restrained lavender #777eae accent on the bridge. Match wordmark dark graphite, substantial beautiful compact geometric-grotesk type with open counters, careful kerning, slight characterful join between token and overflow but no space. Baseline aligned and optically balanced symbol at left, generous clearspace around lockup. Symbol height matches lowercase wordmark with modest optical overshoot. No tagline, labels, mockups, swatches, size annotations, cards, wallpaper, UI screenshot pasted into output, gradients, glows, textures, shadow, chrome, embossing or photoreal effects. One lockup only, transparent true alpha, no checkerboard drawn. Must be usable as original logo artwork, not a presentation board. Date context 2026-10-30; no dates printed. Product preserves conflicting worked/failed observations rather than universal acceptance; logo must not imply certification, correctness or verification. Strong silhouette and precise stroke joins, high-end but friendly desktop tool identity.",
+  "referenced_image_paths": [
+    "../2026-10-30/quiet-desktop-hybrid.png",
+    "../2026-10-30/qa/home-desktop.jpg",
+    "local reference/generated-output path omitted; reference 3",
+    "local reference/generated-output path omitted; reference 4"
+  ],
+  "transparent_background": true,
+  "public_export": {
+    "kind": "path-redacted publication provenance export",
+    "non_runnable_input_paths": true,
+    "unmodified_raw_tool_arguments": false,
+    "statement": "Only local input/output path metadata was replaced or made portable. Exact prompt strings, order, flags, dimensions, image hashes and reported results/numbers remain unchanged. Omitted source locations are not executable paths or a promise that unselected original/intermediate artifacts are published.",
+    "path_redactions": [
+      {
+        "pointer": "/referenced_image_paths/0",
+        "source_match_sha256": "3ec873632afcf4ed51497341a272d1797b4d72855d2e30f4f35d3bb0233ff40e",
+        "replacement": "../2026-10-30/quiet-desktop-hybrid.png"
+      },
+      {
+        "pointer": "/referenced_image_paths/1",
+        "source_match_sha256": "280167b8c9a13e835b7cd5921b76a3e4b0c1a71312cb1b279db3b649ecbacb6e",
+        "replacement": "../2026-10-30/qa/home-desktop.jpg"
+      },
+      {
+        "pointer": "/referenced_image_paths/2",
+        "source_match_sha256": "ee90562fb4f5bb37db07267a4e426bf5e68b10933784bf048062259c93dd753a",
+        "replacement": "local reference/generated-output path omitted; reference 3"
+      },
+      {
+        "pointer": "/referenced_image_paths/3",
+        "source_match_sha256": "01fda6ea8ae3280bb21ad1aea67cde53d3896978363e03db29ec3c56c01c00fb",
+        "replacement": "local reference/generated-output path omitted; reference 4"
+      }
+    ]
+  }
+}

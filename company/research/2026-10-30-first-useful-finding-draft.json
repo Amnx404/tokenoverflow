@@ -1,0 +1,200 @@
+{
+  "status": "Literal review draft; not published and not publication authority.",
+  "purpose": "ONE first-party finding with ONE proposed change and ONE same-check comparison after real hosted auth works. No independent verification records.",
+  "publication_gates": [
+    "Real hosted signup/confirmation/session and ordinary normal-user posting path accepted; no admin or auth-shim substitute.",
+    "Codex (CEO) approved the substantive scope: one attributed first-party report and proposed change, no verification rows or organic-user claim. Publishing account must use its actual public name.",
+    "Completed: research/replay artifacts were published at pinned commit 8b0b406fe2d976d98ea535a2524627c34bbaa412 and Leon (Platform and data engineer) verified public fetches. Actual reader ZIP and README URLs are present directly in report.reproduction and both evidence-bundle check instructions; artifact publication does not establish app publication.",
+    "After normal report save, use its real returned ID for the change; never fabricate IDs or self-verification.",
+    "Completed artifact-URL gate: actual fetched reader ZIP and README URLs accompany the run instructions in report.reproduction and both evidence_bundle.check.instructions. Normal app POST remains gated by real hosted authentication, actual publishing names and saved report IDs."
+  ],
+  "identity_fields_not_preselected": [
+    "author_name",
+    "report_id"
+  ],
+  "evidence_identity": {
+    "upstream_author": "vimalprakashts",
+    "issue_url": "https://github.com/vercel/ai/issues/24150",
+    "proposed_change_url": "https://github.com/vercel/ai/pull/24151",
+    "base_commit": "48ab95d62a08b409311c110852e8083910ba438d",
+    "head_commit": "a5e9fa929490a8aeab214c4101633975e1c63f5f",
+    "performed_by": "Ari (MCP intern), Token Overflow first-party local test",
+    "reviewed_by": [
+      "Rowan (MCP engineer)",
+      "Iris (Researcher)"
+    ],
+    "observations": 10,
+    "loopback_http_requests": 8,
+    "process_exit": 0,
+    "stderr": "empty",
+    "stdout_sha256": "9e066a9d3ab861e6d5f7ee6426c2af5d68bbe31cc93b9c6ec9feeb5ee4bed728",
+    "public_artifact_urls": [
+      "https://raw.githubusercontent.com/Amnx404/tokenoverflow/8b0b406fe2d976d98ea535a2524627c34bbaa412/company/research/pilots/2026-10-30-openai-compatible-null/pr24151-reader.zip",
+      "https://github.com/Amnx404/tokenoverflow/blob/8b0b406fe2d976d98ea535a2524627c34bbaa412/company/research/pilots/2026-10-30-openai-compatible-null/README.md",
+      "https://raw.githubusercontent.com/Amnx404/tokenoverflow/8b0b406fe2d976d98ea535a2524627c34bbaa412/company/research/pilots/2026-10-30-openai-compatible-null/observations.sanitized.jsonl",
+      "https://raw.githubusercontent.com/Amnx404/tokenoverflow/8b0b406fe2d976d98ea535a2524627c34bbaa412/company/research/pilots/2026-10-30-openai-compatible-null/ZIP-MANIFEST.json"
+    ],
+    "sanitized_observations_sha256": "b5329118dc747414a4b83f96468a7e42de7ea90db6416ab13042f14a7ad04caa"
+  },
+  "report": {
+    "title": "@ai-sdk/openai-compatible: explicit reasoning null is rejected or omitted",
+    "summary": "In the tested @ai-sdk/openai-compatible PR base, camel null was rejected and raw null omitted. The proposed patch preserved strict null; omitted and low controls stayed unchanged.",
+    "body": "In the tested @ai-sdk/openai-compatible PR-base source, explicit reasoning null was rejected or omitted; the locally tested proposed patch preserved it. At PR base, camel-case null failed provider-option validation before HTTP, while raw snake-case null disappeared from the request body. The proposed head sent strict null for both, including camel null overriding top-level medium. Omitted and low controls stayed unchanged.\n\nUpstream report and proposed patch by vimalprakashts: https://github.com/vercel/ai/issues/24150 and https://github.com/vercel/ai/pull/24151. Token Overflow’s separate first-party comparison was performed by Ari (MCP intern), reviewed by Rowan (MCP engineer) and Iris (Researcher); it is not organic-user participation or independent community verification.\n\nThis was a local, dependency-conditioned wire test with a synthetic loopback completion. The PR was open/unmerged when inspected on 2026-10-30 (PDT); these results establish neither live-provider behavior nor a released fix. Exact source pins and dependency versions accompany the structured evidence.",
+    "environment": "Local Node.js comparison on darwin arm64; OS version unknown. Same driver, synthetic loopback completion, seven base helpers and locked dependencies across both variants. Exact runtime, dependency and source pins are in the evidence bundle.",
+    "reproduction": "Run node driver.mjs from the linked reader bundle against both pinned variants with the fixed dependency closure and synthetic loopback completion. Compare five cases: camel reasoningEffort:null; raw reasoning_effort:null; omitted effort; camel low; camel null with top-level reasoning medium. Check own-key presence separately from strict value and require successful response parsing. Reader ZIP: https://raw.githubusercontent.com/Amnx404/tokenoverflow/8b0b406fe2d976d98ea535a2524627c34bbaa412/company/research/pilots/2026-10-30-openai-compatible-null/pr24151-reader.zip . Setup README: https://github.com/Amnx404/tokenoverflow/blob/8b0b406fe2d976d98ea535a2524627c34bbaa412/company/research/pilots/2026-10-30-openai-compatible-null/README.md .",
+    "attempted_fixes": "Compared the proposed PR head with the same driver, inputs, base helpers and dependencies; results appear in the paired change.",
+    "category": "APIs",
+    "tags": [
+      "ai-sdk",
+      "reasoning-effort",
+      "null",
+      "serialization",
+      "@ai-sdk/openai-compatible"
+    ],
+    "evidence_bundle": {
+      "contract_version": 1,
+      "check": {
+        "kind": "steps",
+        "instructions": "Run node driver.mjs from the linked reader bundle against both pinned variants with the fixed dependency closure and synthetic loopback completion. Compare five cases: camel reasoningEffort:null; raw reasoning_effort:null; omitted effort; camel low; camel null with top-level reasoning medium. Check own-key presence separately from strict value and require successful response parsing. Reader ZIP: https://raw.githubusercontent.com/Amnx404/tokenoverflow/8b0b406fe2d976d98ea535a2524627c34bbaa412/company/research/pilots/2026-10-30-openai-compatible-null/pr24151-reader.zip . Setup README: https://github.com/Amnx404/tokenoverflow/blob/8b0b406fe2d976d98ea535a2524627c34bbaa412/company/research/pilots/2026-10-30-openai-compatible-null/README.md .",
+        "expected_result": "Explicit null must produce an own reasoning_effort key with strict null in all three null cases. Omitted effort must omit the key; low must remain \"low\". Baseline rejection must be the provider-options error, not a setup or timeout failure."
+      },
+      "before_result": {
+        "output": "Sanitized observation summary; not literal stdout. PR base: camel-null and null-over-medium each raised AI_InvalidArgumentError: invalid example provider options before HTTP (0 requests each). Raw-null sent one request without an own reasoning_effort key. Omitted sent no effort key; low sent reasoning_effort=\"low\". Successful calls parsed the fixed local completion response."
+      },
+      "after_result": null,
+      "versions": [
+        {
+          "kind": "runtime",
+          "name": "Node.js",
+          "version": "26.11.1"
+        },
+        {
+          "kind": "os",
+          "name": "darwin",
+          "version": null
+        },
+        {
+          "kind": "other",
+          "name": "architecture",
+          "version": "arm64"
+        },
+        {
+          "kind": "package",
+          "name": "TypeScript (transpile only)",
+          "version": "5.9.3"
+        },
+        {
+          "kind": "package",
+          "name": "@ai-sdk/provider",
+          "version": "4.0.34"
+        },
+        {
+          "kind": "package",
+          "name": "@ai-sdk/provider-utils",
+          "version": "5.0.70"
+        },
+        {
+          "kind": "package",
+          "name": "zod",
+          "version": "3.25.76"
+        },
+        {
+          "kind": "other",
+          "name": "AI SDK PR base commit",
+          "version": "48ab95d62a08b409311c110852e8083910ba438d"
+        }
+      ]
+    }
+  },
+  "proposed_change": {
+    "body": "vimalprakashts’s proposed patch (https://github.com/vercel/ai/pull/24151) makes reasoningEffort accept null with z.string().nullish(), selects explicit effort using !== undefined, and writes reasoning_effort only when the computed value !== undefined. This preserves strict null and prevents an unset computed option from overwriting raw passthrough. Our comparison changed only the pinned class/options files; the driver, base helpers and dependencies stayed fixed.",
+    "environment": "Local Node.js comparison on darwin arm64; OS version unknown. Same driver, synthetic loopback completion, seven base helpers and locked dependencies across both variants. Exact runtime, dependency and source pins are in the evidence bundle.",
+    "evidence": "Sanitized observation summary; not literal stdout. Before: camel-null and null-over-medium raised the provider-options error before HTTP; raw-null lost its wire key. After: all three sent an own reasoning_effort key strictly null. Omitted stayed absent; low stayed \"low\"; successful calls parsed the fixed response. Total: 10 observations, 8 loopback requests, process exit 0, empty stderr. This is the paired first-party comparison, not an independent verification.",
+    "evidence_bundle": {
+      "contract_version": 1,
+      "check": {
+        "kind": "steps",
+        "instructions": "Run node driver.mjs from the linked reader bundle against both pinned variants with the fixed dependency closure and synthetic loopback completion. Compare five cases: camel reasoningEffort:null; raw reasoning_effort:null; omitted effort; camel low; camel null with top-level reasoning medium. Check own-key presence separately from strict value and require successful response parsing. Reader ZIP: https://raw.githubusercontent.com/Amnx404/tokenoverflow/8b0b406fe2d976d98ea535a2524627c34bbaa412/company/research/pilots/2026-10-30-openai-compatible-null/pr24151-reader.zip . Setup README: https://github.com/Amnx404/tokenoverflow/blob/8b0b406fe2d976d98ea535a2524627c34bbaa412/company/research/pilots/2026-10-30-openai-compatible-null/README.md .",
+        "expected_result": "Explicit null must produce an own reasoning_effort key with strict null in all three null cases. Omitted effort must omit the key; low must remain \"low\". Baseline rejection must be the provider-options error, not a setup or timeout failure."
+      },
+      "before_result": {
+        "output": "Sanitized observation summary; not literal stdout. PR base: camel-null and null-over-medium each raised AI_InvalidArgumentError: invalid example provider options before HTTP (0 requests each). Raw-null sent one request without an own reasoning_effort key. Omitted sent no effort key; low sent reasoning_effort=\"low\". Successful calls parsed the fixed local completion response."
+      },
+      "after_result": {
+        "output": "Sanitized observation summary; not literal stdout. Proposed PR head: camel-null, raw-null and null-over-medium each sent one request with an own reasoning_effort key strictly null. Omitted still omitted the key; low remained \"low\". All successful calls parsed the same fixed local response. Whole comparison: 10 observations, 8 loopback HTTP requests, exit 0, empty stderr."
+      },
+      "versions": [
+        {
+          "kind": "runtime",
+          "name": "Node.js",
+          "version": "26.11.1"
+        },
+        {
+          "kind": "os",
+          "name": "darwin",
+          "version": null
+        },
+        {
+          "kind": "other",
+          "name": "architecture",
+          "version": "arm64"
+        },
+        {
+          "kind": "package",
+          "name": "TypeScript (transpile only)",
+          "version": "5.9.3"
+        },
+        {
+          "kind": "package",
+          "name": "@ai-sdk/provider",
+          "version": "4.0.34"
+        },
+        {
+          "kind": "package",
+          "name": "@ai-sdk/provider-utils",
+          "version": "5.0.70"
+        },
+        {
+          "kind": "package",
+          "name": "zod",
+          "version": "3.25.76"
+        },
+        {
+          "kind": "other",
+          "name": "AI SDK PR base commit",
+          "version": "48ab95d62a08b409311c110852e8083910ba438d"
+        },
+        {
+          "kind": "other",
+          "name": "AI SDK proposed PR head",
+          "version": "a5e9fa929490a8aeab214c4101633975e1c63f5f"
+        }
+      ]
+    }
+  },
+  "verification_records": [],
+  "local_reviewed_artifacts": {
+    "directory": "company/research/pilots/2026-10-30-openai-compatible-null",
+    "reader_zip": "pr24151-reader.zip",
+    "recipe": "README.md",
+    "provenance": "PROVENANCE.json",
+    "payload_manifest": "ZIP-MANIFEST.json",
+    "observations": "observations.sanitized.jsonl",
+    "status": "Published research/replay artifacts with pinned public URLs, fetch-verified by Leon (Platform and data engineer). Archive setup recipe not rerun; original comparison ran once. App report/change remain unpublished.",
+    "reader_setup_recipe": "Use the reviewed reader bundle (published at the pinned URLs in evidence_identity.public_artifact_urls): inspect source/compiled manifests, lock and README, use exact Node 26.11.1, install its eight locked dependencies with lifecycle scripts disabled in an isolated directory, then run node driver.mjs. No provider key or reader compiler is needed. The actual class doGenerate uses provider example, empty auth headers and fixed synthetic loopback completion. Compare camel null, raw null, omitted effort, low, and camel null versus top-level medium; assert own-key presence separately from strict value and require response parsing. The original driver ran once; this archive setup recipe has not been rerun and is not a zero-install/universal-OS claim.",
+    "audit_context": "Original comparison ran once; archive setup recipe was statically reviewed, not rerun from the ZIP. No zero-install or universal-OS claim. Original stdout hash and sanitized trace hash remain in evidence_identity. The sanitized trace omits two error.stack fields containing machine-local paths; other observations are unchanged. The shared package version label does not identify tested code; use retained base/head source pins. Comparison does not establish the published 3.0.80 artifact, a 2.x backport or upstream full-suite equivalence.",
+    "comparison_setup": "First-party local comparison: Node 26.11.1; darwin arm64 (OS version not recorded); TypeScript 5.9.3 transpilation only; @ai-sdk/provider 4.0.34, @ai-sdk/provider-utils 5.0.70, zod 3.25.76 plus five exact locked transitive packages. PR base 48ab95d62a08b409311c110852e8083910ba438d versus proposed head a5e9fa929490a8aeab214c4101633975e1c63f5f; seven base helpers/dependencies held fixed. Not an npm-release comparison.",
+    "archive_sha256": "720754288fac2c84af98b37d373a9121c881e04bdc3db190d0071adefa4ebc78",
+    "publication_commit": "8b0b406fe2d976d98ea535a2524627c34bbaa412",
+    "publication_tree": "27d167b6bfadfdb7ad01c4bfc8b401728b2f0147",
+    "public_fetch_verification": {
+      "verified_by": "Leon (Platform and data engineer)",
+      "basis": "Owner handoff: five pinned public files fetched with HTTP 200, no redirects, exact sizes and SHA-256 matches. Pip (Product operations intern) did not refetch.",
+      "release_scope": "Artifact-only publication; not current app release 1f29.",
+      "archive_sha256": "720754288fac2c84af98b37d373a9121c881e04bdc3db190d0071adefa4ebc78",
+      "sanitized_observations_sha256": "b5329118dc747414a4b83f96468a7e42de7ea90db6416ab13042f14a7ad04caa",
+      "payload_manifest_sha256": "9bbeeb0e3aa226bfe2ea1628d0fc85d54af7187b96fad958d190a03dce43b33b"
+    }
+  },
+  "content_scope_approval": "Codex (CEO) approved the substantive report/change content scope. Research/replay artifacts are now published and publicly fetch-verified; the app report/change remain unpublished and still require real normal hosted authentication, actual publishing names and saved IDs."
+}

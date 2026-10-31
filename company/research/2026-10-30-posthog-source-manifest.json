@@ -1,0 +1,204 @@
+{
+  "schema_version": 2,
+  "date": "2026-10-30",
+  "scope": "Isolated reviewed telemetry delta against released compatible base; no deployment approval or runtime/ingestion claim. Whole working hashes are separately labeled where selective postimages differ.",
+  "base_commit": "1f29a28055925955e2f0d1f6019e6af7962ec816",
+  "base_tree": "5bfd12aab8953fa3296f147a06d81b118d5c54bd",
+  "postimage_tree": "a0c87c3d9a91f83606c2fe4a23c1614a84027616",
+  "patch": {
+    "path": "company/research/2026-10-30-posthog-cohort.patch",
+    "sha256": "f38146d9a7de7be67e8a33fe0f6eecb8c1be3d4b4b636a3f07f05384fc628952",
+    "file_count": 35,
+    "excludes": [
+      "patch itself",
+      "source manifest itself"
+    ]
+  },
+  "verification": {
+    "isolated_apply_check": "PASS on git archive of exact base; applied postimages match isolated index for all35 selected files",
+    "whitespace": "PASS isolated staged diff --check",
+    "typescript": "Full current working cohort tsc --noEmit passed after auth delta",
+    "controlled_suite": "Actual SDK controlled auth/telemetry suite passed; existing email-auth and evidence-services passed; evidence-roundtrip additive mock syntax checked only, target runner not executed",
+    "lint": "Focused changed-source/test ESLint passed without warnings",
+    "preservation": "GitHub-start and emailCredentials byte-identical; contribution/action tail and metadata/styles/shell preserved; unrelated MCP QA protocol changes excluded",
+    "limitations": "No listening server, real auth/email/account write, hydrated browser, actual Next after lifecycle, runtime source association, project ingestion or deployment proof."
+  },
+  "files": [
+    {
+      "path": "lib/telemetry-shared.ts",
+      "postimage_sha256": "b11e5b25c5d54d2ca71334e3c8ed5dd34f75b76ebd4c7a75cab6fc7901a0e611",
+      "working_sha256": "b11e5b25c5d54d2ca71334e3c8ed5dd34f75b76ebd4c7a75cab6fc7901a0e611"
+    },
+    {
+      "path": "lib/telemetry-browser.ts",
+      "postimage_sha256": "44974b54cbec68631fe9cd6c4a2b5ce9af47e4837da3b42cc88cc60bc9cf45bf",
+      "working_sha256": "44974b54cbec68631fe9cd6c4a2b5ce9af47e4837da3b42cc88cc60bc9cf45bf"
+    },
+    {
+      "path": "lib/telemetry-server.ts",
+      "postimage_sha256": "f18c6e423887c4e708c55ffd3ed69af0453adb86f464eeb8098b3af8ffdec715",
+      "working_sha256": "f18c6e423887c4e708c55ffd3ed69af0453adb86f464eeb8098b3af8ffdec715"
+    },
+    {
+      "path": "lib/telemetry-queue.ts",
+      "postimage_sha256": "952261a3a7696938d5a421742f408d3c72a2c51716d08e9f12be014ad81f87a1",
+      "working_sha256": "952261a3a7696938d5a421742f408d3c72a2c51716d08e9f12be014ad81f87a1"
+    },
+    {
+      "path": "lib/observability.ts",
+      "postimage_sha256": "2eb9a47115034746261283070b658022bb28ce73f3cfe3396a91bb9231f14f3b",
+      "working_sha256": "2eb9a47115034746261283070b658022bb28ce73f3cfe3396a91bb9231f14f3b"
+    },
+    {
+      "path": "lib/api.ts",
+      "postimage_sha256": "fce1c26f760395a1c4927bdc322c0e48c64309dddb487e448b614828f275439e",
+      "working_sha256": "fce1c26f760395a1c4927bdc322c0e48c64309dddb487e448b614828f275439e"
+    },
+    {
+      "path": "components/telemetry.tsx",
+      "postimage_sha256": "ce969277db7e1f0454f306d305b41a6d6a96dfc1a30167b444e42de62c3cdfed",
+      "working_sha256": "ce969277db7e1f0454f306d305b41a6d6a96dfc1a30167b444e42de62c3cdfed"
+    },
+    {
+      "path": "components/forms.tsx",
+      "postimage_sha256": "cb28c92f13cd1b9b289cd821a65a01f44a517dd99e7cf3bd76df110f58b05ce6",
+      "working_sha256": "cb28c92f13cd1b9b289cd821a65a01f44a517dd99e7cf3bd76df110f58b05ce6"
+    },
+    {
+      "path": "app/layout.tsx",
+      "postimage_sha256": "9679943b899ac73cb51b912b39a3a648a2931d64e7af18261be11ec5090af0de",
+      "working_sha256": "9679943b899ac73cb51b912b39a3a648a2931d64e7af18261be11ec5090af0de"
+    },
+    {
+      "path": "instrumentation-client.ts",
+      "postimage_sha256": "2f25e565ff7a812fd7712e86f57240a1383d977caa31186c364eeb533d9161b8",
+      "working_sha256": "2f25e565ff7a812fd7712e86f57240a1383d977caa31186c364eeb533d9161b8"
+    },
+    {
+      "path": "instrumentation.ts",
+      "postimage_sha256": "82c64ba7b8bcca1e8dd928452ed16cd4b0576f401fdcb6891c80692d2e7f7fbb",
+      "working_sha256": "82c64ba7b8bcca1e8dd928452ed16cd4b0576f401fdcb6891c80692d2e7f7fbb"
+    },
+    {
+      "path": "app/api/telemetry/route.ts",
+      "postimage_sha256": "8a82f9936d1ffa54ed5788910f7a9819dab0aa1dcf25e2e094cfa4443cd5adf2",
+      "working_sha256": "8a82f9936d1ffa54ed5788910f7a9819dab0aa1dcf25e2e094cfa4443cd5adf2"
+    },
+    {
+      "path": "app/api/mcp/route.ts",
+      "postimage_sha256": "b70dbedddcd9042059df5e4328ae1439d2baf42c683d27a431b98efb9a877ff0",
+      "working_sha256": "b70dbedddcd9042059df5e4328ae1439d2baf42c683d27a431b98efb9a877ff0"
+    },
+    {
+      "path": "app/api/trpc/[trpc]/route.ts",
+      "postimage_sha256": "ad1b9b1e29d057169c6f67b9b00d1c3aba85418753df91d1205311f11d9ce93c",
+      "working_sha256": "ad1b9b1e29d057169c6f67b9b00d1c3aba85418753df91d1205311f11d9ce93c"
+    },
+    {
+      "path": "server/api/trpc.ts",
+      "postimage_sha256": "73317d8611bab1f9cde898ac3ec36e0f29f86fd44c9b61ee8e4b18d04e208a1a",
+      "working_sha256": "73317d8611bab1f9cde898ac3ec36e0f29f86fd44c9b61ee8e4b18d04e208a1a"
+    },
+    {
+      "path": "app/api/health/route.ts",
+      "postimage_sha256": "bd95bae330f15a01745cdf7b81c9fa086dcdc2327aeb4719afbe7d0a2da5abc3",
+      "working_sha256": "bd95bae330f15a01745cdf7b81c9fa086dcdc2327aeb4719afbe7d0a2da5abc3"
+    },
+    {
+      "path": "app/api/v1/reports/route.ts",
+      "postimage_sha256": "94ff1b13ec03b446bebbcbf947bbb3cc8192c5d5f7cf0c4fd3aa8aba6674121d",
+      "working_sha256": "94ff1b13ec03b446bebbcbf947bbb3cc8192c5d5f7cf0c4fd3aa8aba6674121d"
+    },
+    {
+      "path": "app/api/v1/reports/[id]/route.ts",
+      "postimage_sha256": "0de0989e6227fc32e13f9eabe7c82979cdec83b2ccdc8e0863a37149ba71b75e",
+      "working_sha256": "0de0989e6227fc32e13f9eabe7c82979cdec83b2ccdc8e0863a37149ba71b75e"
+    },
+    {
+      "path": "package.json",
+      "postimage_sha256": "4b9672bc22a072c086f2755ebfe4e1e0cfd55ab1157be86d44afc87188c8d019",
+      "working_sha256": "4b9672bc22a072c086f2755ebfe4e1e0cfd55ab1157be86d44afc87188c8d019"
+    },
+    {
+      "path": "package-lock.json",
+      "postimage_sha256": "434d3455d47bd6d971ac1a9a0e73b15e93ba0329503723d003140d7781247163",
+      "working_sha256": "434d3455d47bd6d971ac1a9a0e73b15e93ba0329503723d003140d7781247163"
+    },
+    {
+      "path": ".env.example",
+      "postimage_sha256": "3a1f3ddcd3ab1181f571381482963b2d6d8e94750cc277112d1919015f0f97b7",
+      "working_sha256": "3a1f3ddcd3ab1181f571381482963b2d6d8e94750cc277112d1919015f0f97b7"
+    },
+    {
+      "path": "scripts/qa/telemetry.mjs",
+      "postimage_sha256": "46dd48c3fc92559e5b72e15a855337fe75c1b3471b8a698ae0a42ed7134d2086",
+      "working_sha256": "46dd48c3fc92559e5b72e15a855337fe75c1b3471b8a698ae0a42ed7134d2086"
+    },
+    {
+      "path": "scripts/qa/operations.mjs",
+      "postimage_sha256": "d38c1f44bd0b4ae015fbc8fdf520d192ab60a2a6245c7b6b722e1578f310cac5",
+      "working_sha256": "d38c1f44bd0b4ae015fbc8fdf520d192ab60a2a6245c7b6b722e1578f310cac5"
+    },
+    {
+      "path": "scripts/qa/trpc-errors.mjs",
+      "postimage_sha256": "ab5a7a7e74301550dabc9dcb177d45e661cd1a527798577b76e428f1a836ed1f",
+      "working_sha256": "ab5a7a7e74301550dabc9dcb177d45e661cd1a527798577b76e428f1a836ed1f"
+    },
+    {
+      "path": "scripts/qa/evidence-services.mjs",
+      "postimage_sha256": "743a25850f62d36dc5d232a81299a913b01a79b38205ddc367dfab07fc7afad4",
+      "working_sha256": "743a25850f62d36dc5d232a81299a913b01a79b38205ddc367dfab07fc7afad4"
+    },
+    {
+      "path": "scripts/qa/evidence-reads.mjs",
+      "postimage_sha256": "7fb7ecb0d7fe51bc42d6b7b21beaa553e7ab0cd62dedac8e767921531fbced00",
+      "working_sha256": "7fb7ecb0d7fe51bc42d6b7b21beaa553e7ab0cd62dedac8e767921531fbced00"
+    },
+    {
+      "path": "scripts/qa/contribution-errors.mjs",
+      "postimage_sha256": "2c442d8aaac8f20adb60375f90dbc322fcd2c24c90a5ea25577699cd96c1cc97",
+      "working_sha256": "2c442d8aaac8f20adb60375f90dbc322fcd2c24c90a5ea25577699cd96c1cc97"
+    },
+    {
+      "path": "scripts/qa/mcp-evidence-bundle.ts",
+      "postimage_sha256": "e411619a20736f32d8ba7175362b19f491a72a2402d8a1a6e4ff2e7adcfa6544",
+      "working_sha256": "d4e6660f0729ce5cdf6b7dbafdfea920b36e234bd7d67115245275dca8d24fba",
+      "selection": "Base plus no-op operation.complete only; unrelated working protocol changes excluded."
+    },
+    {
+      "path": "app/actions.ts",
+      "postimage_sha256": "e9c4ec7d4074f9aead434f20601c2e9330fed6be7f66ccd1e6018a6814eaa007",
+      "working_sha256": "e9c4ec7d4074f9aead434f20601c2e9330fed6be7f66ccd1e6018a6814eaa007"
+    },
+    {
+      "path": "app/auth/callback/route.ts",
+      "postimage_sha256": "de49d4afc7a0b40e137c9548f87b634a423346380ab41ded87c4983d34f55d4f",
+      "working_sha256": "de49d4afc7a0b40e137c9548f87b634a423346380ab41ded87c4983d34f55d4f"
+    },
+    {
+      "path": "app/auth/confirm/route.ts",
+      "postimage_sha256": "1ea8901726767060163e94c765fd2f80279bad33e1225cb971c9cea84efc5c10",
+      "working_sha256": "1ea8901726767060163e94c765fd2f80279bad33e1225cb971c9cea84efc5c10"
+    },
+    {
+      "path": "scripts/qa/email-auth.mjs",
+      "postimage_sha256": "5072ba85083568088bb09ba0a4d0f0e39ec45c9acb70b45b3cf6909ecee6ef67",
+      "working_sha256": "5072ba85083568088bb09ba0a4d0f0e39ec45c9acb70b45b3cf6909ecee6ef67"
+    },
+    {
+      "path": "scripts/qa/evidence-roundtrip.mjs",
+      "postimage_sha256": "93971672ac18fc4abc55a76dfbb3b4afc97ddb23c921548d7158493b67cc12ad",
+      "working_sha256": "93971672ac18fc4abc55a76dfbb3b4afc97ddb23c921548d7158493b67cc12ad"
+    },
+    {
+      "path": "company/research/2026-10-30-posthog-observability.md",
+      "postimage_sha256": "bc5f7f35d1e63a428cfe3bb4623741afe742417f4d6f7d92a9c4fe70c1315a0e",
+      "working_sha256": "bc5f7f35d1e63a428cfe3bb4623741afe742417f4d6f7d92a9c4fe70c1315a0e"
+    },
+    {
+      "path": "scripts/observability/posthog-queries.sql",
+      "postimage_sha256": "1fc162eb67e9ecd0713f347e40ec937e637474d2f197ac93cdb30045135abc37",
+      "working_sha256": "1fc162eb67e9ecd0713f347e40ec937e637474d2f197ac93cdb30045135abc37"
+    }
+  ]
+}

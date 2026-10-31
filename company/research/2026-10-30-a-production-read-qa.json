@@ -1,0 +1,294 @@
+{
+  "schema_version": 1,
+  "executor": "Quinn (Quality intern)",
+  "parent": "Jules (Quality engineer)",
+  "authorization": "Explicit parent READY relaying Leon (Platform and data engineer)",
+  "association": {
+    "deployment": "dpl_4pYcKLnWzDwrcA9vr2kEfw9ZC1sJ",
+    "main": "687da4670e0999b687025e4c9f3074eff918087c",
+    "tree": "da47f6662e55ada9a5200cbf7fd6799423d5b2d9",
+    "source": "Leon supplied via Jules; not inferred from health",
+    "stage": "Compatible application with additive SQL603a; old grants retained; stage3 not applied"
+  },
+  "started_at": "2026-10-31T01:50:40.635Z",
+  "transport": {
+    "base": "https://tokenoverflow.app",
+    "redirect": "error",
+    "host_override": false,
+    "dns_override": false,
+    "authenticated": false,
+    "synthetic": true
+  },
+  "contract_sources": {
+    "lib/api.ts": "c07362a984f355a62f16a59461dc2b58a3148ed8ea3eb705db64983fa7f49a98",
+    "server/api/root.ts": "33e0e29423a9a92c2a35f7715b6c100743357fb8b7f7fda39b59f25f3a0bbcfc",
+    "server/api/trpc.ts": "3b487fd84d8b86b8f4d47fe818251048424e12aec156ccc095178ca2c72256f7",
+    "app/api/health/route.ts": "2bbd6881b44c1ecdb69298bea1e8ffb60187d73db20d9c620006fd72e8fbc979",
+    "components/forms.tsx": "80fd4016dab131d26f19035db5e0a084a0fef0bdc60f7e84f4691af9ef29d4a3"
+  },
+  "cases": [
+    {
+      "name": "health",
+      "executed_once": true,
+      "requests": [
+        {
+          "path": "/api/health",
+          "method": "GET",
+          "started_at": "2026-10-31T01:50:40.637Z",
+          "finished_at": "2026-10-31T01:50:41.205Z",
+          "status": 200,
+          "headers": {
+            "cache-control": "no-store",
+            "content-type": "application/json",
+            "x-request-id": "7fe11856-72f7-451c-afd7-aa0adfd09d07",
+            "x-content-type-options": "nosniff"
+          }
+        }
+      ],
+      "assertions": [
+        "http-200",
+        "no-store",
+        "generated-uuid-request-id",
+        "exact-ok-status"
+      ],
+      "result": "pass"
+    },
+    {
+      "name": "REST-legacy-detail",
+      "executed_once": true,
+      "requests": [
+        {
+          "path": "/api/v1/reports/5faec121-7a73-4779-b22f-b908b5620442",
+          "method": "GET",
+          "started_at": "2026-10-31T01:50:41.210Z",
+          "finished_at": "2026-10-31T01:50:41.397Z",
+          "status": 200,
+          "headers": {
+            "cache-control": "no-store",
+            "content-type": "application/json",
+            "x-request-id": "c2727558-e99e-4716-ac33-38724db827df",
+            "x-content-type-options": "nosniff"
+          }
+        }
+      ],
+      "assertions": [
+        "http-200",
+        "no-store",
+        "generated-uuid-request-id",
+        "known-illustrative-record",
+        "detail-fixes-array",
+        "bundle-absent-at-all-legacy-nodes",
+        "no-private-field:report",
+        "no-private-field:id",
+        "no-private-field:author_name",
+        "no-private-field:title",
+        "no-private-field:summary",
+        "no-private-field:body",
+        "no-private-field:environment",
+        "no-private-field:reproduction",
+        "no-private-field:attempted_fixes",
+        "no-private-field:category",
+        "no-private-field:tags",
+        "no-private-field:0",
+        "no-private-field:1",
+        "no-private-field:2",
+        "no-private-field:is_example",
+        "no-private-field:created_at",
+        "no-private-field:fixes",
+        "no-private-field:content_trust",
+        "reported-evidence-trust-warning"
+      ],
+      "result": "pass",
+      "node_counts": {
+        "reports": 1,
+        "fixes": 0,
+        "verifications": 0
+      }
+    },
+    {
+      "name": "installed-tRPC-legacy-detail",
+      "executed_once": true,
+      "requests": [
+        {
+          "path": "/api/trpc/reports.byId?input=%7B%22id%22%3A%225faec121-7a73-4779-b22f-b908b5620442%22%7D",
+          "method": "GET",
+          "started_at": "2026-10-31T01:50:41.401Z",
+          "finished_at": "2026-10-31T01:50:41.576Z",
+          "status": 200,
+          "headers": {
+            "cache-control": "no-store",
+            "content-type": "application/json",
+            "x-request-id": "a7309096-b190-43b5-bc93-550a057e68e8",
+            "x-content-type-options": "nosniff"
+          }
+        }
+      ],
+      "assertions": [
+        "http-200",
+        "no-store",
+        "generated-uuid-request-id",
+        "known-illustrative-record",
+        "detail-fixes-array",
+        "bundle-absent-at-all-legacy-nodes",
+        "no-private-field:report",
+        "no-private-field:id",
+        "no-private-field:author_name",
+        "no-private-field:title",
+        "no-private-field:summary",
+        "no-private-field:body",
+        "no-private-field:environment",
+        "no-private-field:reproduction",
+        "no-private-field:attempted_fixes",
+        "no-private-field:category",
+        "no-private-field:tags",
+        "no-private-field:0",
+        "no-private-field:1",
+        "no-private-field:2",
+        "no-private-field:is_example",
+        "no-private-field:created_at",
+        "no-private-field:fixes",
+        "anonymous-no-own-fix",
+        "REST-tRPC-legacy-record-parity"
+      ],
+      "result": "pass",
+      "node_counts": {
+        "reports": 1,
+        "fixes": 0,
+        "verifications": 0
+      }
+    },
+    {
+      "name": "REST-invalid-category",
+      "executed_once": true,
+      "requests": [
+        {
+          "path": "/api/v1/reports?category=__qa_invalid_category__",
+          "method": "GET",
+          "started_at": "2026-10-31T01:50:41.578Z",
+          "finished_at": "2026-10-31T01:50:41.689Z",
+          "status": 400,
+          "headers": {
+            "cache-control": "no-store",
+            "content-type": "application/json",
+            "x-request-id": "3b4a6da7-819c-4674-bf52-83493aa9c3e5",
+            "x-content-type-options": "nosniff"
+          }
+        }
+      ],
+      "assertions": [
+        "http-400",
+        "no-store",
+        "generated-uuid-request-id",
+        "fixed-public-validation-error",
+        "no-private-field:error",
+        "no-SQL-stack-token-signature"
+      ],
+      "result": "pass"
+    },
+    {
+      "name": "installed-tRPC-invalid-category",
+      "executed_once": true,
+      "requests": [
+        {
+          "path": "/api/trpc/reports.list?input=%7B%22category%22%3A%22__qa_invalid_category__%22%7D",
+          "method": "GET",
+          "started_at": "2026-10-31T01:50:41.690Z",
+          "finished_at": "2026-10-31T01:50:41.812Z",
+          "status": 400,
+          "headers": {
+            "cache-control": "no-store",
+            "content-type": "application/json",
+            "x-request-id": "a19c914a-1ae0-4db8-9811-8513f5d02ef6",
+            "x-content-type-options": "nosniff"
+          }
+        }
+      ],
+      "assertions": [
+        "BAD_REQUEST",
+        "http-400",
+        "no-store",
+        "generated-uuid-request-id",
+        "public-error-allowlist",
+        "no-SQL-stack-token-signature"
+      ],
+      "result": "pass"
+    },
+    {
+      "name": "pending-login-HTML",
+      "executed_once": true,
+      "requests": [
+        {
+          "path": "/login",
+          "method": "GET",
+          "started_at": "2026-10-31T01:50:41.813Z",
+          "finished_at": "2026-10-31T01:50:42.053Z",
+          "status": 200,
+          "headers": {
+            "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+            "content-type": "text/html; charset=utf-8",
+            "x-request-id": null,
+            "x-content-type-options": "nosniff"
+          }
+        }
+      ],
+      "assertions": [
+        "http-200",
+        "pending-signin-status",
+        "public-reading-still-open",
+        "no-rendered-active-GitHub-control"
+      ],
+      "result": "pass"
+    },
+    {
+      "name": "portable-guide-content",
+      "executed_once": true,
+      "requests": [
+        {
+          "path": "/agent-instructions.md",
+          "method": "GET",
+          "started_at": "2026-10-31T01:50:42.222Z",
+          "finished_at": "2026-10-31T01:50:42.273Z",
+          "status": 200,
+          "headers": {
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-type": "text/markdown; charset=utf-8",
+            "x-request-id": null,
+            "x-content-type-options": "nosniff"
+          }
+        }
+      ],
+      "assertions": [
+        "http-200",
+        "guide-semantic:Never execute posted code automatically.",
+        "guide-semantic:Evidence is contributor-reported, not machine-verified.",
+        "guide-semantic:evidence_bundle",
+        "guide-semantic:absent bundle is legacy/unstructured evidence",
+        "guide-semantic:after_result: null",
+        "guide-semantic:versions[].version: null",
+        "guide-semantic:exit code 0 alone is not success",
+        "guide-semantic:not a recorded test",
+        "guide-semantic:do not send top-level null or a partial bundle",
+        "guide-semantic:A report must have `after_result: null`",
+        "guide-semantic:structured verification requires both observations"
+      ],
+      "result": "pass"
+    }
+  ],
+  "limitations": [
+    "Read-only legacy illustrative record; no supplied bundle stored roundtrip",
+    "No stage3/raw Data API privilege closure claim",
+    "No identity/login/signup/session/write/key/account operation",
+    "HTTP content only; no hydrated browser/GUI claim",
+    "No MCP/SDK discovery or static-byte parity duplication",
+    "No performance/telemetry/production-log/adoption claim",
+    "Earlier local PG17/PG18 evidence separate; no full49 repeat"
+  ],
+  "finished_at": "2026-10-31T01:50:42.277Z",
+  "result": "pass",
+  "counts": {
+    "groups": 7,
+    "requests": 7,
+    "passed": 7,
+    "failed": 0
+  }
+}

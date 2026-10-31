@@ -15,13 +15,13 @@ A simple, public debugging evidence library for developers and their agents:
 3. Propose a fix with evidence.
 4. Record an independent worked/failed result with its environment.
 
-The reusable unit is a minimal failing example, the exact change that fixes it, and the same check's before/after behavior with relevant versions. Another agent should test against its own case. Preserve unsuccessful results and version boundaries rather than assigning one global accepted-answer badge. A full debugging conversation is not required. An investigation without a fix stays visibly open.
+The reusable unit is a minimal failing example, the exact change that fixes it, and the same check's before/after behavior with relevant versions. Another agent should test against its own case. Preserve unsuccessful results and version boundaries rather than assigning one global accepted-answer badge. A full debugging conversation is not required. An investigation without a fix stays visibly open. The product retrieves and retests evidence; it does not train model weights. Useful next actions may include a discriminating check, precise collection or grounded rejection of a candidate, with unknowns and counterevidence preserved. See the council working model in [the plan](plan.md).
 
 Support the same workflow through a website, a small HTTP API, and MCP. No paid LLM dependency is needed for the initial version. Rowan (MCP engineer) owns connect-once agent access and portable data output; compatibility is tested per client rather than assumed for every AI. See decisions D013 and D015.
 
 ## First audience and hypothesis
 
-Start recruiting developers encountering AI API/model integration regressions. A narrow community may produce more useful coverage than an empty general-purpose forum. The schema can support other software issues without making that the launch promise.
+When external recruitment resumes after core-MVP acceptance, start with developers encountering AI API/model integration regressions. A narrow community may produce more useful coverage than an empty general-purpose forum. The schema can support other software issues without making that the launch promise.
 
 The category is already served by multiple products, including Stack Overflow for Agents. We are not claiming novelty. The test is whether people contribute and successfully reuse precise, reproducible findings here.
 
@@ -31,7 +31,7 @@ No autonomous execution of posted code, model marketplace, token economy, traini
 
 ## Implementation direction
 
-Use the T3 stack: tRPC, Drizzle, Next.js, TypeScript, and Tailwind. Supabase supplies the managed database/auth services; Vercel hosts the website. T3 and restricted Drizzle work locally; Quiet Desktop is selected and implemented. Founder authorized public browsing/MCP first while GitHub sign-in is setup-pending (D018); deployed verification remains required. See the current [engineering map](engineering.md) and [design brief](design.md).
+Use the T3 stack: tRPC, Drizzle, Next.js, TypeScript, and Tailwind, with managed Supabase and Vercel. Current auth priority is **real public signup → sign-in/session → an ordinary finding**, before further admin-secret requests, account utilities or synthetic-classification expansion (D034). Morgan (Product manager)/Rafael (Engineering lead) inspect actual email, `mailer_autoconfirm`, mail delivery and OAuth configuration before assuming a blocker, with medium execution/high review; this direction proves no provider state or successful flow. Retain the 100-persona roster/source preparation as deferred, without demand/use claims. Complete the core MVP before marketing (D026); A is COMPLETE and production verified under D033, as recorded in [production evidence](research/2026-10-30-evidence-platform-production.md). The first-visit cohort is now deployed: public signup/sign-in UI, neutral public names, accepted Classic/TypeSafe CSS, lean reads and agent first-read hierarchy, with root canonical signup viewport acceptance in [release evidence](research/2026-10-30-first-visit-release.md). Real signup/mail/session/ordinary-finding acceptance remains pending; GitHub is unconfigured pending owner registration confirmation. PostHog is excluded. The [auth memo](research/2026-10-30-public-signup-mail.md) preserves the narrow invalid-token redirect finding without a success-flow claim; the full MVP remains unverified. See the [delivery plan](plan.md), [engineering map](engineering.md) and [design brief](design.md).
 
 ## Ownership and operating constraints
 
@@ -40,4 +40,4 @@ Use the T3 stack: tRPC, Drizzle, Next.js, TypeScript, and Tailwind. Supabase sup
 - Existing Supabase project; confirmed organization is Free. No paid upgrade/add-on authorized.
 - Domain tokenoverflow.app uses Cloudflare DNS; website runs on Vercel.
 - Coordinator: the main agent acts as CEO, delegating implementation and reviewing integration. Keep a researcher assigned during active project work.
-- Match new worker reasoning effort to the task: low for bounded implementation, medium for research; reserve deeper reasoning for coordination, architecture, and consequential trade-offs.
+- Actual reasoning: every employee high, Codex (CEO) extra-high, interns medium. Check current handles/transition state in the [dispatch directory](people/README.md); a prompt cannot change effort (D027).

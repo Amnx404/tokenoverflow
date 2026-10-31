@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "purpose": "Publication-only export removing source machine locations; no publication action performed",
+  "original": {
+    "artifact_basename": "2026-10-30-local-first-visit-timing.json",
+    "sha256": "1cfa23ba3aca410fe918fc6994d056749ee54b6b66795b28a128ff79d50a4b1c",
+    "retained": true,
+    "excluded_from_publication": true
+  },
+  "exported": {
+    "artifact_basename": "2026-10-30-local-first-visit-timing-public.json",
+    "sha256": "7b90280c412a0230fabfa2682e12bf66e5aecaaaada9ca42a9dc970b553a5f95"
+  },
+  "transformed_fields": [
+    {
+      "pointer": "/targets/before/root",
+      "replacement": "Immutable tree 0404c36057ef64b0b6f19593279c7ec5dd0b6265; compiled build es4s_p3CYO-BAPTdiOccm (source location omitted)"
+    },
+    {
+      "pointer": "/targets/after/root",
+      "replacement": "Immutable tree 2a0b50447d5751eb29ea7791cfd7dd2f805aa190; compiled build PkK16sMYH9vVJzi3hTHEP (source location omitted)"
+    }
+  ],
+  "collector_sha256": "27b874743f3bdca3e0a448f9f0a2ca629e5e18e82df2367029076cd927a80f4e",
+  "statement": "No collection, requests, replay, testing, runtime execution or numeric changes; only the two listed source-location fields were replaced.",
+  "validation": {
+    "changed_field_count": 2,
+    "masked_deep_comparison": "equal",
+    "warmups_measured_summaries_paired_differences_json_serialization": "byte-equivalent",
+    "absolute_machine_or_temp_paths": "none"
+  }
+}

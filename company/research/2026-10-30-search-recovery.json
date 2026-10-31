@@ -1,0 +1,57 @@
+{
+  "surface": "existing development runtime http://127.0.0.1:3000",
+  "traffic": "synthetic read-only QA, not users",
+  "source_state": "working tree before release build",
+  "checks": [
+    {
+      "route": "/?examples=1&page=1000",
+      "status": 200,
+      "out_of_range": true,
+      "no_match": false,
+      "example_title": false,
+      "recovery_links": [
+        "/?examples=1&page=1"
+      ],
+      "scope": "Examples only"
+    },
+    {
+      "route": "/?q=ElevenLabs&category=AI%20models&examples=1&page=1000",
+      "status": 200,
+      "out_of_range": true,
+      "no_match": false,
+      "example_title": false,
+      "recovery_links": [
+        "/?q=ElevenLabs&category=AI+models&examples=1&page=1"
+      ],
+      "scope": "Examples only"
+    },
+    {
+      "route": "/?q=ElevenLabs&category=AI%20models&examples=1&page=1",
+      "status": 200,
+      "out_of_range": false,
+      "no_match": false,
+      "example_title": true,
+      "recovery_links": [],
+      "scope": "Examples only"
+    },
+    {
+      "route": "/?q=ElevenLabs",
+      "status": 200,
+      "out_of_range": false,
+      "no_match": true,
+      "example_title": false,
+      "recovery_links": [],
+      "scope": "Community findings \u00b7 examples excluded"
+    },
+    {
+      "route": "/?examples=1&q=no-such-example",
+      "status": 200,
+      "out_of_range": false,
+      "no_match": true,
+      "example_title": false,
+      "recovery_links": [],
+      "scope": "Examples only"
+    }
+  ],
+  "passed": 5
+}

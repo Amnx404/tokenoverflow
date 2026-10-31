@@ -1,0 +1,20 @@
+{
+  "prompt": "Make ONE text replacement in this screenshot; keep every pixel arrangement, visual design, window, colors, code, title, logo, other labels, before/after cells and red failed row unchanged. In the GREEN horizontal result row near the bottom, replace the entire text after the green checkmark with exactly: Worked · decimal dot. IMPORTANT: do NOT write the numeric digits 1.5 or 1,5 in this green row at all. The words 'decimal dot' spell out the successful condition unambiguously. The RED Failed row must remain exactly as before, showing input 1,5 → NaN. Preserve proportions and all other screenshot content. This is a surgical text correction, no redesign.",
+  "referenced_image_paths": [
+    "local reference/generated-output path omitted; reference 1"
+  ],
+  "transparent_background": false,
+  "public_export": {
+    "kind": "path-redacted publication provenance export",
+    "non_runnable_input_paths": true,
+    "unmodified_raw_tool_arguments": false,
+    "statement": "Only local input/output path metadata was replaced or made portable. Exact prompt strings, order, flags, dimensions, image hashes and reported results/numbers remain unchanged. Omitted source locations are not executable paths or a promise that unselected original/intermediate artifacts are published.",
+    "path_redactions": [
+      {
+        "pointer": "/referenced_image_paths/0",
+        "source_match_sha256": "767116a25fc1c6469a2a08cba6479dfb0b6fda264f488b377de38112bd739ba6",
+        "replacement": "local reference/generated-output path omitted; reference 1"
+      }
+    ]
+  }
+}

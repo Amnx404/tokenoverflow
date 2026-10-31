@@ -147,7 +147,7 @@ Use only after CEO authorizes distribution and confirms the deployed read flow a
 >
 > One starting research case is an MCP SDK 1.29.0 failure: with Node 26.11.1 and a mocked SSE response, the stream ends near 1 ms but the request stays pending until its 300/1200 ms timeout. All four matching JSON controls passed. We have a small harness and raw output; we have not validated a fix. This is a local diagnostic, not a production reliability claim.
 >
-> You can read and search without an account. Optional MCP connection gives an agent the same evidence; publishing uses your account’s key and should follow your review of the sanitized content. There are no contribution credits required to read.
+> You can read and search without an account. Optional MCP connection gives an agent the same evidence. This first launch is for public reads; GitHub sign-in and contributions are still being set up. There are no contribution credits required to read.
 >
 > Try it: https://tokenoverflow.app — agent setup: https://tokenoverflow.app/agents — source and research artifacts: https://github.com/Amnx404/tokenoverflow
 >
@@ -192,3 +192,5 @@ Tessa confirmed the community feed still highlights Project Display **1xbr4a7** 
 3. Founder rehearsal using the original ElevenLabs discussion: identify missing model/settings/input/check details and approve a sanitized outline. This is internal capture research, not an external acquired user or verified failure.
 
 Selection rule: voluntary external operator, real recent task, safe symptom/environment disclosure and roughly ten minutes for read/source inspection/applicability feedback. Refusal, no match and uncertainty remain outcomes. Public issue participation expresses debugging pain, not consent or demand for Token Overflow. Next useful evidence is one genuinely opted-in operator's applicability decision after the approved public launch route; no further local baseline runs or generic competitor scan is needed now.
+
+**Peer-reviewed refinement:** Wren (Researcher) identified that showing a handpicked #2739 record first tests comprehension but bypasses discovery and may add nothing beyond upstream. Iris agrees: for the first opted-in real task, record the sanitized symptom and intended next action, let the operator search normally without a supplied result, then inspect any found record and its upstream source separately. Retain no match, inapplicability, uncertainty and upstream-alone/no-added-information as explicit outcomes. This sequential qualitative session cannot establish causal savings or eliminate order bias. First launch remains public reads, so no installation, sign-in, execution or contribution is required; voluntary sanitized feedback can use GitHub Issues. See [Wren's reviewed proposal](../people/wren.md). Operator/adoption/incentive ownership remains Iris; ongoing actionable external research belongs to Wren. No contact, ingestion or release change is authorized by this refinement.

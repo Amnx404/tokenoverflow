@@ -1,0 +1,39 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Use case: logo-brand. Create ONE original professional logo direction for Token Overflow, a debugging evidence library for humans and agents. Direction name Proof Tab, do NOT print direction name. Deliver one horizontal symbol + lowercase wordmark lockup on genuine transparent alpha background, target 1600 x 640. Exact only text 'tokenoverflow'. Attached actual images are the selected Quiet Desktop design, working screen capture, TypeSafe site and PostHog site. Use them for quiet desktop familiarity and distinctive restrained typography, never copy any logo/mascot/branding. The original symbol is a bold simplified document/tab silhouette, almost square with an open lower corner, a short offset tab rising above its upper-left edge and a small inset lavender rectangular notch. Its negative space should suggest a lowercase t very subtly. Not a folder pictogram copied from an OS; an ownable abstract glyph with purposeful asymmetry, straightforward at favicon16px. Pair with a highly crafted softer medium-bold lowercase humanist-grotesk wordmark, more spacious and precise than a heavy geometric logo, keeping one uninterrupted word. Graphite #24252c and ONE muted violet #777eae accent; no gradients, color effects or extra hues. Use simple silhouette and thick consistent geometry, beautiful balance, optically aligned symbol height to type, clearspace. No verification check, badge, shield, AI sparkle, token coin, infinity, generic code brackets, Stack Overflow rays/basket or copied TypeSafe/PostHog/Microsoft shape. Product keeps negative and conflicting results; identity must not imply certification. Only the actual lockup artwork, centered with ample transparent padding. No headings, direction labels, tagline, swatches, mockups, boards, UI frames, pasted screenshot pixels, gradients, glows, textures, shadows, bevels or drawn checkerboard. Crisp flat vector-like rendering, exact readable text, no fine hairlines, no excessive decorative terminals. Original delightful but restrained developer tool identity, works in monochrome and tiny. Date context2026-10-30, no dates printed.",
+  "referenced_image_paths": [
+    "../2026-10-30/quiet-desktop-hybrid.png",
+    "../2026-10-30/qa/home-desktop.jpg",
+    "local reference/generated-output path omitted; reference 3",
+    "local reference/generated-output path omitted; reference 4"
+  ],
+  "transparent_background": true,
+  "public_export": {
+    "kind": "path-redacted publication provenance export",
+    "non_runnable_input_paths": true,
+    "unmodified_raw_tool_arguments": false,
+    "statement": "Only local input/output path metadata was replaced or made portable. Exact prompt strings, order, flags, dimensions, image hashes and reported results/numbers remain unchanged. Omitted source locations are not executable paths or a promise that unselected original/intermediate artifacts are published.",
+    "path_redactions": [
+      {
+        "pointer": "/referenced_image_paths/0",
+        "source_match_sha256": "3ec873632afcf4ed51497341a272d1797b4d72855d2e30f4f35d3bb0233ff40e",
+        "replacement": "../2026-10-30/quiet-desktop-hybrid.png"
+      },
+      {
+        "pointer": "/referenced_image_paths/1",
+        "source_match_sha256": "280167b8c9a13e835b7cd5921b76a3e4b0c1a71312cb1b279db3b649ecbacb6e",
+        "replacement": "../2026-10-30/qa/home-desktop.jpg"
+      },
+      {
+        "pointer": "/referenced_image_paths/2",
+        "source_match_sha256": "ee90562fb4f5bb37db07267a4e426bf5e68b10933784bf048062259c93dd753a",
+        "replacement": "local reference/generated-output path omitted; reference 3"
+      },
+      {
+        "pointer": "/referenced_image_paths/3",
+        "source_match_sha256": "01fda6ea8ae3280bb21ad1aea67cde53d3896978363e03db29ec3c56c01c00fb",
+        "replacement": "local reference/generated-output path omitted; reference 4"
+      }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Use case: logo-brand. Produce ONE original high-quality logo direction for Token Overflow, a public debugging-evidence library. Direction Open Loop, do NOT print name. Single horizontal symbol plus exact lowercase wordmark 'tokenoverflow', transparent alpha background, target1600 x640. Actual attached selected Quiet Desktop sketch, live app capture, TypeSafe and PostHog images are mood references for calm desktop precision only; no reference logo copying or source screenshots in output. Make a radically simpler symbol than linked rectangles or folder tab: one thick almost-square continuous path with a deliberate open lower-right corner, inward short terminal creating a subtle lowercase o/return-path ambiguity. Flat icon geometry and generous interior negative space, no arrowhead/checkmark, no infinity shape, not a link-chain, no brackets, no search magnifier, no certificate shield, no currency coin, AI star or StackOverflow rays/basket. Distinctive open path suggests an investigation that remains open and can be continued, never universal correctness. Pair with a beautifully custom, medium-bold compact MONOSPACED lowercase wordmark, careful spacing, crisp nearly square counters with very subtly softened joins, reminiscent of good developer tools but not pixel/gaming lettering. Keep text more airy and bookish than a heavy sans logo; readable at small width, terminal character without gimmicks. Symbol graphite #24252c; place ONE short muted violet #777eae segment at the end of the open path. Wordmark graphite with no color split. Optical alignment, icon height about wordmark ascender height, generous transparent clearspace around entire lockup. Only artwork; no direction labels, tagline, size tests, swatches, presentation board, UI frame, mockup, wallpaper, pasted reference imagery, gradient, highlight, texture, glow, 3D, shadow, or checkerboard drawn. Exact letters t-o-k-e-n-o-v-e-r-f-l-o-w in one word. Two elements total: original icon at left, wordmark at right. Crisp vector-like silhouette, usable tiny favicon symbol and wordmark, no thin strokes. Date2026-10-30 context only, no dates printed.",
+  "referenced_image_paths": [
+    "../2026-10-30/quiet-desktop-hybrid.png",
+    "../2026-10-30/qa/home-desktop.jpg",
+    "local reference/generated-output path omitted; reference 3",
+    "local reference/generated-output path omitted; reference 4"
+  ],
+  "transparent_background": true,
+  "public_export": {
+    "kind": "path-redacted publication provenance export",
+    "non_runnable_input_paths": true,
+    "unmodified_raw_tool_arguments": false,
+    "statement": "Only local input/output path metadata was replaced or made portable. Exact prompt strings, order, flags, dimensions, image hashes and reported results/numbers remain unchanged. Omitted source locations are not executable paths or a promise that unselected original/intermediate artifacts are published.",
+    "path_redactions": [
+      {
+        "pointer": "/referenced_image_paths/0",
+        "source_match_sha256": "3ec873632afcf4ed51497341a272d1797b4d72855d2e30f4f35d3bb0233ff40e",
+        "replacement": "../2026-10-30/quiet-desktop-hybrid.png"
+      },
+      {
+        "pointer": "/referenced_image_paths/1",
+        "source_match_sha256": "280167b8c9a13e835b7cd5921b76a3e4b0c1a71312cb1b279db3b649ecbacb6e",
+        "replacement": "../2026-10-30/qa/home-desktop.jpg"
+      },
+      {
+        "pointer": "/referenced_image_paths/2",
+        "source_match_sha256": "ee90562fb4f5bb37db07267a4e426bf5e68b10933784bf048062259c93dd753a",
+        "replacement": "local reference/generated-output path omitted; reference 3"
+      },
+      {
+        "pointer": "/referenced_image_paths/3",
+        "source_match_sha256": "01fda6ea8ae3280bb21ad1aea67cde53d3896978363e03db29ec3c56c01c00fb",
+        "replacement": "local reference/generated-output path omitted; reference 4"
+      }
+    ]
+  }
+}
