@@ -10,7 +10,8 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import ts from 'typescript';
 import postcss from 'postcss';
 const require = createRequire(import.meta.url);
-const output = process.argv[2];
+const connectionHelpOnly = process.argv[2] === '--connection-help';
+const output = process.argv[connectionHelpOnly ? 3 : 2];
 const sources = {}, cache = new Map(), checks = [];
 const fixture = { pathname: '/', user: null, keys: [], keyError: false, keyReads: 0, actionCalls: 0, reports: [], reportCalls: [] };
 const nativeLink = ({ href, children, ...props }) => React.createElement('a', { ...props, href }, children);
@@ -45,6 +46,35 @@ function load(relative, overrides = {}) {
  if (!Object.keys(overrides).length) cache.set(relative, loaded.exports);
  return loaded.exports;
 }
+if (connectionHelpOnly) {
+ const prompt = load('components/agent-prompt.tsx');
+ const agents = load('app/agents/page.tsx');
+ const element = await agents.default();
+ const html = renderToStaticMarkup(element);
+ const help = /<details class="fixture-agents-connectionHelp"[^>]*>[\s\S]*?<\/details>/.exec(html)?.[0];
+ assert.ok(help, 'native setup help missing');
+ assert.doesNotMatch(/^<details[^>]*>/.exec(help)[0], /\bopen(?:=|\s|>)/);
+ assert.match(help, /<summary>First connection\? Setup help<\/summary>/);
+ for (const text of ['supported MCP settings', 'intended scope', 'host or admin approval', 'Skip setup', 'once tools are available', 'does not grant publishing permission', 'supported public HTTP reading', 'unsubmitted draft']) assert.ok(help.includes(text), text);
+ assert.match(help, /<a href="\/">website search<\/a>/);
+ assert.doesNotMatch(help, /cursor:|claude:|codex:|Bearer|TOKENOVERFLOW_KEY|<button|<input|<textarea/);
+ assert.ok(html.indexOf('fixture-agents-endpoint') < html.indexOf('fixture-agents-connectionHelp'));
+ assert.ok(html.indexOf('fixture-agents-connectionHelp') < html.indexOf('fixture-agents-capability'));
+ assert.ok(html.indexOf('fixture-agents-capability') < html.indexOf('Copy agent prompt'));
+ assert.match(html, /Public reads are available\. Native publishing sign-in is not available yet\./);
+ assert.equal(createHash('sha256').update(fs.readFileSync(new URL('../../components/agent-prompt.tsx', import.meta.url))).digest('hex'), '9461a59eefc6480416306740614c6a1c4f42d27b7dc201a43420f17461ae29b9');
+ assert.equal(prompt.AGENT_PROMPT.length, 840);
+ assert.equal(createHash('sha256').update(prompt.AGENT_PROMPT).digest('hex'), 'd9ab69bdd0c1423a7931fdb33c5df17f88b2949d86b5de8cbf2c65ac634f9bd9');
+ assert.equal((html.match(/<textarea\b/g) ?? []).length, 1);
+ assert.equal((html.match(/>Copy agent prompt<\/button>/g) ?? []).length, 1);
+ assert.equal(fixture.keyReads, 0); assert.equal(fixture.actionCalls, 0);
+ const cssPath = 'app/agents/agents.module.css';
+ const css = fs.readFileSync(new URL(`../../${cssPath}`, import.meta.url), 'utf8');
+ postcss.parse(css, { from: cssPath }); sources[cssPath] = createHash('sha256').update(css).digest('hex');
+ assert.match(css, /\.connectionHelp>summary:focus-visible/);
+ if (output) { fs.mkdirSync(output, { recursive: true }); fs.writeFileSync(path.join(output, 'connection-help.ssr.html'), html); }
+ console.log(JSON.stringify({ status: 'PASS', mode: 'connection-help', sources, checks: ['actual Agents SSR help is native and initially closed with conditional setup guidance', 'endpoint/help/capability/prompt order and unchanged exact prompt source/text', 'scoped CSS parses with summary focus rule'], limits: 'Static SSR with existing read/auth/form/CSS/native link doubles only; no actual layout, keyboard, connection, clipboard, runtime or browser proof.' }, null, 2));
+} else {
 const nav = load('components/nav.tsx');
 const prompt = load('components/agent-prompt.tsx');
 const agents = load('app/agents/page.tsx');
@@ -70,10 +100,10 @@ await check('single exact static compact prompt contains no user/key/query inter
 });
 let signedOutHTML;
 await check('signed-out agent page foregrounds one honest task; configuration/API/keys remain collapsed Advanced', async () => {
- reset(); fixture.pathname = '/agents'; const element = await agents.default(); const html = render(element), main = html.split('<details')[0];
+ reset(); fixture.pathname = '/agents'; const element = await agents.default(); const html = render(element), main = html.split('<details class="fixture-agents-advanced"')[0];
  assert.match(main, /Connect your agent/); assert.equal((main.match(/<button\b/g) ?? []).length, 1); assert.match(main, /Copy agent prompt/); assert.equal((main.match(/<textarea\b/g) ?? []).length, 1);
  assert.match(main, /Public reads are available\. Native publishing sign-in is not available yet\./); assert.doesNotMatch(main, /Authorize|Create key|TOKENOVERFLOW_KEY|Read a recorded comparison|Project instruction/);
- assert.match(html, /<summary>Advanced<\/summary>/); assert.doesNotMatch(/<details\b[^>]*>/.exec(html)[0], /\bopen/); assert.ok(html.indexOf('Advanced') < html.indexOf('Create and manage contribution keys'));
+ assert.match(html, /<summary>Advanced<\/summary>/); assert.doesNotMatch(/<details class="fixture-agents-advanced"[^>]*>/.exec(html)[0], /\bopen/); assert.ok(html.indexOf('Advanced') < html.indexOf('Create and manage contribution keys'));
  assert.match(html, /Sign in to create a key/); assert.match(html, /Portable agent instructions/); assert.equal(fixture.keyReads, 0); assert.equal(fixture.actionCalls, 0);
  signedOutHTML = '<!doctype html>' + render(await layout.default({ children: element })); save('agents-signed-out.ssr.html', signedOutHTML);
  assert.match(signedOutHTML, /class="desktop-title"/); assert.match(signedOutHTML, />tokenoverflow<\/a>/); const header = /<header\b[\s\S]*?<\/header>/.exec(signedOutHTML)[0]; assert.ok(header.indexOf('Main navigation') < header.indexOf('fixture-shell-utility')); assert.match(header, /href="\/login"/);
@@ -120,3 +150,4 @@ await check('scoped modules parse and retain visible task focus, tactile control
 });
 if (output) save('README.txt', 'Actual-source React static HTML only. Read/auth/form/native router/font/CSS/telemetry boundaries are doubled; prompt state handlers use deterministic hook/clipboard doubles. These files are not browser, Next runtime, native-font, CSS-layout, connection or publishing proof. Platform build and separately authorized internal-IAB review remain required.\n');
 console.log(JSON.stringify({ status: 'PASS', sources, checks, artifacts: output ? ['agents-signed-out.ssr.html', 'agents-advanced-error.ssr.html', 'prompt-success.ssr.html', 'prompt-manual-fallback.ssr.html', 'home-context.ssr.html'] : [], limits: 'Actual-source SSR and clipboard-state handlers with strict in-memory read/auth/form/router/font/CSS/telemetry/DOM doubles. No real account action, connection, clipboard, browser, Next/RSC transport, native-font/layout, network or production proof.' }, null, 2));
+}
