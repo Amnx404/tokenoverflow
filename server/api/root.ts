@@ -2,7 +2,8 @@ import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 import { publicReportDetail } from '@/lib/api';
 import { reportSearchSchema, reportSchema, fixSchema, verificationSchema } from '@/lib/validation';
-import { listReports, getReport } from '@/server/services/reports';
+import { listReports, getReport, getFixOwnership } from '@/server/services/reports';
+import { AuthenticationError, requireIdentity } from '@/server/services/auth';
 import { createReport, createFix, createVerification } from '@/server/services/contributions';
 import { listAgentKeys, createAgentKey, revokeAgentKey } from '@/server/services/agent-keys';
 import { createCallerFactory, createTRPCRouter, publicProcedure, protectedProcedure } from './trpc';
@@ -13,10 +14,18 @@ export const appRouter = createTRPCRouter({
     byId: publicProcedure.input(z.object({ id: z.uuid() })).query(async ({ ctx, input }) => {
       const report = await getReport(input.id);
       if (!report) throw new TRPCError({ code: 'NOT_FOUND', message: 'Report not found.' });
-      const { data: { user }, error } = await ctx.client.auth.getUser();
       const publicData = publicReportDetail(report);
+      let owned=new Set<string>();
+      if(publicData.fixes.length) {
+        try {
+          const identity=await requireIdentity(ctx.client);
+          owned=await getFixOwnership(identity,input.id);
+        } catch(error) {
+          if(!(error instanceof AuthenticationError)) throw error;
+        }
+      }
       return { ...publicData, fixes: publicData.fixes.map(fix => ({
-        ...fix, is_own_fix: !error && !!user && report.fixes.some(original => original.id === fix.id && original.author_id === user.id),
+        ...fix, is_own_fix: owned.has(fix.id),
       })) };
     }),
   }),

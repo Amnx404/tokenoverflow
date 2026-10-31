@@ -1,5 +1,5 @@
 import type { publicReportDetail } from './api';
-import type { Report } from './types';
+import type { EvidenceBundleV1, Report } from './types';
 import { z } from 'zod';
 
 const reportUrl = (id: string) => `https://tokenoverflow.app/reports/${encodeURIComponent(id)}`;
@@ -35,10 +35,44 @@ export function searchEvidence(data: { reports: Report[]; count: number }) {
   };
 }
 
+// Inputs have already passed the shared public record projection. Select nested bundle
+// fields again so future stored metadata cannot become an implicit MCP export.
+function withEvidenceBundle<T extends object>(
+  record: T & { evidence_bundle?: EvidenceBundleV1 | null },
+): Omit<T, 'evidence_bundle'> & { evidence_bundle?: EvidenceBundleV1 } {
+  const { evidence_bundle: bundle, ...fields } = record;
+  if (bundle == null) return fields;
+  const observation = (value: EvidenceBundleV1['before_result']) => ({
+    output: value.output,
+    ...(value.exit_code === undefined ? {} : { exit_code: value.exit_code }),
+  });
+  return {
+    ...fields,
+    evidence_bundle: {
+      contract_version: bundle.contract_version,
+      check: {
+        kind: bundle.check.kind,
+        instructions: bundle.check.instructions,
+        expected_result: bundle.check.expected_result,
+      },
+      before_result: observation(bundle.before_result),
+      after_result: bundle.after_result === null ? null : observation(bundle.after_result),
+      versions: bundle.versions.map(version => ({
+        kind: version.kind, name: version.name, version: version.version,
+      })),
+    },
+  };
+}
+
 export function reportEvidence(data: ReturnType<typeof publicReportDetail>) {
   return {
     ...data,
+    report: withEvidenceBundle(data.report),
+    fixes: data.fixes.map(fix => ({
+      ...withEvidenceBundle(fix),
+      verifications: fix.verifications.map(verification => withEvidenceBundle(verification)),
+    })),
     url: reportUrl(data.report.id),
-    evidence_format: 'Raw contributor text: report.reproduction is the baseline example; report.attempted_fixes retains prior attempts; fixes[].body is the proposed change; fixes[].evidence is the recorded check/output; fixes[].verifications[] retains worked and failed observations, environments and notes. Versions are recorded in environment text. Check/before/after completeness and results are not machine-verified.',
+    evidence_format: 'Raw contributor text remains complete: report.reproduction is the baseline example; report.attempted_fixes retains prior attempts; fixes[].body is the proposed change; fixes[].evidence is the recorded check/output; fixes[].verifications[] retains every worked and failed observation, environment and note. Optional evidence_bundle supplies a versioned same-check comparison alongside that prose; absent bundles are legacy/unstructured, after_result null means no rerun recorded, and versions[].version null means unknown. Preserve recorded output and exit codes without inferring success. Versions in legacy environment text are not parsed into invented bundle fields. Shape completeness, execution, applicability and results are not machine-verified. Full detail is not truncated; lifetime report size is unbounded despite per-record input limits.',
   };
 }

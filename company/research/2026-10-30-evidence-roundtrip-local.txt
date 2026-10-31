@@ -1,0 +1,273 @@
+Controlled local A roundtrip acceptance
+Executor: Arjun (Backend engineer), sole application-write executor.
+This file contains sanitized runner output only; no fixture manifest, credentials or account identifiers.
+
+Phase 1: additive-old-app, Drizzle adapter (platform-bound)
+Process exit: 0. One database-connected execution after two pre-connection SDK-root preflight failures.
+Runner SHA256: 2d058ea5468d65f565aec1015110382ff03fa259d6072e959e2ce279b3603dc8
+Scope: released old C application, isolated local PostgreSQL17.11, synthetic identity, explicit canonical-Host loopback adapter.
+No phase2/phase3, real OAuth, hosted Data API HTTP, production, browser/RSC POST or adoption claim.
+
+Captured sanitized output:
+PASS platform A safety and artifact checks
+PHASE additive-old-app; schema stage a-additive-pg17-v1; artifact 790862f919cd853c09998217f2587a8d8a88fb94; migration SHA256 603a780c59e22a68113d3fa73f566dee107861793480767c9e5c974ed3eae288
+POSTGRES 17.11; isolated local target, not hosted Data API or real OAuth
+RUNTIME compiled; build xarzIYdfNMRHAslTEyILm; owner process binding declared and typed database binding checked below
+MCP MODE canonical-host-loopback; explicit canonical Host adapter to fixed local socket; not normal remote-client compatibility
+PASS unique typed marker binds application reads to the migrated fixture before application writes
+PASS fresh synthetic account keys and official SDK local transports
+PASS tRPC legacy optional absence survives storage and all read paths
+PASS form-service legacy optional absence survives storage and all read paths
+PASS REST legacy optional absence survives storage and all read paths
+PASS MCP legacy optional absence survives storage and all read paths
+PASS admin-stored typed marker remains intact after legacy and application reads
+PASS 8 A stages for additive-old-app only; actual local app/SQL storage, synthetic identity only
+LIMIT form-service serializer forwards to live tRPC; no clicked browser/RSC POST, real OAuth, hosted Data API HTTP, production or adoption proof
+LIMIT form-service forwards TRPCClientError rather than the server caller TRPCError; action error formatting is not certified
+LIMIT stage3 raw identifier denial requires the separate platform SQL-role test; public projections alone do not prove it
+LIMIT recreated typed markers prove within-stage retention only; cross-stage and rollback retention need a separate platform-owned persistent marker
+PASS isolated A cleanup: zero dedicated-account rows and keys
+
+Lease returned to Leon (Platform and data engineer). Platform-owned persistent retention marker was outside the runner cleanup identities.
+
+Phase 1: additive-old-app, local Data API adapter
+Process exit: 0. One execution for the changed adapter; no unchanged rerun.
+Runner SHA256: e10de1a630cd16959f1bdb902f5bf7a3ada6309446097424cb24f85fe6c346a9
+Platform supplies a local Auth/Data API gateway to official PostgREST16.5 and PostgreSQL17.11; this is not hosted Supabase or real OAuth.
+
+Captured sanitized output:
+PASS platform A safety and artifact checks
+PHASE additive-old-app; schema stage a-additive-pg17-v1; artifact 790862f919cd853c09998217f2587a8d8a88fb94; migration SHA256 603a780c59e22a68113d3fa73f566dee107861793480767c9e5c974ed3eae288
+POSTGRES 17.11; isolated local target, not hosted Data API or real OAuth
+BACKEND supabase-data-api; platform-declared serving-process binding; local Data API adapter, not hosted Supabase HTTP
+RUNTIME compiled; build xarzIYdfNMRHAslTEyILm; owner process binding declared and typed database binding checked below
+MCP MODE canonical-host-loopback; explicit canonical Host adapter to fixed local socket; not normal remote-client compatibility
+PASS unique typed marker binds application reads to the migrated fixture before application writes
+PASS fresh synthetic account keys and official SDK local transports
+PASS tRPC legacy optional absence survives storage and all read paths
+PASS form-service legacy optional absence survives storage and all read paths
+PASS REST legacy optional absence survives storage and all read paths
+PASS MCP legacy optional absence survives storage and all read paths
+PASS admin-stored typed marker remains intact after legacy and application reads
+PASS 8 A stages for additive-old-app only; actual local app/SQL storage, synthetic identity only
+LIMIT form-service serializer forwards to live tRPC; no clicked browser/RSC POST, real OAuth, hosted Data API HTTP, production or adoption proof
+LIMIT form-service forwards TRPCClientError rather than the server caller TRPCError; action error formatting is not certified
+LIMIT stage3 raw identifier denial requires the separate platform SQL-role test; public projections alone do not prove it
+LIMIT recreated typed markers prove within-stage retention only; cross-stage and rollback retention need a separate platform-owned persistent marker
+PASS isolated A cleanup: zero dedicated-account rows and keys
+
+Lease returned to Leon (Platform and data engineer). Platform-owned persistent retention marker remained outside cleanup.
+
+Phase 2: compatible-app, Drizzle adapter
+Process exit: 0. One execution on the changed compiled compatible app.
+Runner SHA256: e10de1a630cd16959f1bdb902f5bf7a3ada6309446097424cb24f85fe6c346a9
+Scope: exact frozen A tree0404c36057ef64b0b6f19593279c7ec5dd0b6265 on additive-only storage; restrictive grants not yet applied.
+
+Captured sanitized output:
+PASS platform A safety and artifact checks
+PHASE compatible-app; schema stage a-additive-pg17-v1; artifact 0404c36057ef64b0b6f19593279c7ec5dd0b6265; migration SHA256 603a780c59e22a68113d3fa73f566dee107861793480767c9e5c974ed3eae288
+POSTGRES 17.11; isolated local target, not hosted Data API or real OAuth
+BACKEND drizzle; platform-declared serving-process binding
+RUNTIME compiled; build es4s_p3CYO-BAPTdiOccm; owner process binding declared and typed database binding checked below
+MCP MODE canonical-host-loopback; explicit canonical Host adapter to fixed local socket; not normal remote-client compatibility
+ROLLBACK FLOOR 0404c36057ef64b0b6f19593279c7ec5dd0b6265; old SELECT-star app is not a safe rollback after restrictive grants
+PASS unique typed marker binds application reads to the migrated fixture before application writes
+PASS fresh synthetic account keys and official SDK local transports
+PASS tRPC typed report/fix/worked/failed exact stored and public roundtrips
+PASS tRPC rejection leaves complete persisted-state fingerprint unchanged
+PASS tRPC rejection leaves complete persisted-state fingerprint unchanged
+PASS tRPC rejection leaves complete persisted-state fingerprint unchanged
+PASS tRPC self-result and duplicate denials preserve stored evidence
+PASS tRPC legacy optional absence survives storage and all read paths
+PASS form-service typed report/fix/worked/failed exact stored and public roundtrips
+PASS form-service rejection leaves complete persisted-state fingerprint unchanged
+PASS form-service rejection leaves complete persisted-state fingerprint unchanged
+PASS form-service rejection leaves complete persisted-state fingerprint unchanged
+PASS form-service self-result and duplicate denials preserve stored evidence
+PASS form-service legacy optional absence survives storage and all read paths
+PASS REST typed report/fix/worked/failed exact stored and public roundtrips
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS REST self-result and duplicate denials preserve stored evidence
+PASS REST legacy optional absence survives storage and all read paths
+PASS MCP typed report/fix/worked/failed exact stored and public roundtrips
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP malformed input rejected by SDK tool validation; no application HTTP status claimed
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP self-result and duplicate denials preserve stored evidence
+PASS MCP legacy optional absence survives storage and all read paths
+PASS admin-stored typed marker remains intact after legacy and application reads
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS A schema and privacy changes preserve the existing shared account quota
+PASS 17 A stages for compatible-app only; actual local app/SQL storage, synthetic identity only
+LIMIT form-service serializer forwards to live tRPC; no clicked browser/RSC POST, real OAuth, hosted Data API HTTP, production or adoption proof
+LIMIT form-service forwards TRPCClientError rather than the server caller TRPCError; action error formatting is not certified
+LIMIT stage3 raw identifier denial requires the separate platform SQL-role test; public projections alone do not prove it
+LIMIT recreated typed markers prove within-stage retention only; cross-stage and rollback retention need a separate platform-owned persistent marker
+PASS isolated A cleanup: zero dedicated-account rows and keys
+
+Lease returned to Leon (Platform and data engineer); separate persistent marker untouched. Phase3 and compatible-app local Data API adapter acceptance remain separate.
+
+Phase 2: compatible-app, local Data API adapter
+Process exit: 0. One execution for the changed adapter.
+Runner SHA256: e10de1a630cd16959f1bdb902f5bf7a3ada6309446097424cb24f85fe6c346a9
+Exact same compatible tree/build/additive schema; DATABASE_URL absent in the platform-bound fallback process. Local PostgREST16.5/PostgreSQL17.11 is not hosted Supabase.
+
+Captured sanitized output:
+PASS platform A safety and artifact checks
+PHASE compatible-app; schema stage a-additive-pg17-v1; artifact 0404c36057ef64b0b6f19593279c7ec5dd0b6265; migration SHA256 603a780c59e22a68113d3fa73f566dee107861793480767c9e5c974ed3eae288
+POSTGRES 17.11; isolated local target, not hosted Data API or real OAuth
+BACKEND supabase-data-api; platform-declared serving-process binding; local Data API adapter, not hosted Supabase HTTP
+RUNTIME compiled; build es4s_p3CYO-BAPTdiOccm; owner process binding declared and typed database binding checked below
+MCP MODE canonical-host-loopback; explicit canonical Host adapter to fixed local socket; not normal remote-client compatibility
+ROLLBACK FLOOR 0404c36057ef64b0b6f19593279c7ec5dd0b6265; old SELECT-star app is not a safe rollback after restrictive grants
+PASS unique typed marker binds application reads to the migrated fixture before application writes
+PASS fresh synthetic account keys and official SDK local transports
+PASS tRPC typed report/fix/worked/failed exact stored and public roundtrips
+PASS tRPC rejection leaves complete persisted-state fingerprint unchanged
+PASS tRPC rejection leaves complete persisted-state fingerprint unchanged
+PASS tRPC rejection leaves complete persisted-state fingerprint unchanged
+PASS tRPC self-result and duplicate denials preserve stored evidence
+PASS tRPC legacy optional absence survives storage and all read paths
+PASS form-service typed report/fix/worked/failed exact stored and public roundtrips
+PASS form-service rejection leaves complete persisted-state fingerprint unchanged
+PASS form-service rejection leaves complete persisted-state fingerprint unchanged
+PASS form-service rejection leaves complete persisted-state fingerprint unchanged
+PASS form-service self-result and duplicate denials preserve stored evidence
+PASS form-service legacy optional absence survives storage and all read paths
+PASS REST typed report/fix/worked/failed exact stored and public roundtrips
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS REST self-result and duplicate denials preserve stored evidence
+PASS REST legacy optional absence survives storage and all read paths
+PASS MCP typed report/fix/worked/failed exact stored and public roundtrips
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP malformed input rejected by SDK tool validation; no application HTTP status claimed
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP self-result and duplicate denials preserve stored evidence
+PASS MCP legacy optional absence survives storage and all read paths
+PASS admin-stored typed marker remains intact after legacy and application reads
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS A schema and privacy changes preserve the existing shared account quota
+PASS 17 A stages for compatible-app only; actual local app/SQL storage, synthetic identity only
+LIMIT form-service serializer forwards to live tRPC; no clicked browser/RSC POST, real OAuth, hosted Data API HTTP, production or adoption proof
+LIMIT form-service forwards TRPCClientError rather than the server caller TRPCError; action error formatting is not certified
+LIMIT stage3 raw identifier denial requires the separate platform SQL-role test; public projections alone do not prove it
+LIMIT recreated typed markers prove within-stage retention only; cross-stage and rollback retention need a separate platform-owned persistent marker
+PASS isolated A cleanup: zero dedicated-account rows and keys
+
+Lease returned to Leon (Platform and data engineer). Phase2 passes both adapters; phase3 restrictive grants and cross-stage retention remain separate.
+
+Phase 3: restricted-app, local Data API adapter
+Process exit: 0. One execution after the changed restrictive schema.
+Runner SHA256: 389ddcfa829f07cd52ad3e91371efb97822206bd9ec1275e39e1851e6584fcea
+The runner checked both additive and restrictive migration file digests. Separate platform SQL-role/HTTP denial and persistent-marker proof remain distinct.
+
+Captured sanitized output:
+PASS platform A safety and artifact checks
+PHASE restricted-app; schema stage a-restricted-pg17-v1; artifact 0404c36057ef64b0b6f19593279c7ec5dd0b6265; migration SHA256 603a780c59e22a68113d3fa73f566dee107861793480767c9e5c974ed3eae288
+RESTRICTION migration SHA256 bb31de8072c8e1512e8e223be4c9983a7bd906858dfe148d3110b9a6616d3a7c
+POSTGRES 17.11; isolated local target, not hosted Data API or real OAuth
+BACKEND supabase-data-api; platform-declared serving-process binding; local Data API adapter, not hosted Supabase HTTP
+RUNTIME compiled; build es4s_p3CYO-BAPTdiOccm; owner process binding declared and typed database binding checked below
+MCP MODE canonical-host-loopback; explicit canonical Host adapter to fixed local socket; not normal remote-client compatibility
+ROLLBACK FLOOR 0404c36057ef64b0b6f19593279c7ec5dd0b6265; old SELECT-star app is not a safe rollback after restrictive grants
+PASS unique typed marker binds application reads to the migrated fixture before application writes
+PASS fresh synthetic account keys and official SDK local transports
+PASS tRPC typed report/fix/worked/failed exact stored and public roundtrips
+PASS tRPC rejection leaves complete persisted-state fingerprint unchanged
+PASS tRPC rejection leaves complete persisted-state fingerprint unchanged
+PASS tRPC rejection leaves complete persisted-state fingerprint unchanged
+PASS tRPC self-result and duplicate denials preserve stored evidence
+PASS tRPC legacy optional absence survives storage and all read paths
+PASS form-service typed report/fix/worked/failed exact stored and public roundtrips
+PASS form-service rejection leaves complete persisted-state fingerprint unchanged
+PASS form-service rejection leaves complete persisted-state fingerprint unchanged
+PASS form-service rejection leaves complete persisted-state fingerprint unchanged
+PASS form-service self-result and duplicate denials preserve stored evidence
+PASS form-service legacy optional absence survives storage and all read paths
+PASS REST typed report/fix/worked/failed exact stored and public roundtrips
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS REST self-result and duplicate denials preserve stored evidence
+PASS REST legacy optional absence survives storage and all read paths
+PASS MCP typed report/fix/worked/failed exact stored and public roundtrips
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP malformed input rejected by SDK tool validation; no application HTTP status claimed
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP self-result and duplicate denials preserve stored evidence
+PASS MCP legacy optional absence survives storage and all read paths
+PASS admin-stored typed marker remains intact after legacy and application reads
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS A schema and privacy changes preserve the existing shared account quota
+PASS 17 A stages for restricted-app only; actual local app/SQL storage, synthetic identity only
+LIMIT form-service serializer forwards to live tRPC; no clicked browser/RSC POST, real OAuth, hosted Data API HTTP, production or adoption proof
+LIMIT form-service forwards TRPCClientError rather than the server caller TRPCError; action error formatting is not certified
+LIMIT stage3 raw identifier denial requires the separate platform SQL-role test; public projections alone do not prove it
+LIMIT recreated typed markers prove within-stage retention only; cross-stage and rollback retention need a separate platform-owned persistent marker
+PASS isolated A cleanup: zero dedicated-account rows and keys
+
+Lease returned to Leon (Platform and data engineer); separate persistent marker untouched. Restricted Drizzle adapter and cross-stage rollback retention remain separate.
+
+Phase 3: restricted-app, Drizzle adapter
+Process exit: 0. One execution for the final changed adapter.
+Runner SHA256: 389ddcfa829f07cd52ad3e91371efb97822206bd9ec1275e39e1851e6584fcea
+Exact compatible tree/build and both migration digests retained; no production actions.
+
+Captured sanitized output:
+PASS platform A safety and artifact checks
+PHASE restricted-app; schema stage a-restricted-pg17-v1; artifact 0404c36057ef64b0b6f19593279c7ec5dd0b6265; migration SHA256 603a780c59e22a68113d3fa73f566dee107861793480767c9e5c974ed3eae288
+RESTRICTION migration SHA256 bb31de8072c8e1512e8e223be4c9983a7bd906858dfe148d3110b9a6616d3a7c
+POSTGRES 17.11; isolated local target, not hosted Data API or real OAuth
+BACKEND drizzle; platform-declared serving-process binding
+RUNTIME compiled; build es4s_p3CYO-BAPTdiOccm; owner process binding declared and typed database binding checked below
+MCP MODE canonical-host-loopback; explicit canonical Host adapter to fixed local socket; not normal remote-client compatibility
+ROLLBACK FLOOR 0404c36057ef64b0b6f19593279c7ec5dd0b6265; old SELECT-star app is not a safe rollback after restrictive grants
+PASS unique typed marker binds application reads to the migrated fixture before application writes
+PASS fresh synthetic account keys and official SDK local transports
+PASS tRPC typed report/fix/worked/failed exact stored and public roundtrips
+PASS tRPC rejection leaves complete persisted-state fingerprint unchanged
+PASS tRPC rejection leaves complete persisted-state fingerprint unchanged
+PASS tRPC rejection leaves complete persisted-state fingerprint unchanged
+PASS tRPC self-result and duplicate denials preserve stored evidence
+PASS tRPC legacy optional absence survives storage and all read paths
+PASS form-service typed report/fix/worked/failed exact stored and public roundtrips
+PASS form-service rejection leaves complete persisted-state fingerprint unchanged
+PASS form-service rejection leaves complete persisted-state fingerprint unchanged
+PASS form-service rejection leaves complete persisted-state fingerprint unchanged
+PASS form-service self-result and duplicate denials preserve stored evidence
+PASS form-service legacy optional absence survives storage and all read paths
+PASS REST typed report/fix/worked/failed exact stored and public roundtrips
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS REST self-result and duplicate denials preserve stored evidence
+PASS REST legacy optional absence survives storage and all read paths
+PASS MCP typed report/fix/worked/failed exact stored and public roundtrips
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP malformed input rejected by SDK tool validation; no application HTTP status claimed
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP self-result and duplicate denials preserve stored evidence
+PASS MCP legacy optional absence survives storage and all read paths
+PASS admin-stored typed marker remains intact after legacy and application reads
+PASS REST rejection leaves complete persisted-state fingerprint unchanged
+PASS MCP rejection leaves complete persisted-state fingerprint unchanged
+PASS A schema and privacy changes preserve the existing shared account quota
+PASS 17 A stages for restricted-app only; actual local app/SQL storage, synthetic identity only
+LIMIT form-service serializer forwards to live tRPC; no clicked browser/RSC POST, real OAuth, hosted Data API HTTP, production or adoption proof
+LIMIT form-service forwards TRPCClientError rather than the server caller TRPCError; action error formatting is not certified
+LIMIT stage3 raw identifier denial requires the separate platform SQL-role test; public projections alone do not prove it
+LIMIT recreated typed markers prove within-stage retention only; cross-stage and rollback retention need a separate platform-owned persistent marker
+PASS isolated A cleanup: zero dedicated-account rows and keys
+
+Lease returned to Leon (Platform and data engineer). Required phase-by-adapter application matrix is complete locally: old/additive, compatible/additive and compatible/restricted each passed Drizzle and local Data API separately. Platform raw-role/HTTP denial, persistent cross-stage marker and compatible rollback evidence remain separately attributed.
