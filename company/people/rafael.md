@@ -4,7 +4,7 @@ Current handle: `/root/rafael`, actual high reasoning. Read [the engineering-lea
 
 ## Current handoff — 2026-10-30
 
-Finish trustworthy core behavior before marketing. A and C implementation releases are verified live; normal public signup/session/finding acceptance remains unfinished. The 100-account/admin-provisioning path is deferred by latest founder direction. No admin secret is required for public signup, and confirmation must not be weakened.
+Finish trustworthy core behavior before marketing. A and C implementation releases are verified live; normal public signup/session/finding acceptance remains unfinished. The 100-account/admin-provisioning path is deferred by latest founder direction. No admin secret is required for public signup, and confirmation must not be weakened. Current telemetry app main `572d982a8dabf8e870cef132b832750537f9ecc3`, tree `bf237c2df967e373eed9d78e3fb0fb6688425202`, READY production `dpl_9TANDxzdkiwQxGfEcTz7giQ8PNYh` has [bounded production acceptance](../research/2026-10-30-posthog-observability.md): known Codex (CEO) QA unclassified browser events and the synthetic server sample establish delivery only; 13 internal reads remain unattributed. Earlier local-only/capture-pending discussion below is historical and superseded by that gate, not real signup/session/finding or adoption acceptance.
 
 ### A — evidence and account-ID privacy: verified live
 

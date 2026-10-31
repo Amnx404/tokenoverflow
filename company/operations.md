@@ -1,6 +1,6 @@
 # Operations and upkeep
 
-Updated 2026-10-30. Owner: Codex (CEO), with Leon (Platform and data engineer) for hosting/log access and named system owners for fixes. Current first-visit production uses application release commit `1f29a28055925955e2f0d1f6019e6af7962ec816`, tree `5bfd12aab8953fa3296f147a06d81b118d5c54bd`, READY production `dpl_DorznuD1AnpfQr6qFMjcXMoqq281`; [release evidence](research/2026-10-30-first-visit-release.md) records deployment/root canonical signup UI acceptance, with Jules (Quality engineer)/Eva (Quality engineer) acceptance of Quinn (Quality intern)’s nine principal plus one CSS GET gate. This is read-only/static delivery, not actual signup/mail/session or submission. It is a compatible descendant of completed A: retain bundle-aware writers, explicit projections, ownership path and additive storage; old C/3c48 SELECT-star rollback and raw-identifier regrant remain unsupported. Actual signup/mail/session/ordinary finding, typed production writes and full MVP remain unverified. This runbook does not prove a heartbeat completed; [progress](progress.md)/[verification](verification.md) hold evidence.
+Updated 2026-10-30. Owner: Codex (CEO), with Leon (Platform and data engineer) for hosting/configuration and system owners for fixes. Current app is main `572d982a8dabf8e870cef132b832750537f9ecc3`, tree `bf237c2df967e373eed9d78e3fb0fb6688425202`, READY production `dpl_9TANDxzdkiwQxGfEcTz7giQ8PNYh`. [Bounded telemetry acceptance](research/2026-10-30-posthog-observability.md) and the [production operator dashboard](https://us.posthog.com/project/700205/dashboard/2284208) establish sampled server/browser delivery, not people/conversions or complete traffic coverage; [synthetic QA](https://us.posthog.com/project/700205/dashboard/2284181) remains separate. Root's six stored-unclassified browser events are known QA;13 extra internal tRPC reads remain unattributed. Existing A compatible storage/privacy and rollback floor remain; no old C/3c48 SELECT-star rollback/raw-ID regrant. Real signup/mail/session/ordinary finding, typed production writes and full MVP remain unverified. A configured heartbeat is not proof of a completed run.
 
 ## Configured heartbeat
 
@@ -19,6 +19,8 @@ Local project tasks require the computer on and Codex running. Managed website h
 5. Record new incidents, recoveries, limitations and next action in canonical owner/verification records. Preserve only sanitized error signatures and necessary evidence; no raw payloads or private account details.
 
 ## Instrumentation and limits
+
+Current production capture uses production-only encrypted server configuration and a public enabled boolean; preview is off, with no forced traffic classification or release override. The kill switch `TOKENOVERFLOW_TELEMETRY_ENABLED=false` requires a new compatible deployment: a managed-environment edit alone does not change an existing deployment, as [Vercel documents](https://vercel.com/docs/environment-variables/managing-environment-variables). Source-controlled disable proof is not a production-disable test; none was performed.
 
 `/api/health` returns coarse `ok`/200 or `degraded`/503, no-store and an internally generated request ID. It performs a bounded cached/coalesced anonymous backend probe; empty data is healthy. It does not certify OAuth, contributions or all integrations.
 
