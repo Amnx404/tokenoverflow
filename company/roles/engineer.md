@@ -21,3 +21,7 @@ Report the exact blocker, evidence, affected scope and next action. Identify use
 ## Handoff
 
 Give the CEO the files/behavior changed, reason, actual validation, material limitations, compatibility impact and next useful action. Update your owner note and relevant verification/research evidence. Proposals remain distinguishable from accepted decisions and implemented behavior; the CEO reconciles canonical decisions and current state. Never include credentials or private payloads in public records.
+
+## Mandatory learning and continuation
+
+Required before a first/new lease: read relevant [onboarding lessons](../onboarding.md), current maps and role, then acknowledge and apply them in your own note; parent verifies actual setting/official seniority title, Alex (Accountability evaluator) audits. Finite task completion is not company completion: continue approved substantive independent work or request Priya (Product manager)/Rafael (Engineering lead) scope within two minutes, preserving leases/authority and reporting the true blocker; no quotas or busy tests.

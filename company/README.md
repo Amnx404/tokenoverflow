@@ -11,17 +11,23 @@ The short, inspectable record of what we are building, why, what we have learned
 - [Operations](operations.md): configured heartbeat, free log triage, incident boundaries and genuine operator evidence.
 - [People](people/README.md): current named owner handoffs and CEO staffing registry.
 - [Team](team.md): responsibilities, delegation, and reasoning guidance.
+- [Onboarding](onboarding.md): mandatory learnings, acknowledgements and continuation before new leases.
+- [Accountability](accountability.md): Alex (Accountability evaluator) audits all roles, including Codex (CEO).
 - [Roles](roles/README.md): required CEO, engineering and research operating behavior, blockers, throughput and handoffs.
 - [Workboard](workboard.md): current owners, status, and next evidence.
 - [Delivery plan](plan.md): substantial core-MVP packages, peer review, dependencies and independent Test user acceptance.
 - [Incentives](incentives.md): the contribution model and what we will test.
 - [Research](research/): dated evidence and competitor notes with source links.
 
+Current governance: Priya (Product manager) owns plan/workboard; Alex (Accountability evaluator) independently evaluates every role including Codex (CEO). Morgan (Former product manager)'s actual retrospective was reviewed by Alex (Accountability evaluator) and read/acknowledged/applied by Priya (Product manager); preserve historical authorship and shared CEO/process responsibility. No Pip (Product operations intern) reassignment is implied.
+
 The coordinator owns this record. Researchers supply evidence; implementation agents deliver bounded changes. Important product choices come back to the founder as concrete options. Routine reversible implementation choices are delegated.
 
 ## How the record is used
 
 Start each task with this index, the role definition, the workboard, the relevant brief/map, and the owner's handoff note. Check linked decisions before implementing. The founder's latest explicit direction supersedes earlier plans.
+
+Every new hire and role replacement must read the relevant lessons/current maps and acknowledge the concrete applied learning in their own note before the first lease. Parents verify actual reasoning and the supported official `Name (Role) · Seniority` title; Alex (Accountability evaluator) audits breaches. Current staff apply the same learning at the next substantive handoff before a new lease, without interrupting active work. A finite task is not company completion: if approved independent work remains, continue a substantial next step or request Priya (Product manager)/Rafael (Engineering lead) scope within two minutes; report a true blocker with owner/decision instead of busywork. See [required learnings](onboarding.md#required-learnings) and [accountability](accountability.md); first watchdog execution and other staff acknowledgements are not presumed.
 
 Use one canonical home for each kind of information:
 

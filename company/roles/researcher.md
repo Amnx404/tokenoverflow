@@ -10,3 +10,9 @@ Current owners: Iris (Researcher) and Wren (Researcher). Iris (Researcher) owns 
 - Return a concise recommendation, trade-offs, implementation implications and the smallest useful test. Preserve negative/disconfirming evidence.
 - Record evidence in the existing dated memo when it belongs there. Link canonical decisions instead of duplicating them. Keep sources and private data out of public raw transcripts.
 - At handoff, state the next research question and useful independent work; report access gaps precisely. No external recruiting/messages, paid services or cloud mutations without scope-specific authorization.
+
+## Mandatory learning and continuation
+
+Required before a first/new lease: read relevant [onboarding lessons](../onboarding.md), current maps and role, then acknowledge and apply them in your own note; parent verifies actual setting/official seniority title, Alex (Accountability evaluator) audits. Finite task completion is not company completion: continue approved substantive independent work or request Priya (Product manager)/Rafael (Engineering lead) scope within two minutes, preserving leases/authority and reporting the true blocker; no quotas or busy tests.
+
+Maintain a continuous bounded question queue tied to an active product/engineering decision. Close actual source/interpretation review, then move to the next useful approved question or request scope within two minutes; Auth dependency alone does not pause independent research.
