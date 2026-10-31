@@ -12,7 +12,7 @@ export function AuthForm({next, enabled}:{next:string;enabled:boolean}) {
  <input type="hidden" name="next" value={next}/>
  <Message state={state}/>
  <button type="submit" className="button primary" disabled={pending}>{pending?'Connecting to GitHub…':'Continue with GitHub'}<ArrowRight size={16} aria-hidden="true"/></button>
- </form> : <p role="status">Sign-in is being set up. Please check back shortly.</p>}
+ </form> : <p role="status">GitHub sign-in is being set up. Please check back shortly.</p>}
  <p className="fine-print">Reading is open to everyone. Sign in to share findings, publish fixes, and create contribution keys.</p>
  </>;
 }

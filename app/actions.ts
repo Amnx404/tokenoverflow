@@ -1,7 +1,7 @@
 'use server';
 import { serverClient } from '@/lib/supabase/server';
-import { authCallbackUrl, githubAuthEnabled } from '@/lib/auth-config';
-import { reportSchema, fixSchema, verificationSchema } from '@/lib/validation';
+import { authCallbackUrl, authSiteOrigin, githubAuthEnabled } from '@/lib/auth-config';
+import { reportSchema, fixSchema, verificationSchema, safeNext } from '@/lib/validation';
 import { api } from '@/trpc/server';
 import { TRPCError } from '@trpc/server';
 import { revalidatePath } from 'next/cache';
@@ -23,6 +23,56 @@ export async function beginGitHubSignIn(_state: FormState, form: FormData): Prom
   }
   destination=target.toString();
  } catch { return {error:'GitHub sign-in could not start. Please try again.'}; }
+ redirect(destination);
+}
+export type EmailAuthState = { error?: string; message?: string };
+function emailCredentials(form:FormData) {
+ const email=form.get('email'),password=form.get('password'),next=form.get('next');
+ if(typeof email!=='string'||typeof password!=='string'||password.length===0) return null;
+ const parsed=z.email().safeParse(email.trim());
+ if(!parsed.success) return null;
+ return {email:parsed.data,password,next:safeNext(typeof next==='string'?next:null)};
+}
+export async function signInWithEmail(_state:EmailAuthState,form:FormData):Promise<EmailAuthState> {
+ const failure={error:'Sign-in could not be completed. Please try again.'};
+ const credentials=emailCredentials(form);
+ if(!credentials) return failure;
+ let destination:string;
+ try {
+  const db=await serverClient();
+  const {data,error}=await db.auth.signInWithPassword({email:credentials.email,password:credentials.password});
+  if(error||!data.session||!data.user) return failure;
+  const verified=await db.auth.getUser();
+  if(verified.error||!verified.data.user) return failure;
+  destination=new URL(credentials.next,authSiteOrigin()).toString();
+ } catch { return failure; }
+ revalidatePath('/','layout');
+ redirect(destination);
+}
+export async function signUpWithEmail(_state:EmailAuthState,form:FormData):Promise<EmailAuthState> {
+ const failure={error:'Account creation could not be completed. Please try again.'};
+ const confirmation={message:'If this address can be registered, check your email for a confirmation link.'};
+ const suppliedName=form.get('display_name');
+ if(suppliedName!==null&&(typeof suppliedName!=='string'||suppliedName.trim().length>80)) return {error:'Use a public display name of 80 characters or fewer.'};
+ const display_name=typeof suppliedName==='string'&&suppliedName.trim()?suppliedName.trim():'Contributor';
+ const credentials=emailCredentials(form);
+ if(!credentials) return failure;
+ let destination:string;
+ try {
+  const db=await serverClient();
+  const {data,error}=await db.auth.signUp({email:credentials.email,password:credentials.password,options:{emailRedirectTo:authCallbackUrl(credentials.next),data:{display_name}}});
+  if(error) {
+   if(error.code==='user_already_exists'||error.code==='email_exists') return confirmation;
+   if(error.code==='weak_password') return {error:'Choose a stronger password and try again.'};
+   if(error.code==='over_email_send_rate_limit'||error.code==='over_request_rate_limit') return {error:'Please wait before trying again.'};
+   return failure;
+  }
+  if(!data.session) return confirmation;
+  const verified=await db.auth.getUser();
+  if(verified.error||!verified.data.user) return failure;
+  destination=new URL(credentials.next,authSiteOrigin()).toString();
+ } catch { return failure; }
+ revalidatePath('/','layout');
  redirect(destination);
 }
 export async function signOut() { const db=await serverClient(); await db.auth.signOut(); revalidatePath('/','layout'); redirect('/'); }
