@@ -1,4 +1,5 @@
 'use client';
+import { captureTelemetryCopy } from '@/lib/telemetry-browser';
 import { useActionState, useState } from 'react';
 import { beginGitHubSignIn, contribute, createAgentKey, type FormState } from '@/app/actions';
 import { categories } from '@/lib/types';
@@ -56,7 +57,7 @@ export function VerifyForm({fixId,reportId}:{fixId:string;reportId:string}) {
 }
 export function CopyButton({value,label='Copy'}:{value:string;label?:string}) {
  const [copied,setCopied]=useState(false),[error,setError]=useState(false);
- return <button type="button" className="copy-button" onClick={async()=>{try{await navigator.clipboard.writeText(value);setCopied(true);setError(false);setTimeout(()=>setCopied(false),2000);}catch{setError(true);}}}>{copied?<Check size={14}/>:<Copy size={14}/>} {error?'Select and copy manually':copied?'Copied':label}</button>;
+ return <button type="button" className="copy-button" onClick={async()=>{try{await navigator.clipboard.writeText(value);captureTelemetryCopy();setCopied(true);setError(false);setTimeout(()=>setCopied(false),2000);}catch{setError(true);}}}>{copied?<Check size={14}/>:<Copy size={14}/>} {error?'Select and copy manually':copied?'Copied':label}</button>;
 }
 export function KeyForm() {
  const [state,action,pending]=useActionState(createAgentKey,{});

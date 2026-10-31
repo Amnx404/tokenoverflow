@@ -80,7 +80,7 @@ function recordFixture(reportId: string, typed: boolean) {
   return { report, fixes };
 }
 
-const operation = { startOperation: () => ({ requestId, fail: () => {}, finish: (response: Response) => response }) };
+const operation = { startOperation: () => ({ requestId, fail: () => {}, complete: () => {}, finish: (response: Response) => response }) };
 const api = load<typeof import('../../lib/api')>('../../lib/api.ts', {
   '@/server/services/contributions': {}, '@/lib/observability': operation,
   '@/server/services/errors': {}, '@/lib/validation': validation,

@@ -14,7 +14,7 @@ const environment={env:{AUTH_SITE_URL:'https://tokenoverflow.app',NODE_ENV:'prod
 function load(path,mocks={},extra={}) {
  const loaded={exports:{}};
  const code=ts.transpileModule(read(path),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX}}).outputText;
- vm.runInNewContext(code,{Error,URL,URLSearchParams,Request,Response,TextEncoder,process:environment,module:loaded,exports:loaded.exports,require:name=>Object.hasOwn(mocks,name)?mocks[name]:require(name),...extra});
+ vm.runInNewContext(code,{Error,URL,URLSearchParams,Request,Response,TextEncoder,process:environment,module:loaded,exports:loaded.exports,require:name=>name==='@/lib/telemetry-server'?{startAuthTelemetry:async()=>({finish:()=>{}})}:Object.hasOwn(mocks,name)?mocks[name]:require(name),...extra});
  return loaded.exports;
 }
 const types=load('lib/types.ts');

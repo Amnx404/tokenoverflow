@@ -1,5 +1,5 @@
 import { publishAgentContribution } from '@/server/services/contributions';
-import { startOperation } from '@/lib/observability';
+import { startOperation, requestTelemetryContext } from '@/lib/observability';
 import { ServiceError } from '@/server/services/errors';
 import type { getReport } from '@/server/services/reports';
 import type { EvidenceBundleV1, Observation } from '@/lib/types';
@@ -7,7 +7,7 @@ import { reportSchema,fixSchema,verificationSchema } from '@/lib/validation';
 export const apiHeaders={'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'};
 export function apiJson(data:unknown,status=200){return Response.json(data,{status,headers:apiHeaders});}
 export async function publishApi(request:Request,kind:'report'|'fix'|'verification',correlationId?:string){
- const operation=startOperation(correlationId?'/api/mcp':kind==='report'?'/api/v1/reports':kind==='fix'?'/api/v1/fixes':'/api/v1/verifications',kind==='report'?'publish_report':kind==='fix'?'publish_fix':'record_verification',correlationId);
+ const operation=startOperation(correlationId?'/api/mcp':kind==='report'?'/api/v1/reports':kind==='fix'?'/api/v1/fixes':'/api/v1/verifications',kind==='report'?'publish_report':kind==='fix'?'publish_fix':'record_verification',correlationId,requestTelemetryContext(request));
  const respond=(data:unknown,status=200)=>operation.finish(apiJson(data,status));
  try{
  const token=request.headers.get('authorization')?.match(/^Bearer (to_[a-f0-9]{64})$/)?.[1];
