@@ -1,0 +1,62 @@
+{
+  "status": "Recorded comparison and replay artifact",
+  "issue": "https://github.com/vercel/ai/issues/24150",
+  "proposedPr": "https://github.com/vercel/ai/pull/24151",
+  "base": {
+    "repository": "vercel/ai",
+    "commit": "48ab95d62a08b409311c110852e8083910ba438d"
+  },
+  "head": {
+    "repository": "vimalprakashts/ai",
+    "commit": "a5e9fa929490a8aeab214c4101633975e1c63f5f",
+    "statusAtInspection": "open/unmerged"
+  },
+  "build": {
+    "typescript": "5.9.3",
+    "method": "transpileModule ES2022/ESM; relative import specifiers rewritten to .js",
+    "semanticTypecheck": false,
+    "compileRuns": 1,
+    "readerBuildRequired": false
+  },
+  "originalRun": {
+    "node": "v26.11.1",
+    "platform": "darwin",
+    "architecture": "arm64",
+    "comparisonRuns": 1,
+    "observations": 10,
+    "httpRequests": 8,
+    "exit": 0,
+    "stdoutSha256": "9e066a9d3ab861e6d5f7ee6426c2af5d68bbe31cc93b9c6ec9feeb5ee4bed728",
+    "stderr": "empty",
+    "performer": "Ari (MCP intern)",
+    "reviewers": [
+      "Rowan (MCP engineer)",
+      "Iris (Researcher)"
+    ]
+  },
+  "sanitization": {
+    "removedOnly": "error.stack from two baseline-error observations",
+    "preserved": "error.name/message/cause, all wire bodies, case identities/counts, runtime and final result",
+    "rawStdoutIncluded": false
+  },
+  "license": {
+    "url": "https://github.com/vercel/ai/blob/48ab95d62a08b409311c110852e8083910ba438d/LICENSE",
+    "gitBlob": "6c16c29f41168411dbf6e3ba3a063ce789c27334",
+    "sha256": "b4f9adb7c568904834d0dd6cc98d16c390d21ca32fc17ae7a267715269bd5529",
+    "copyright": "2023 Vercel, Inc.",
+    "license": "Apache-2.0"
+  },
+  "scope": "Dependency-conditioned PR-base closure versus proposed PR-head class/options with byte-identical base helpers; not npm fixed release, upstream suite, semantic typecheck, real provider behavior or app contribution.",
+  "archiveReplay": {
+    "bootstrapRecipeSeparatelyRerun": false,
+    "includedCompiledFiles": 18,
+    "includedPinnedSourceFiles": 11,
+    "lockedDependencyCount": 8,
+    "lifecycleScripts": "disabled in recipe",
+    "originalInstallSupervisorLimitsIncludedInRecipe": false
+  },
+  "upstreamAttribution": {
+    "issueAuthor": "vimalprakashts",
+    "proposedPatchAuthor": "vimalprakashts"
+  }
+}
