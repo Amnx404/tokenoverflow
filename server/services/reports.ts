@@ -108,6 +108,14 @@ export async function getCommunityStats() {
     return {reports:r.value,fixes:f.value,verifications:v.value};
   });
 }
-export async function getExampleReport():Promise<Report|null> {
-  return (await listReports({examples:true})).reports[0]??null;
+export async function getExampleReportId():Promise<string|null> {
+  if(databaseMode()==='supabase-data-api') {
+    const {data,error}=await publicClient().from('reports').select('id').eq('is_example',true).order('created_at',{ascending:false}).order('id',{ascending:true}).limit(1);
+    if(error) throw error;
+    return data?.[0]?.id??null;
+  }
+  return withDatabase(async tx=>{
+    const [example]=await tx.select({id:reports.id}).from(reports).where(eq(reports.is_example,true)).orderBy(desc(reports.created_at),asc(reports.id)).limit(1);
+    return example?.id??null;
+  });
 }

@@ -26,7 +26,8 @@ export async function createFix(identity:Identity,input:unknown) { return create
 export async function createVerification(identity:Identity,input:unknown) { return createContribution(identity,'verification',input); }
 async function createContribution(identity:Identity,kind:ContributionKind,input:unknown):Promise<{id:string}> {
   assertIdentity(identity);
-  const author_name=String(identity.user.user_metadata.display_name??identity.user.email?.split('@')[0]??'Contributor').slice(0,80);
+  const displayName=identity.user.user_metadata?.display_name;
+  const author_name=typeof displayName==='string'&&displayName.trim()?displayName.trim().slice(0,80):'Contributor';
   const value={...(typeof input==='object'&&input?input:{}),author_name};
   const schema=kind==='report'?reportSchema:kind==='fix'?fixSchema:verificationSchema;
   const data=schema.parse(value);

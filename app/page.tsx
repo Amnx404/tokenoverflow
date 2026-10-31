@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Search, ChevronRight } from 'lucide-react';
 import { api } from '@/trpc/server';
-import { getExampleReport } from '@/server/services/reports';
+import { getExampleReportId } from '@/server/services/reports';
 import { ReportCard } from '@/components/report-card';
 import { categories } from '@/lib/types';
 import { reportSearchSchema } from '@/lib/validation';
@@ -15,10 +15,10 @@ export async function generateMetadata({searchParams}:{searchParams:Promise<Reco
 export default async function Home({searchParams}:{searchParams:Promise<Record<string,string|string[]|undefined>>}) {
  const p=await searchParams;const q=typeof p.q==='string'?p.q.trim().slice(0,300):'';const category=reportSearchSchema.shape.category.catch('').parse(p.category);
  const view=p.view==='needs-investigation'||p.view==='reproduced'?p.view:'';const examples=p.examples==='1';const rawPage=Number(p.page);const page=Number.isInteger(rawPage)&&rawPage>=1?Math.min(1000,rawPage):1;
- const [{reports,count},exampleData]=await Promise.all([
- api.reports.list({q,category,view,page,examples}),getExampleReport(),
- ]).catch(()=>{throw new Error('Could not load findings. Please try again.');});
- const example=!count&&!q&&!category&&!view&&!examples&&exampleData?await api.reports.byId({id:exampleData.id}):null;
+ const {reports,count}=await api.reports.list({q,category,view,page,examples}).catch(()=>{throw new Error('Could not load findings. Please try again.');});
+ const needsExample=count===0&&!q&&!category&&!view&&!examples;
+ const exampleId=needsExample?await getExampleReportId().catch(()=>{throw new Error('Could not load findings. Please try again.');}):null;
+ const example=exampleId!==null?await api.reports.byId({id:exampleId}):null;
  const sampleFix=example?.fixes[0];
  const href=(values:Record<string,string>)=>{const s=new URLSearchParams({...(q?{q}:{}),...(category?{category}:{}),...(view?{view}:{}),...(examples?{examples:'1'}:{}),...values});return '/?'+s.toString();};
  const outOfRange=count>0&&reports.length===0;
