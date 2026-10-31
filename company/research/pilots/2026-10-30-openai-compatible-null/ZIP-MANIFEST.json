@@ -1,0 +1,239 @@
+{
+  "note": "All payload files except ZIP-MANIFEST.json itself; self hash supplied alongside archive",
+  "files": [
+    {
+      "path": "LICENSE",
+      "bytes": 552,
+      "sha256": "b4f9adb7c568904834d0dd6cc98d16c390d21ca32fc17ae7a267715269bd5529",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "PROVENANCE.json",
+      "bytes": 2258,
+      "sha256": "cce68f8f631748aa1c211b2dd575f83f4eeda7476ddaf0116bc0f123001afc31",
+      "unchangedOriginalCopy": false
+    },
+    {
+      "path": "README.md",
+      "bytes": 4364,
+      "sha256": "3fbb20729f8501cab8c633f0d330c196c544f6e08f839715781f6a4ae67a9cae",
+      "unchangedOriginalCopy": false
+    },
+    {
+      "path": "compiled/base/chat/convert-openai-compatible-chat-usage.js",
+      "bytes": 894,
+      "sha256": "eac2b9324c32a9b726016311e2c921efa96f814a75b4fcc3aa11c1245f992a5c",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/base/chat/convert-to-openai-compatible-chat-messages.js",
+      "bytes": 11369,
+      "sha256": "2ef26a60f9c904373dce98ed3f0c3bf42a3b4ec913bd660846a82622eb88ebd7",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/base/chat/get-response-metadata.js",
+      "bytes": 344,
+      "sha256": "b3217d82157ab0f626e0bf28c9a657ea1c13f4f9320318da35ab5ad4e647c404",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/base/chat/map-openai-compatible-finish-reason.js",
+      "bytes": 403,
+      "sha256": "9192b4edf4cd381517e1663866b72b32fb5d0a3ad1fb760d17c2ea522c1e0d60",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/base/chat/openai-compatible-chat-language-model-options.js",
+      "bytes": 846,
+      "sha256": "53ba3290567234f28ee73e960118aefc548cb4e901e1b30885ffa4544116426a",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/base/chat/openai-compatible-chat-language-model.js",
+      "bytes": 29012,
+      "sha256": "6abc8618e468bc9cef0c12f7deed834b106489d6bed62fd4337abbc2427808ad",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/base/chat/openai-compatible-prepare-tools.js",
+      "bytes": 1844,
+      "sha256": "570019f0137dc9fafa94c3b2e8f9e2dede9aac86e8a58838cb6c9e41bf8a674c",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/base/openai-compatible-error.js",
+      "bytes": 604,
+      "sha256": "1a8e75d58dea77e422f815860fa5d81bcd32ddda453bdd77a053cfd6afeaa3be",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/base/utils/to-camel-case.js",
+      "bytes": 1041,
+      "sha256": "39c345779d16c59f43bbc3ac3573446461b9ad6bb55bc91d191c193afea46f2f",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/head/chat/convert-openai-compatible-chat-usage.js",
+      "bytes": 894,
+      "sha256": "eac2b9324c32a9b726016311e2c921efa96f814a75b4fcc3aa11c1245f992a5c",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/head/chat/convert-to-openai-compatible-chat-messages.js",
+      "bytes": 11369,
+      "sha256": "2ef26a60f9c904373dce98ed3f0c3bf42a3b4ec913bd660846a82622eb88ebd7",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/head/chat/get-response-metadata.js",
+      "bytes": 344,
+      "sha256": "b3217d82157ab0f626e0bf28c9a657ea1c13f4f9320318da35ab5ad4e647c404",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/head/chat/map-openai-compatible-finish-reason.js",
+      "bytes": 403,
+      "sha256": "9192b4edf4cd381517e1663866b72b32fb5d0a3ad1fb760d17c2ea522c1e0d60",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/head/chat/openai-compatible-chat-language-model-options.js",
+      "bytes": 995,
+      "sha256": "bb8e3312dbb23ec45231ab29c47ac6b6e1981146d045458c3f92e0d5bbabca52",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/head/chat/openai-compatible-chat-language-model.js",
+      "bytes": 29412,
+      "sha256": "ba4479bcdfb639bdb5ce89e6fd959e186444e381e294e707e0304bdca5e4b010",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/head/chat/openai-compatible-prepare-tools.js",
+      "bytes": 1844,
+      "sha256": "570019f0137dc9fafa94c3b2e8f9e2dede9aac86e8a58838cb6c9e41bf8a674c",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/head/openai-compatible-error.js",
+      "bytes": 604,
+      "sha256": "1a8e75d58dea77e422f815860fa5d81bcd32ddda453bdd77a053cfd6afeaa3be",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled/head/utils/to-camel-case.js",
+      "bytes": 1041,
+      "sha256": "39c345779d16c59f43bbc3ac3573446461b9ad6bb55bc91d191c193afea46f2f",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "compiled-manifest.json",
+      "bytes": 3860,
+      "sha256": "d7612ded52bf540bf5d1ec4c80609d0196a85d3a90218e50244162b8c48e964b",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "driver.mjs",
+      "bytes": 5836,
+      "sha256": "453dbac1fd7247df36be94d636b42486d64b7ec75ed099b3ab695da219481516",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "implementation.patch",
+      "bytes": 1961,
+      "sha256": "96504f5f0d681a72d22051e1f089a7b6f63cdfb4a724d9141f5044fb98a74574",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "observations.sanitized.jsonl",
+      "bytes": 3318,
+      "sha256": "b5329118dc747414a4b83f96468a7e42de7ea90db6416ab13042f14a7ad04caa",
+      "unchangedOriginalCopy": false
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 3344,
+      "sha256": "0b78893075e050d1b68e8912b806305416089742888da9e9798d5823f35107be",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "package.json",
+      "bytes": 225,
+      "sha256": "65084c7097dace85ad1156105d30a0692ecabb8229334b1873d390f1c888d099",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "source/base/packages/openai-compatible/src/chat/convert-openai-compatible-chat-usage.ts",
+      "bytes": 1227,
+      "sha256": "68bada40c4a79c9641ce48cb8d436f1a574ffccd8b4c0c8cc2fdaecd6dceaf19",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "source/base/packages/openai-compatible/src/chat/convert-to-openai-compatible-chat-messages.ts",
+      "bytes": 10018,
+      "sha256": "52f48021d2516348cf19fa64cba49b760ea0ec1774b11740d1e67a173c135a70",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "source/base/packages/openai-compatible/src/chat/get-response-metadata.ts",
+      "bytes": 410,
+      "sha256": "2748fa3cf70b9c1358172ecc484a1a36ee3c0e926a9cbea03a60cadda430d3d9",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "source/base/packages/openai-compatible/src/chat/map-openai-compatible-finish-reason.ts",
+      "bytes": 487,
+      "sha256": "ad3d6446451c9b34e00ecf32dbde585241d25280e4be919c7540e448b9b2325e",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "source/base/packages/openai-compatible/src/chat/openai-compatible-chat-language-model-options.ts",
+      "bytes": 977,
+      "sha256": "f5ab245c34711c8894076b51b9247a3c246ec0b3037df6bb392a7dee7de3798b",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "source/base/packages/openai-compatible/src/chat/openai-compatible-chat-language-model.ts",
+      "bytes": 30692,
+      "sha256": "e73c2b14599bc7d85a0d292f93bf0489e188c91ff29df83d15d518f0538821b4",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "source/base/packages/openai-compatible/src/chat/openai-compatible-prepare-tools.ts",
+      "bytes": 2342,
+      "sha256": "b97ccb722006791d036865f62d577db9dff6ae6737098f42c0ab569dda908edd",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "source/base/packages/openai-compatible/src/openai-compatible-error.ts",
+      "bytes": 910,
+      "sha256": "fe648701f77ae87a3a05e54acdc7e04f4c1ebbb984e52558f82990d33560d96b",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "source/base/packages/openai-compatible/src/utils/to-camel-case.ts",
+      "bytes": 1254,
+      "sha256": "3d9be11f9facd6fc812c5dd8bd0fd2f99265b27fba41e5139023795989e40124",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "source/head/packages/openai-compatible/src/chat/openai-compatible-chat-language-model-options.ts",
+      "bytes": 1120,
+      "sha256": "a0d1e60e390573149c701c714b339fa13e16a46d4722c7abbd7fc3a98b4ed35f",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "source/head/packages/openai-compatible/src/chat/openai-compatible-chat-language-model.ts",
+      "bytes": 31067,
+      "sha256": "007ff77f0342cbf0aec44909c3a7501991e8bfdef95b37913f18dca9b0faa4b3",
+      "unchangedOriginalCopy": true
+    },
+    {
+      "path": "source-manifest.json",
+      "bytes": 12405,
+      "sha256": "f316339ddc7e75a592c9a94ff4b247460ddc230fdc16b8c425784fc9e165a4f0",
+      "unchangedOriginalCopy": true
+    }
+  ]
+}
