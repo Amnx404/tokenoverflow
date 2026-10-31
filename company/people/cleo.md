@@ -1,4 +1,4 @@
-# Cleo (Company operations intern)
+# Cleo (Company operations intern) · Junior
 
 Updated 2026-10-30. Current collaboration handle: `/root/sasha/cleo_ops`; actual medium reasoning, fresh context (`fork_turns: none`), no hiring/delegation. First direct intern of Sasha (Executive assistant). Parent acceptance/review: **accepted by Sasha (Executive assistant)** after actual isolated-diff review and focused current-status corrections. Canonical edit lease returned; no further edits assigned.
 
@@ -27,3 +27,7 @@ Parent-reviewed current summaries bind first-visit main `1f29a28055925955e2f0d1f
 ## Approved GitHub registration record handoff
 
 Recorded only the founder-approved registration completed by Codex (CEO), intended homepage/callback/owner verification, no generated secret and still-pending Supabase activation/real signup/mail/session/finding proof. Appended D036 and the exact one-sentence PM auth-row updates; corrected only the stale progress publication sentence to owner-verified PR7, while these new auth records are prepared for reviewed records publication by Leon (Platform and data engineer). Preserved historical settings, telemetry, artifacts and accepted145 manifests. No account screenshot/app ID/credentials, settings read, runtime/network/auth/Git action or application check. Sasha (Executive assistant) accepted the actual content diff and verified public-before/current-after hashes; docs leases returned. Final exact hash guards, Rafael (Engineering lead) independent review, Leon (Platform and data engineer) execution and Codex (CEO) coordination remain the authorized publication procedure; publication is not yet claimed.
+
+## Governance learning and browser-policy acknowledgement
+
+Read the required onboarding/current maps and acknowledge that readiness is not implementation, a finite package is not company completion, and Auth-focus/default-profile intrusion cannot halt independent approved work. Applied this by projecting only governance hunks onto public-base copies with source/hash/authority guards. I acknowledge only the Codex internal browser for all future browser work; no default/native/external/headless profile or cookie/token/profile copying. This docs work needs no browser call; nonbrowser scoped work continues, actual blockers go to Sasha (Executive assistant)/Priya (Product manager), and the shared watchdog is configured rather than proof of perpetual execution. Actual medium/Junior setting remains privately parent-verified; no new authority or publication is claimed.

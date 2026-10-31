@@ -1,0 +1,29 @@
+# Required onboarding and applied learnings
+
+Applies to current staff and every future employee/intern hire or AI-role replacement. Read [company index](README.md), [roles](roles/README.md), your durable role/own note, [current directory](people/README.md), [plan](plan.md)/[workboard](workboard.md) and relevant brief/design/engineering maps plus accepted decisions. [Alex (Accountability evaluator)](people/alex.md) audits compliance; [accountability](accountability.md) records material findings, not repeated polling.
+
+## Before a lease
+
+New hires and replacements MUST read/acknowledge relevant lessons/current maps in their own note before the first lease, naming a concrete applied safeguard and next evidence trigger. The parent verifies actual runtime reasoning, supported official `Name (Role) · Seniority` title and applied learning before assigning work. Existing staff must do the same at the next substantive handoff before a new lease; preserve active work. Titles are Executive for Codex (CEO), Senior for employees, Junior for interns; actual reasoning stays extra-high/high/medium, with fresh-context/no-delegation interns. No prompt-only effort claim or nickname-badge inference.
+
+Every role replacement requires a factual retrospective → Alex (Accountability evaluator) actual review → successor actual read/acknowledgement/application. Include CEO allocation, finite stop gates and process contribution, not blame only the outgoing role. Morgan (Former product manager)'s [retrospective](people/morgan.md#former-pm-handoff-and-dismissal-retrospective), reviewed SOURCE SHA-256 `3244a8d3f51bae9c527c3696b986c4f1b867a38de9a075847d897c6dff86f6ee`, was actually reviewed/accepted by Alex (Accountability evaluator) and read/acknowledged/applied by Priya (Product manager). Historical authorship remains; Morgan (Former product manager) has no PM leases, Pip (Product operations intern) is not inherited. Other staff acknowledgements are not presumed.
+
+## Required learnings
+
+- **Readiness is not implementation.** A proposal, correct board, source review, dispatched worker or sent review request is not delivered behavior. Read actual output before review closure and distinguish local/source/runtime/deployed/operator evidence. Concrete example: Alex (Accountability evaluator) caught a readiness acknowledgement being treated as implementation; Priya (Product manager) corrected the stage before actual Remy (Product implementation intern) dispatch.
+- **Finite work is not company completion.** At a substantive close, check the still-unproved user outcome, exact next trigger/owner and an independent authorized lane. If useful approved work remains, continue a substantial next step or request Priya (Product manager)/Rafael (Engineering lead) scope within two minutes. No quotas, busy tests, mass waking or tiny-task fragmentation.
+- **A blocker has a boundary.** Report the true affected scope, evidence, owner and decision; keep continuous research, branding, product, Test user interpretation and local engineering moving when Auth is blocked. Do not bypass credentials, fixtures, write/release authority or stop independent work merely because a browser/operator step waits.
+- **Feedback changes the next action.** Preserve actual researcher/Test user disagreement and what evidence revised the plan; simulated checks, copied artifacts and captured QA events are not real adoption or debugging benefit.
+- **Ownership and supervision are operational.** Check recipient status at handoff; `followup_task` wakes completed/idle agents, `send_message` alone does not. Priya (Product manager)/Rafael (Engineering lead) assign next outcomes, Sasha (Executive assistant) coordinates blockers, Codex (CEO) owns consequential choices/release. Parents retain review/integration and exact authority.
+
+## Shared monitoring and limits
+
+Alex (Accountability evaluator) covers the whole board including Codex (CEO), targeting live 30-second checks and each person's two-minute continuation through ONE ACTIVE shared two-minute watchdog. Official tool/TOML configuration readback is verified; first executed run remains unverified. Computer on/Codex running is required; no offline/perpetual guarantee, personal-timer proliferation or session hacks. The existing 20-minute upkeep schedule/cadence/target/status is retained; saved prompts reflect the current IAB guard. See [operations](operations.md); no new automation action follows from reading this file.
+
+Maximum three direct interns per employee and 21 active agents globally including Codex (CEO); no hiring default, intern delegation or claim every named person is simultaneously active. Preserve public privacy and actual leases. These rules grant no new source/runtime/cloud/Auth/account/Git/publication authority.
+
+Private app session UUIDs, automation target identifiers and raw setting/title evidence stay in private review records. Public directories use stable handles, ranks and privately verified setting statements; never publish those private identifiers or infer nickname-badge changes.
+
+## Mandatory browser ownership
+
+Only the Codex internal browser may be used for ALL browser work. Never use the user's default Arc/Chrome/Safari, native browser/profile, or an external/headless browser; never copy cookies, tokens or profiles. Prior authorized browser evidence remains historical; future conflicting GUI/headless work stops. Prefer connected APIs when sufficient. If the internal browser is unavailable or signed out, report the actual capability/access blocker and use normal internal sign-in if needed; no default-profile workaround or focus request. Nonbrowser local code/unit/HTTP/build/research work can continue within authority. Browser ownership/default-profile intrusion and an Auth-focus bottleneck must not stop independent approved work.

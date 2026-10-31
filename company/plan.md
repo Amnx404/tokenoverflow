@@ -1,6 +1,8 @@
 # Core MVP delivery plan
 
-Updated 2026-10-30. Owner: Morgan (Product manager); engineering direction/integration: Rafael (Engineering lead); consequential choices/release: Codex (CEO). [Workboard](workboard.md), [verification](verification.md), [current dispatch directory](people/README.md).
+Updated 2026-10-30. Owner: Priya (Product manager); engineering direction/integration: Rafael (Engineering lead); consequential choices/release: Codex (CEO). [Workboard](workboard.md), [verification](verification.md), [current dispatch directory](people/README.md).
+
+Current/prospective PM ownership is Priya (Product manager) · Senior. The queue/Auth/P1/P2/evidence body below stays published2667 as-of evidence, not the evolving working queue or a new Auth outcome. Follow [required onboarding](onboarding.md): only the Codex internal browser for browser work, no default/native/external/headless profile workaround; current assignments require current lead leases.
 
 ## Current direction and done condition
 

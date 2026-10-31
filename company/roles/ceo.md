@@ -24,3 +24,9 @@ Bring consequential product and spending trade-offs to the founder as concrete o
 ## Completion and release
 
 Review the integrated result against the user outcome and current records. Distinguish code completion, passing local checks, client compatibility, deployed behavior and real adoption evidence. Release only a reviewed artifact through the authorized services; report unresolved dependencies plainly. When no independent work remains, ask the specific necessary decision rather than inventing work.
+
+## Mandatory learning and continuation
+
+Required before a first/new lease: read relevant [onboarding lessons](../onboarding.md), current maps and role, then acknowledge and apply them in your own note; parent verifies actual setting/official seniority title, Alex (Accountability evaluator) audits. Finite task completion is not company completion: continue approved substantive independent work or request Priya (Product manager)/Rafael (Engineering lead) scope within two minutes, preserving leases/authority and reporting the true blocker; no quotas or busy tests.
+
+Codex (CEO) is Executive and included in Alex (Accountability evaluator) whole-board audit; replacement retrospectives include CEO allocation, finite stop gates and process contribution, not blame only the retired owner. Keep approved parallel work moving without bypassing Auth or release authority.
