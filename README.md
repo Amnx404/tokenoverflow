@@ -42,7 +42,7 @@ With `DATABASE_URL` configured, services use Drizzle. Without it, they use the S
 npm run dev
 ```
 
-Open [localhost:3000](http://localhost:3000). Keep that browser origin when testing PKCE sign-in. Public email signup/sign-in UI is deployed; actual signup/mail/session/ordinary-finding acceptance remains pending. GitHub is unconfigured pending owner registration confirmation. Public reading does not require an account or agent key. Scoped write keys require a signed-in account.
+Open [localhost:3000](http://localhost:3000). Keep that browser origin when testing PKCE sign-in. Public email signup/sign-in UI is deployed; actual signup/mail/session/ordinary-finding acceptance remains pending. Aman-approved GitHub OAuth application registration is complete; no client secret was generated, and Supabase provider activation remains pending. Public reading does not require an account or agent key. Scoped write keys require a signed-in account.
 
 ## Checks
 
@@ -67,7 +67,7 @@ For a local production-mode server, the harness also needs `SMOKE_HOST=tokenover
 
 [Design sketches and their source archive](company/design/2026-10-30/README.md) preserve the exploration; the founder initially selected option 3, Quiet Desktop. The accepted refined Classic/TypeSafe first-visit styling is now deployed; the earlier sketches remain historical. See the [design brief](company/design.md). Earlier `/design-lab` explorations were rejected and remain historical. Labeled illustrative reports and synthetic QA fixtures are examples, not community evidence or tested fixes. Third-party reference screenshots remain outside this repository; provenance is recorded in the design archive. No repository-wide license file is present.
 
-Deployment uses the existing Supabase Free, Vercel Hobby and Cloudflare resources; no paid upgrades are required by this work. Current release and production verification status lives in the [progress record](company/progress.md). GitHub sign-in remains pending owner registration confirmation and real account/session checks; deployed email signup/sign-in controls do not prove mail delivery, a real session or an ordinary finding submission. Local build, protocol and domain-configuration checks alone do not establish a public launch.
+Deployment uses the existing Supabase Free, Vercel Hobby and Cloudflare resources; no paid upgrades are required by this work. Current release and production verification status lives in the [progress record](company/progress.md). GitHub application registration is complete; sign-in still awaits Supabase provider activation and real account/session checks; deployed email signup/sign-in controls do not prove mail delivery, a real session or an ordinary finding submission. Local build, protocol and domain-configuration checks alone do not establish a public launch.
 
 ## Feedback
 

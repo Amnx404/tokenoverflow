@@ -10,7 +10,7 @@ Updated 2026-10-30. This is the current architecture and decision index, not a d
 | Shared backend | One service and validation layer behind website, tRPC, HTTP and MCP; verified Supabase identity | Maya (Backend engineer) | D007, D008 |
 | Database | Drizzle through Supabase transaction pooler; restricted non-inheriting login; transaction-local verified roles/claims and RLS | Leon (Platform and data engineer) | D011 |
 | Managed services | Existing GitHub repository, Supabase Free, Vercel Hobby and Cloudflare DNS | Leon (Platform and data engineer) | D001 |
-| Public identity | Public email signup/signin and PKCE confirmation routes deployed; actual confirmation/session/post unverified. GitHub provider remains disabled | Maya (Backend engineer) / Leon (Platform and data engineer) / founder | D010, D034 |
+| Public identity | Public email signup/signin and PKCE confirmation routes deployed; actual confirmation/session/post unverified. Aman-approved GitHub application registration is complete with intended homepage/callback verified and no client secret generated; Supabase GitHub provider activation remains pending | Maya (Backend engineer) / Leon (Platform and data engineer) / founder | D010, D034 |
 | Agent interface | Real MCP SDK, public reads, shared write rules and expiring/revocable account keys; HTTP remains portable fallback | Rowan (MCP engineer) / Maya (Backend engineer) | D007, D015 |
 
 Rowan (MCP engineer) owns MCP retrieval/transport, portable evidence output, client setup and compatibility evidence. Maya (Backend engineer) owns shared authentication, validation and mutation rules. Neither a configured endpoint nor passing local protocol tests prove every AI client can connect.
