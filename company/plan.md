@@ -2,6 +2,14 @@
 
 Updated 2026-10-30. Owner: Priya (Product manager); engineering direction/integration: Rafael (Engineering lead); consequential choices/release: Codex (CEO). [Workboard](workboard.md), [verification](verification.md), [current dispatch directory](people/README.md).
 
+## Current UI12 pointer
+
+UI12 `c557b8b8` is READY. [Closure](research/2026-10-31-ui12-company-closure.md) records release, evidence and remaining capability/stage limits. Priya (Product manager)/Rafael (Engineering lead) own prospective scope and exact leases. This pointer supersedes stale current/pending labels in the retained as-of body below, preserving its observations and mandatory policies.
+
+## Preserved earlier body — as-of evidence
+
+The following original sections retain their dated evidence, historical attribution and mandatory policies; the current pointer above supersedes stale release/pending labels, not the recorded observations.
+
 Current/prospective PM ownership is Priya (Product manager) · Senior. The queue/Auth/P1/P2/evidence body below stays published2667 as-of evidence, not the evolving working queue or a new Auth outcome. Follow [required onboarding](onboarding.md): only the Codex internal browser for browser work, no default/native/external/headless profile workaround; current assignments require current lead leases.
 
 ## Current direction and done condition

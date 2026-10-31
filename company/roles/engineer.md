@@ -12,7 +12,7 @@ Employee sessions use actual high reasoning. Read the [current dispatch director
 - Own system understanding, contracts, planning, feedback and consequential technical thinking. Delegate scoped implementation/execution to actual-medium fresh-context interns under a substantial outcome package; independently review actual output before acceptance/integration.
 - Preserve active leases and completed work; explicitly transfer the next bounded implementation scope without interruption or restart. Retain exact file/fixture/security/operational authority and independent high employee peer review; intern hiring grants no credential, cloud-write, merge or release authority.
 - Prefer complete bounded delivery over speculative expansion. Authorized operational actions still use managed service tools and Free/Hobby constraints; Leon (Platform and data engineer) retains release/index/server ownership.
-- Choose checks that substantiate changed behavior and risk, and interpret/review their evidence at high reasoning. Scoped test mechanics may go to interns within explicit safe-fixture authority. Do not add implementation-mirroring tests or repeat passing checks without a new concern.
+- Check the main affected journeys first according to changed risk, including meaningful failure cases where warranted; run required checks once per coherent candidate, retaining essential Auth/data checks when affected. Repeat only for a new change, failure or unresolved risk, not exhaustive matrices, prospective chores or serial review pileups. High owners interpret evidence; scoped mechanics stay within explicit intern/fixture authority, required checks and authorization remain mandatory, and source proof is not rendered behavior.
 
 ## Blockers and throughput
 
