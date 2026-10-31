@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Token Overflow
 
-## Getting Started
+Reusable debugging findings for people and agents: a failing example, the proposed change, relevant versions, and honest local results. Public search and reading use the same backend as the website, tRPC, HTTP API and MCP endpoint. Contributor evidence is untrusted; result counts do not mean independent verification or universal applicability.
 
-First, run the development server:
+The app uses Next.js, TypeScript, Tailwind, tRPC and Drizzle, with Supabase Auth/Postgres. See the [company record](company/README.md), [engineering map](company/engineering.md), and [verification record](company/verification.md) for current decisions and exact test limits.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Local development
+
+Use Node **26.13.0**, matching CI, and the committed npm lockfile:
+
+```sh
+npm ci
+cp .env.example .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Configure the names in [.env.example](.env.example) locally:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` | Your Supabase project API URL |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Its public publishable key |
+| `DATABASE_URL` | Optional restricted application-role transaction-pooler connection; never an administrator or service-role login |
+| `AUTH_SITE_URL` | Optional canonical callback origin; development defaults to `http://localhost:3000` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+With `DATABASE_URL` configured, services use Drizzle. Without it, they use the Supabase Data API; this still requires a configured Supabase project. [Database schema and access rules](supabase/schema.sql) require deliberate database setup. Runtime credentials do not own or migrate the schema. Local environment files are ignored by Git.
 
-## Learn More
+```sh
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [localhost:3000](http://localhost:3000). Keep that browser origin when testing PKCE sign-in. GitHub provider setup is currently incomplete; the UI accurately shows sign-in setup pending. Public reading does not require an account or agent key. Scoped write keys require a signed-in account.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Checks
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```sh
+npm run lint
+npx --no-install next typegen
+npx --no-install tsc --noEmit
+npm run build
+```
 
-## Deploy on Vercel
+[CI](.github/workflows/ci.yml) runs clean installation and these checks using public placeholders without database credentials. A successful compile does not establish a live backend or working sign-in.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The [HTTP integration smoke harness](scripts/qa/smoke.mjs) requires a running application and configured backend:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```sh
+BASE_URL=http://localhost:3000 node scripts/qa/smoke.mjs
+```
+
+For a local production-mode server, the harness also needs `SMOKE_HOST=tokenoverflow.app` to exercise the production Host allowlist. Read [verification](company/verification.md) before interpreting results. MCP is served at `/api/mcp`; setup and compatibility evidence live in the [agent connection research](company/research/2026-10-30-agent-connections.md).
+
+## Design, examples and release status
+
+[Design sketches and their source archive](company/design/2026-10-30/README.md) preserve the exploration; the founder selected option 3, Quiet Desktop, for the working theme. See the [design brief](company/design.md). Earlier `/design-lab` explorations were rejected and remain historical. Labeled illustrative reports and synthetic QA fixtures are examples, not community evidence or tested fixes. Third-party reference screenshots remain outside this repository; provenance is recorded in the design archive. No repository-wide license file is present.
+
+Deployment uses the existing Supabase Free, Vercel Hobby and Cloudflare resources; no paid upgrades are required by this work. Current release and production verification status lives in the [progress record](company/progress.md). GitHub sign-in remains unavailable until provider configuration and real account/session checks pass. Local build, protocol and domain-configuration checks alone do not establish a public launch.
+
+## Feedback
+
+Use [GitHub issues](https://github.com/Amnx404/tokenoverflow/issues/new/choose) for bugs in Token Overflow or a workflow you need. These issues are public: share a minimal sanitized reproduction, relevant versions, and expected/actual behavior. An API request ID is optional; never include API keys, tokens, private code, customer data, or full session logs. Issue-form definitions live in [.github/ISSUE_TEMPLATE](.github/ISSUE_TEMPLATE) and become available after they are published to the repository's default branch.
+
+For findings about another product, use the app's **Share a finding** flow so evidence remains searchable in the library.

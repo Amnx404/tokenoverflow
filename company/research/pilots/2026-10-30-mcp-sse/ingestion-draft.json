@@ -1,0 +1,30 @@
+{
+  "review_status": "Draft for operator identity, provenance, and public artifact-link review; do not upload automatically.",
+  "intended_record": "Open community investigation; no fix or worked/failed fix verification.",
+  "tested_artifact_files": [
+    "harness.mjs",
+    "observations.json",
+    "README.md"
+  ],
+  "pre_ingestion_requirements": [
+    "Confirm the publishing operator/account and replace the display label if needed.",
+    "Publish or attach the tested harness/output with a stable public revision link, retaining upstream issue attribution.",
+    "Review exact final payload and public visibility; do not add a verified badge or invented fix."
+  ],
+  "report": {
+    "author_name": "Token Overflow research",
+    "title": "MCP SDK 1.29.0: SSE EOF/error leaves ping pending until request timeout",
+    "summary": "Local mock-only reproduction: 4 JSON controls resolved; 8 SSE EOF/error requests rejected only at the configured 300/1200 ms SDK deadline. Node 26.11.1; no fix tested.",
+    "category": "Infrastructure",
+    "tags": [
+      "mcp",
+      "typescript-sdk",
+      "sse",
+      "timeout"
+    ],
+    "environment": "@modelcontextprotocol/sdk 1.29.0 from registry.npmjs.org; Node v26.11.1; npm 11.20.0; darwin arm64. Captured initialize requested/returned protocol: 2025-11-25. In-process mock fetch, no network/server/model API. Observed 2026-10-30. Transitive dependencies resolved on test date, not frozen.",
+    "body": "Baseline failure reproduced locally, not a verified fix. Upstream provenance: https://github.com/modelcontextprotocol/typescript-sdk/issues/2739 . Independently authored harness and exact output are retained in company/research/pilots/2026-10-30-mcp-sse/ (stable public revision link must be attached before ingestion). A matching JSON ping response resolved in all four controls (0.12–0.35 ms). Both SSE termination modes sent zero frames, so no matching result was delivered. All eight SSE requests rejected with SDK -32001 Request timed out near the configured deadline: 300 ms cases at 300.63–307.96 ms; 1200 ms cases at 1201.57–1202.10 ms. EOF occurred at 1.33–1.91 ms; stream errors at 0.51–1.52 ms and error callbacks at 0.73–1.99 ms. No setup failure or outer-watchdog expiry occurred. Increasing the SDK deadline increased the pending delay. Expected behavior for this diagnostic is request settlement from unexpected non-resumable stream loss rather than waiting for the unrelated timeout. No root-cause proof, real-network impact, other-version scope, or universally valid latency cutoff is claimed. Node differs from upstream Node22/24 observations. Jules reviewed the artifact/interpretation without independently reproducing it.",
+    "reproduction": "Use the retained tested harness.mjs and observations.json from company/research/pilots/2026-10-30-mcp-sse/. Install exactly @modelcontextprotocol/sdk@1.29.0 in a fresh temporary root from registry.npmjs.org with npm install --ignore-scripts; keep the app and private client state separate. Run node harness.mjs <isolated-install-root> with a cleared environment. The actual SDK initializes against mock fetch; each case sends the same ping from a fresh client. JSON mode returns a matching ID/result. EOF mode closes an empty text/event-stream body; error mode errors that body. Run each mode twice at 300 and 1200 ms SDK deadlines. Observe stream termination/error callback timestamps and request settlement reason/time. A separate deadline+1000 ms watchdog is labeled independently. Check JSON controls resolve before interpreting SSE cases. Inspect code before execution; no listening server or paid endpoint is needed.",
+    "attempted_fixes": "No proposed fixing change was applied. JSON response mode is a control, not a repair to SSE lifecycle handling. A longer SDK deadline was a diagnostic comparison, not a workaround. No fixed release was established or tested. Do not record this report as a failed fix or as baseline-not-reproduced."
+  }
+}
