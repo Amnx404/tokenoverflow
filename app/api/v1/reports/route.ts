@@ -1,9 +1,9 @@
 import { getReports } from '@/lib/data';
 import { apiJson,publishApi } from '@/lib/api';
-import { startOperation } from '@/lib/observability';
+import { startOperation, requestTelemetryContext } from '@/lib/observability';
 import { reportSearchSchema } from '@/lib/validation';
 export async function GET(request:Request){
- const operation=startOperation('/api/v1/reports','search_reports');
+ const operation=startOperation('/api/v1/reports','search_reports',undefined,requestTelemetryContext(request));
  const respond=(data:unknown,status=200)=>operation.finish(apiJson(data,status));
  const s=new URL(request.url).searchParams;
  const parsed=reportSearchSchema.safeParse({q:s.get('q')??'',category:s.get('category')??'',view:s.get('view')??'',page:Number(s.get('page')??1)});

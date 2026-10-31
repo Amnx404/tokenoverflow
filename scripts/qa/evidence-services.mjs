@@ -93,7 +93,7 @@ for(const [kind,payload] of [['report',report],['fix',fix],['verification',resul
   if(supplied) assert.ok(compiled.params.some(value=>typeof value==='string'&&value.includes('"contract_version":1')));
  }
 }
-const trpc=load('../../server/api/trpc.ts',{'server-only':{},'@/lib/observability':{startOperation:()=>({fail:()=>{}})},'@/lib/supabase/server':{},'@/server/services/auth':{},'@/server/services/errors':errors});
+const trpc=load('../../server/api/trpc.ts',{'server-only':{},'@/lib/observability':{startOperation:()=>({fail:()=>{},complete:()=>{}})},'@/lib/supabase/server':{},'@/server/services/auth':{},'@/server/services/errors':errors});
 const router=trpc.createTRPCRouter({large:trpc.publicProcedure.query(()=>{throw new errors.ServiceError('PAYLOAD_TOO_LARGE','Contribution too large.');})});
 const {fetchRequestHandler}=require('@trpc/server/adapters/fetch');
 const response=await fetchRequestHandler({endpoint:'/api/trpc',req:new Request('https://synthetic.invalid/api/trpc/large'),router,createContext:async()=>({})});
@@ -102,7 +102,7 @@ assert.equal((await response.json()).error.data.code,'PAYLOAD_TOO_LARGE');
 // Exercise actual server-action serializer through its mutation boundary.
 let actionInput;
 const capture=async value=>{actionInput=value;return {id};};
-const actions=load('../../app/actions.ts',{'@/lib/supabase/server':{},'@/lib/auth-config':{},'@/lib/validation':schemas,'@/trpc/server':{api:{contributions:{fix:capture,verify:capture,report:capture}}},'next/cache':{revalidatePath:()=>{}},'next/navigation':{redirect:()=>{throw new Error('synthetic report redirect');}}});
+const actions=load('../../app/actions.ts',{'@/lib/telemetry-server':{startAuthTelemetry:async()=>({finish:()=>{}})},'@/lib/supabase/server':{},'@/lib/auth-config':{},'@/lib/validation':schemas,'@/trpc/server':{api:{contributions:{fix:capture,verify:capture,report:capture}}},'next/cache':{revalidatePath:()=>{}},'next/navigation':{redirect:()=>{throw new Error('synthetic report redirect');}}});
 const form=new FormData();
 for(const [key,value] of Object.entries({...fix,kind:'fix',evidence_enabled:'1',evidence_check_kind:'command',evidence_check_instructions:'node example.mjs',evidence_check_expected_result:'expected',evidence_before_output:'',evidence_before_exit_code:'0',evidence_version_count:'1','evidence_versions.0.kind':'runtime','evidence_versions.0.name':'Node.js','evidence_versions.0.unknown':'1'}))form.set(key,value);
 assert.ok((await actions.contribute({},form)).message);

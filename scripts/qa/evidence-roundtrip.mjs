@@ -154,6 +154,7 @@ const forward=name=>async value=>{
  catch(error){actionFailureStatus=error.data?.httpStatus;throw error;}
 };
 const actions=loadSource('app/actions.ts',{
+ '@/lib/telemetry-server':{startAuthTelemetry:async()=>({finish:()=>{}})},
  '@/lib/supabase/server':{},'@/lib/auth-config':{},'@/lib/validation':schemas,
  '@/trpc/server':{api:{contributions:{report:forward('report'),fix:forward('fix'),verify:forward('verify')}}},
  'next/cache':{revalidatePath:()=>{}},'next/navigation':{redirect:()=>{throw actionRedirect;}},

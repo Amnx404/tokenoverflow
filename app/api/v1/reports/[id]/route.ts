@@ -1,9 +1,9 @@
 import { getReport } from '@/server/services/reports';
 import { apiJson, publicReportDetail } from '@/lib/api';
-import { startOperation } from '@/lib/observability';
+import { startOperation, requestTelemetryContext } from '@/lib/observability';
 import { z } from 'zod';
 export async function GET(_request:Request,{params}:{params:Promise<{id:string}>}) {
- const operation=startOperation('/api/v1/reports/[id]','get_report');
+ const operation=startOperation('/api/v1/reports/[id]','get_report',undefined,requestTelemetryContext(_request));
  const respond=(data:unknown,status=200)=>operation.finish(apiJson(data,status));
  const {id}=await params;
  if(!z.uuid().safeParse(id).success)return respond({error:'Invalid report ID.'},400);

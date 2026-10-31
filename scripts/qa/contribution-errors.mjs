@@ -16,7 +16,7 @@ const known={code:'P0001',message:'Verification needs an independent contributor
 for(const error of [known,{cause:known}])assert.throws(()=>databaseError(error),value=>value instanceof ServiceError&&value.code==='FORBIDDEN'&&!value.message.includes('P0001'));
 for(const error of [{code:'P0001',message:'synthetic private unexpected failure'},{code:'P0001',message:'Verification needs an independent contributor extra'},{code:'OTHER',message:known.message}])assert.throws(()=>databaseError(error),value=>value===error);
 const {fetchRequestHandler}=require('@trpc/server/adapters/fetch');
-const trpc=load('../../server/api/trpc.ts',{'server-only':{},'@/lib/observability':{startOperation:()=>({fail:()=>{}})},'@/lib/supabase/server':{},'@/server/services/auth':{},'@/server/services/errors':{ServiceError}});
+const trpc=load('../../server/api/trpc.ts',{'server-only':{},'@/lib/observability':{startOperation:()=>({fail:()=>{},complete:()=>{}})},'@/lib/supabase/server':{},'@/server/services/auth':{},'@/server/services/errors':{ServiceError}});
 const router=trpc.createTRPCRouter({denied:trpc.publicProcedure.query(()=>databaseError(known)),unknown:trpc.publicProcedure.query(()=>databaseError({code:'P0001',message:'synthetic private unexpected failure'}))});
 for(const [path,status] of [['denied',403],['unknown',500]]) {
  const response=await fetchRequestHandler({endpoint:'/api/trpc',req:new Request(`https://synthetic.invalid/api/trpc/${path}`),router,createContext:async()=>({})});

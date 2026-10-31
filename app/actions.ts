@@ -1,4 +1,5 @@
 'use server';
+import { startAuthTelemetry } from '@/lib/telemetry-server';
 import { serverClient } from '@/lib/supabase/server';
 import { authCallbackUrl, authSiteOrigin, githubAuthEnabled } from '@/lib/auth-config';
 import { reportSchema, fixSchema, verificationSchema, safeNext } from '@/lib/validation';
@@ -34,48 +35,58 @@ function emailCredentials(form:FormData) {
  return {email:parsed.data,password,next:safeNext(typeof next==='string'?next:null)};
 }
 export async function signInWithEmail(_state:EmailAuthState,form:FormData):Promise<EmailAuthState> {
+ const telemetry=await startAuthTelemetry('email_signin');
  const failure={error:'Sign-in could not be completed. Please try again.'};
  const credentials=emailCredentials(form);
- if(!credentials) return failure;
+ if(!credentials) { telemetry.finish('input_rejected'); return failure; }
  let destination:string;
  try {
   const db=await serverClient();
   const {data,error}=await db.auth.signInWithPassword({email:credentials.email,password:credentials.password});
-  if(error||!data.session||!data.user) return failure;
+  if(error||!data.session||!data.user) { telemetry.finish(error?'provider_rejected':'session_unverified'); return failure; }
   const verified=await db.auth.getUser();
-  if(verified.error||!verified.data.user) return failure;
+  if(verified.error||!verified.data.user) { telemetry.finish('session_unverified'); return failure; }
   destination=new URL(credentials.next,authSiteOrigin()).toString();
- } catch { return failure; }
+ } catch { telemetry.finish('unavailable'); return failure; }
+ telemetry.finish('server_session_verified');
  revalidatePath('/','layout');
  redirect(destination);
 }
 export async function signUpWithEmail(_state:EmailAuthState,form:FormData):Promise<EmailAuthState> {
+ const telemetry=await startAuthTelemetry('email_signup');
  const failure={error:'Account creation could not be completed. Please try again.'};
  const confirmation={message:'If this address can be registered, check your email for a confirmation link.'};
  const suppliedName=form.get('display_name');
- if(suppliedName!==null&&(typeof suppliedName!=='string'||suppliedName.trim().length>80)) return {error:'Use a public display name of 80 characters or fewer.'};
+ if(suppliedName!==null&&(typeof suppliedName!=='string'||suppliedName.trim().length>80)) { telemetry.finish('input_rejected'); return {error:'Use a public display name of 80 characters or fewer.'}; }
  const display_name=typeof suppliedName==='string'&&suppliedName.trim()?suppliedName.trim():'Contributor';
  const credentials=emailCredentials(form);
- if(!credentials) return failure;
+ if(!credentials) { telemetry.finish('input_rejected'); return failure; }
  let destination:string;
  try {
   const db=await serverClient();
   const {data,error}=await db.auth.signUp({email:credentials.email,password:credentials.password,options:{emailRedirectTo:authCallbackUrl(credentials.next),data:{display_name}}});
   if(error) {
-   if(error.code==='user_already_exists'||error.code==='email_exists') return confirmation;
-   if(error.code==='weak_password') return {error:'Choose a stronger password and try again.'};
-   if(error.code==='over_email_send_rate_limit'||error.code==='over_request_rate_limit') return {error:'Please wait before trying again.'};
-   return failure;
+   if(error.code==='user_already_exists'||error.code==='email_exists') { telemetry.finish('neutral_confirmation_prompt'); return confirmation; }
+   if(error.code==='weak_password') { telemetry.finish('input_rejected'); return {error:'Choose a stronger password and try again.'}; }
+   if(error.code==='over_email_send_rate_limit'||error.code==='over_request_rate_limit') { telemetry.finish('rate_limited'); return {error:'Please wait before trying again.'}; }
+   telemetry.finish('provider_rejected'); return failure;
   }
-  if(!data.session) return confirmation;
+  if(!data.session) { telemetry.finish('neutral_confirmation_prompt'); return confirmation; }
   const verified=await db.auth.getUser();
-  if(verified.error||!verified.data.user) return failure;
+  if(verified.error||!verified.data.user) { telemetry.finish('session_unverified'); return failure; }
   destination=new URL(credentials.next,authSiteOrigin()).toString();
- } catch { return failure; }
+ } catch { telemetry.finish('unavailable'); return failure; }
+ telemetry.finish('server_session_verified');
  revalidatePath('/','layout');
  redirect(destination);
 }
-export async function signOut() { const db=await serverClient(); await db.auth.signOut(); revalidatePath('/','layout'); redirect('/'); }
+export async function signOut() {
+ const telemetry=await startAuthTelemetry('signout');
+ try { const db=await serverClient(); await db.auth.signOut(); }
+ catch(error) { telemetry.finish('unavailable'); throw error; }
+ telemetry.finish('signout_returned');
+ revalidatePath('/','layout'); redirect('/');
+}
 function actionError(error: unknown) {
  if(error instanceof ZodError) return error.issues[0]?.message ?? 'Check the contribution fields.';
  if(error instanceof TRPCError && error.cause instanceof ZodError) return error.cause.issues[0]?.message ?? 'Check the form fields.';

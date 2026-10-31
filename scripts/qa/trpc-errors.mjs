@@ -26,7 +26,7 @@ try {
   process.env.NODE_ENV=mode;
   let contextFails=false;
   const setupFailures=[];
-  const observation={startOperation:()=>({requestId,fail:status=>setupFailures.push(status)})};
+  const observation={requestTelemetryContext:()=>({synthetic:true}),startOperation:()=>({requestId,fail:status=>setupFailures.push(status),complete:()=>{},finish:response=>response})};
   const trpc=load('../../server/api/trpc.ts',{
    'server-only':{},'@/lib/observability':observation,
    '@/lib/supabase/server':{serverClient:async()=>{if(contextFails)throw rawError();return {}; }},

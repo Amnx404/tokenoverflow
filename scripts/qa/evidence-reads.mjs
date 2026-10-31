@@ -83,7 +83,7 @@ for(mode of ['supabase-data-api','drizzle']) {
  await assert.rejects(()=>service.getFixOwnership({user:{id:privateId},client:identityClient},id),error=>error instanceof auth.AuthenticationError);
 }
 const api=load('../../lib/api.ts',{'@/server/services/contributions':{},'@/lib/observability':{},'@/server/services/errors':errors,'@/lib/validation':schemas});
-const trpc=load('../../server/api/trpc.ts',{'server-only':{},'@/lib/observability':{startOperation:()=>({fail:()=>{}})},'@/lib/supabase/server':{},'@/server/services/auth':auth,'@/server/services/errors':errors});
+const trpc=load('../../server/api/trpc.ts',{'server-only':{},'@/lib/observability':{startOperation:()=>({fail:()=>{},complete:()=>{}})},'@/lib/supabase/server':{},'@/server/services/auth':auth,'@/server/services/errors':errors});
 const root=load('../../server/api/root.ts',{'@/lib/api':api,'@/lib/validation':schemas,'@/server/services/reports':service,'@/server/services/auth':auth,'@/server/services/contributions':{},'@/server/services/agent-keys':{},'./trpc':trpc});
 mode='supabase-data-api';
 const caller=client=>root.createCaller({client});

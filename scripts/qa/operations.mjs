@@ -9,7 +9,7 @@ const require=createRequire(import.meta.url);
 const testModule={exports:{}};
 const source=fs.readFileSync(new URL('../../lib/observability.ts',import.meta.url),'utf8');
 const code=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
-vm.runInNewContext(code,{module:testModule,exports:testModule.exports,require:name=>name==='server-only'?{}:require(name),performance,console});
+vm.runInNewContext(code,{module:testModule,exports:testModule.exports,require:name=>name==='server-only'?{}:name==='./telemetry-server'?{captureOperationTelemetry:()=>{},requestTelemetryContext:()=>({synthetic:true})}:require(name),performance,console});
 const {startOperation}=testModule.exports;
 const lines=[];
 const original=console.error;

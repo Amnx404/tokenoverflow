@@ -27,6 +27,7 @@ function result(data: Record<string, unknown>, isError = false) {
 const handler = createMcpHandler(({ requestInfo }) => {
   const authorization = requestInfo?.headers.get('authorization');
   const correlationId = requestInfo?.headers.get('x-request-id') ?? undefined;
+  const telemetryContext = { synthetic: requestInfo?.headers.get('x-tokenoverflow-synthetic') === '1' };
   const server = new McpServer({ name: 'token-overflow', version: '1.0.0' });
 
   server.registerTool('search_reports', {
@@ -35,10 +36,12 @@ const handler = createMcpHandler(({ requestInfo }) => {
     inputSchema: reportSearchSchema,
     annotations: readAnnotations,
   }, async (args) => {
-    const operation = startOperation('/api/mcp', 'search_reports', correlationId);
+    const operation = startOperation('/api/mcp', 'search_reports', correlationId, telemetryContext);
     try {
       const data = await getReports(args);
-      return result({ ...searchEvidence(data), page: args.page, page_size: 20, content_trust: contentTrust });
+      const response = result({ ...searchEvidence(data), page: args.page, page_size: 20, content_trust: contentTrust });
+      operation.complete(200);
+      return response;
     } catch {
       operation.fail(503, 'DEPENDENCY_UNAVAILABLE');
       return result({ error: 'Reports are temporarily unavailable.', request_id: operation.requestId }, true);
@@ -51,14 +54,16 @@ const handler = createMcpHandler(({ requestInfo }) => {
     inputSchema: z.object({ id: z.uuid() }),
     annotations: readAnnotations,
   }, async ({ id }) => {
-    const operation = startOperation('/api/mcp', 'get_report', correlationId);
+    const operation = startOperation('/api/mcp', 'get_report', correlationId, telemetryContext);
     try {
       const data = await getReport(id);
       if (!data) {
         operation.fail(404, 'NOT_FOUND');
         return result({ error: 'Report not found.', request_id: operation.requestId }, true);
       }
-      return result({ ...reportEvidence(publicReportDetail(data)), content_trust: contentTrust });
+      const response = result({ ...reportEvidence(publicReportDetail(data)), content_trust: contentTrust });
+      operation.complete(200);
+      return response;
     } catch {
       operation.fail(503, 'DEPENDENCY_UNAVAILABLE');
       return result({ error: 'Report is temporarily unavailable.', request_id: operation.requestId }, true);
@@ -68,6 +73,7 @@ const handler = createMcpHandler(({ requestInfo }) => {
   async function publish(kind: 'report' | 'fix' | 'verification', data: unknown) {
     const headers = new Headers({ 'content-type': 'application/json' });
     if (authorization) headers.set('authorization', authorization);
+    if (telemetryContext.synthetic) headers.set('X-TokenOverflow-Synthetic', '1');
     // Preserve the HTTP API's key checks, validation, size limit, and database rate limits.
     const response = await publishApi(new Request('https://tokenoverflow.app/api/mcp', {
       method: 'POST', headers, body: JSON.stringify(data),
@@ -100,7 +106,7 @@ const handler = createMcpHandler(({ requestInfo }) => {
 }, { legacy: 'stateless', responseMode: 'json', maxRequestBodySize: 65536 });
 
 async function serve(request: Request) {
-  const operation = startOperation('/api/mcp', 'mcp_transport');
+  const operation = startOperation('/api/mcp', 'mcp_transport', undefined, { synthetic: request.headers.get('X-TokenOverflow-Synthetic') === '1', scope: 'transport' });
   const allowedHosts = ['tokenoverflow.app', 'tokenoverflow.vercel.app'];
   if (process.env.NODE_ENV !== 'production') allowedHosts.push('localhost', '127.0.0.1', '[::1]');
   let response: Response;
