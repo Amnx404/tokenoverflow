@@ -11,6 +11,17 @@ insert into auth.users(id, aud, role, email)
 select value::uuid, 'authenticated', 'authenticated', value || '@test.invalid'
 from test_context where name in ('alice', 'bob');
 
+-- Fixture-only privileged assertion: application clients no longer SELECT raw
+-- author IDs after privacy closure. This temporary function is rolled back.
+create function pg_temp.fixture_contribution_count() returns bigint
+language sql security definer set search_path = '' as $$
+ select (select count(*) from public.reports where author_id=auth.uid())
+      + (select count(*) from public.fixes where author_id=auth.uid())
+      + (select count(*) from public.verifications where author_id=auth.uid());
+$$;
+revoke all on function pg_temp.fixture_contribution_count() from public;
+grant execute on function pg_temp.fixture_contribution_count() to authenticated;
+
 set local role authenticated;
 select set_config('request.jwt.claim.sub', (select value from test_context where name='alice'), true);
 do $$
@@ -75,11 +86,16 @@ begin
   perform public.agent_contribute((select value from test_context where name='key'),'report',
     jsonb_build_object('author_name','Agent Alice','title','Agent canonical tags', 'summary',repeat('s',20), 'body',repeat('b',20),
       'environment','test','reproduction',repeat('r',20),'category','Other','tags',jsonb_build_array(' AGENTTAG ','agenttag')));
-  if not exists(select 1 from public.reports where author_id=(select value::uuid from test_context where name='alice') and tags=array['agenttag']) then
-    raise exception 'Agent owner or tags incorrect';
-  end if;
 end;
 $$;
+
+reset role;
+do $$
+begin
+ if not exists(select 1 from public.reports where author_id=(select value::uuid from test_context where name='alice') and tags=array['agenttag']) then
+  raise exception 'Agent owner or tags incorrect';
+ end if;
+end $$;
 
 set local role anon;
 select set_config('request.jwt.claim.sub', '', true);
@@ -114,9 +130,7 @@ begin
     insert into public.fixes(report_id,author_id,author_name,body,environment,evidence)
     values((select value::uuid from test_context where name='report'),auth.uid(),'Alice',repeat('b',20),'quota test',repeat('e',10));
   end loop;
-  select (select count(*) from public.reports where author_id=auth.uid())
-       + (select count(*) from public.fixes where author_id=auth.uid())
-       + (select count(*) from public.verifications where author_id=auth.uid()) into total;
+  select pg_temp.fixture_contribution_count() into total;
   if total <> 100 then raise exception 'Expected exactly 100 contributions, got %', total; end if;
   begin
     insert into public.fixes(report_id,author_id,author_name,body,environment,evidence)

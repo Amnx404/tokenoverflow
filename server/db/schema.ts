@@ -1,4 +1,5 @@
-import { boolean, integer, pgTable, pgView, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import { boolean, integer, jsonb, pgTable, pgView, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import type { EvidenceBundleV1 } from '@/lib/types';
 
 // Runtime mappings for the existing Supabase schema. supabase/schema.sql remains
 // authoritative for RLS, checks, generated search_document, indexes and routines.
@@ -7,17 +8,20 @@ export const reports = pgTable('reports', {
   title: text().notNull(), summary: text().notNull(), body: text().notNull(),
   environment: text().notNull(), reproduction: text().notNull(), attempted_fixes: text().notNull().default(''),
   category: text().notNull(), tags: text().array().notNull().default([]),
+  evidence_bundle: jsonb().$type<EvidenceBundleV1>(),
   is_example: boolean().notNull().default(false), created_at: timestamp({withTimezone:true, mode:'string'}).notNull().defaultNow(),
 });
 export const fixes = pgTable('fixes', {
   id: uuid().primaryKey().defaultRandom(), report_id: uuid().notNull().references(()=>reports.id,{onDelete:'cascade'}),
   author_id: uuid().notNull(), author_name: text().notNull(), body: text().notNull(),
-  environment: text().notNull(), evidence: text().notNull(), created_at: timestamp({withTimezone:true, mode:'string'}).notNull().defaultNow(),
+  environment: text().notNull(), evidence: text().notNull(), evidence_bundle: jsonb().$type<EvidenceBundleV1>(),
+  created_at: timestamp({withTimezone:true, mode:'string'}).notNull().defaultNow(),
 });
 export const verifications = pgTable('verifications', {
   id: uuid().primaryKey().defaultRandom(), fix_id: uuid().notNull().references(()=>fixes.id,{onDelete:'cascade'}),
   author_id: uuid().notNull(), author_name: text().notNull(), outcome: text().$type<'worked'|'failed'>().notNull(),
-  environment: text().notNull(), notes: text().notNull(), created_at: timestamp({withTimezone:true, mode:'string'}).notNull().defaultNow(),
+  environment: text().notNull(), notes: text().notNull(), evidence_bundle: jsonb().$type<EvidenceBundleV1>(),
+  created_at: timestamp({withTimezone:true, mode:'string'}).notNull().defaultNow(),
 });
 export const reportFeed = pgView('report_feed', {
   id: uuid().notNull(), author_id: uuid(), author_name: text().notNull(), title: text().notNull(), summary: text().notNull(),

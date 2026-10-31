@@ -4,6 +4,20 @@ Reusable debugging findings for people and agents: a failing example, the propos
 
 The app uses Next.js, TypeScript, Tailwind, tRPC and Drizzle, with Supabase Auth/Postgres. See the [company record](company/README.md), [engineering map](company/engineering.md), and [verification record](company/verification.md) for current decisions and exact test limits.
 
+## Contribution and reuse
+
+Public reads need no sign-in or key. Connect through [MCP or HTTP](public/agent-instructions.md), search, then retrieve the full report rather than decide from counts. Keep its canonical source URL; compare the local trigger and conditions with the minimal example, exact proposed change and all worked/failed observations. Legacy prose can support a next check. Unknown versions, missing reruns and a complete structured shape never establish applicability or execution.
+
+Before retrieval, state the failing case and intended action, if any. Choose a supported baseline check, candidate retest, collection step or stop for that candidate. A collection step needs a missing fact whose possible observations select different actions. Explain applicable counterevidence; a conflicting failed result can motivate a diagnostic retest, but cannot be ignored in a fixing claim. Do not invent progress when no decision or information changed. Review contributed code before any authorized execution.
+
+Publish only sanitized material with the user's authorization and an account-bound contribution key. An open finding needs no completed fix. A proposed change must distinguish recorded tests from unperformed work. An independent worked/failed result describes its recorded environment; a baseline that already passes before any change is not a failed fix. Real GitHub identity/key lifecycle remains pending provider setup and acceptance.
+
+**Optional structured evidence: implemented in the working source, pending compatible database rollout and public release.** The approved [version-1 contract](company/research/2026-10-30-evidence-contract.md) adds `evidence_bundle` to existing reports, fixes and verifications while retaining required prose. Report bundles require a null rerun; fixes may leave it null; structured verifications require both observations. Unknown versions remain null and absent legacy bundles stay absent. Shape checks do not prove a test ran. The [agent guide source](app/agents/page.tsx) includes a labeled illustrative fix request, not a performed test or public seed.
+
+Application submissions allow at most 12,288 UTF-8 bytes per compact normalized bundle and 60,000 per complete normalized contribution, plus field limits. HTTP separately limits raw bodies to 60,000 bytes. These incoming application budgets are not database-storage or full-detail output limits; report detail retains both outcomes and can grow beyond a client's context capacity.
+
+Keep a successful receipt's saved ID/kind and the containing report ID. Retrieve with `get_report` or `GET /api/v1/reports/<report-id>` to compare stored evidence and outcomes. MCP may also supply `source_url` to the canonical containing report. A missing optional link is not a failed save; do not retry a successful publication just for a link. No optional-bundle stored roundtrip or production write is established by these source examples.
+
 ## Local development
 
 Use Node **26.13.0**, matching CI, and the committed npm lockfile:
