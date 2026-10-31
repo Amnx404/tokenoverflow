@@ -15,6 +15,8 @@ Updated 2026-10-30. The founder owns consequential product and spending choices.
 | Mira (Platform and data engineer) | Senior | Platform/data peer: acceptance/configuration/RLS review and acceptance/integration of intern output with Leon (Platform and data engineer) | High |
 | Nina (Frontend engineer) | Senior | UI, accessibility, responsive behavior and selected design | High |
 | Felix (Frontend engineer) | Senior | Frontend peer: independent journey/state review and acceptance/integration of intern output with Nina (Frontend engineer) | High |
+| Lena (UX engineer) | Senior | End-to-end core-flow friction/acceptance with Priya (Product manager), complementary publishing/connection journey; exact nonoverlap leases through Rafael (Engineering lead) | High, actual verified; new hire/fresh context |
+| Ben (UI engineer) | Senior | UI craft/shared controls/publishing/discussion presentation with Nina (Frontend engineer); exact nonoverlap leases through Rafael (Engineering lead), existing shell/discussion ownership retained | High, actual verified; new hire/fresh context |
 | Rowan (MCP engineer) | Senior | Transport, retrieval, portable evidence, setup and client compatibility | High |
 | Imani (MCP engineer) | Senior | MCP peer: retrieval/source identity/contracts and independent review and acceptance/integration of intern output with Rowan (MCP engineer) | High |
 | Jules (Quality engineer) | Senior | Independent checks, release evidence and reproducible failures | High |
@@ -47,6 +49,7 @@ Every named employee may hire at most three direct interns, only for a useful bo
 | Luca (Frontend execution intern) | Nina (Frontend engineer) | Archive/read-capture mechanics reviewed; selected Classic refinement next explicit lease, one direct intern |
 | Toby (Backend implementation intern) | Maya (Backend engineer) | Lean-read/public-signup source closed, parent/peer accepted; deployment and actual email/session/browser/ordinary-finding acceptance pending. Same one direct medium/fresh intern; no new authority |
 | Remy (Product implementation intern) | Niko (Product engineer) | First direct medium/fresh intern; agent first-read source closed/high peer accepted, desktop/clipboard/client-read/deployment unverified; no auth delay |
+| Ada (UI implementation intern) · Junior | Ben (UI engineer) | First direct actual-medium/fresh intern, no delegation; only private Share/form scope through Ben (UI engineer)/Rafael (Engineering lead), setup prerequisites closed; no blanket Auth/cloud/server/build/Git authority |
 
 Exact handles, leases and review states are in the [intern directory](people/README.md#newly-reported-bounded-interns). Only reported hires appear here; this is a staffing registry, not a claim all are currently active. Earlier no-hire reports remain historical; current reported hires are listed above.
 

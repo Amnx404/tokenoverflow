@@ -2,6 +2,14 @@
 
 Updated 2026-10-30. Owner: Priya (Product manager); engineering direction/integration: Rafael (Engineering lead); consequential release: Codex (CEO). [Plan](plan.md) holds scope/acceptance, [verification](verification.md) actual evidence, [directory](people/README.md) current dispatch. High employees plan/understand/review, actual-medium fresh interns execute leased implementation; parents accept/integrate without interrupting active leases (D032).
 
+## Current UI12 pointer
+
+UI12 `c557b8b8` is READY. [Closure](research/2026-10-31-ui12-company-closure.md) records release, evidence and remaining capability/stage limits. Priya (Product manager) owns current assignments; Rafael (Engineering lead) owns technical leases. This pointer supersedes stale current/pending labels in the retained as-of body below, preserving its observations and mandatory policies.
+
+## Preserved earlier body — as-of evidence
+
+The following original sections retain their dated evidence, historical attribution and mandatory policies; the current pointer above supersedes stale release/pending labels, not the recorded observations.
+
 Current/prospective PM ownership is Priya (Product manager) · Senior. The queue/Auth/P1/P2/evidence body below stays published2667 as-of evidence, not the evolving working queue or a new Auth outcome. Follow [required onboarding](onboarding.md): only the Codex internal browser for browser work, no default/native/external/headless profile workaround; current assignments require current lead leases.
 
 **Current production includes deployed observability:** main `572d982a8dabf8e870cef132b832750537f9ecc3`, tree `bf237c2df967e373eed9d78e3fb0fb6688425202`, READY `dpl_9TANDxzdkiwQxGfEcTz7giQ8PNYh`; [production readback evidence](research/2026-10-30-posthog-observability.md). The inherited first-visit signup/style/lean-read cohort's root 720px read-only viewport and closed focused normal GET/high review remain bound to `1f29a280`; [release evidence](research/2026-10-30-first-visit-release.md). A evidence/privacy remains COMPLETE/inherited, with PR3 `687da467`/`da47` as the minimum compatible rollback floor. Observed QA telemetry does not establish hosted signup/mail/session/ordinary finding, typed production writes or complete-MVP usefulness.

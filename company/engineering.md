@@ -2,6 +2,14 @@
 
 Updated 2026-10-30. This is the current architecture and decision index, not a duplicate change log. See [team](team.md), [decision log](decision-log.md), and [verification](verification.md) for ownership, reasons, and evidence.
 
+## Current UI12 pointer
+
+UI12 `c557b8b8` is READY. [Closure](research/2026-10-31-ui12-company-closure.md) records release, evidence and remaining capability/stage limits. Rafael (Engineering lead) retains architecture, leases and capability review. This pointer supersedes stale current/pending labels in the retained as-of body below, preserving its observations and mandatory policies.
+
+## Preserved earlier body — as-of evidence
+
+The following original sections retain their dated evidence, historical attribution and mandatory policies; the current pointer above supersedes stale release/pending labels, not the recorded observations.
+
 ## Architecture and boundaries
 
 | System | Current choice / boundary | Owner | Decision |

@@ -9,7 +9,7 @@ Read this at assignment and handoff. [Team](../team.md) names the current people
 | Product manager | [Product delivery](product-manager.md) | Priya (Product manager) |
 | Accountability evaluator | [Independent accountability](accountability-evaluator.md) | Alex (Accountability evaluator) · Senior |
 | Engineering lead | [Technical direction](engineering-lead.md) | Rafael (Engineering lead) |
-| Engineer | [Engineering](engineer.md), then named owner note | Maya (Backend engineer), Arjun (Backend engineer), Leon (Platform and data engineer), Mira (Platform and data engineer), Nina (Frontend engineer), Felix (Frontend engineer), Rowan (MCP engineer), Imani (MCP engineer), Jules (Quality engineer), Eva (Quality engineer), Theo (Product engineer), Niko (Product engineer) |
+| Engineer | [Engineering](engineer.md), then named owner note | Maya (Backend engineer), Arjun (Backend engineer), Leon (Platform and data engineer), Mira (Platform and data engineer), Nina (Frontend engineer), Felix (Frontend engineer), Rowan (MCP engineer), Imani (MCP engineer), Jules (Quality engineer), Eva (Quality engineer), Theo (Product engineer), Niko (Product engineer), Lena (UX engineer), Ben (UI engineer) |
 | Researcher | [Research](researcher.md) | Iris (Researcher), Wren (Researcher) |
 | Test user | [Independent acceptance](test-user.md) | Casey (Test user), Robin (Test user) |
 | Intern | [Intern](intern.md), parent assignment and named handoff | Reported hires in [team](../team.md) and [CEO registry](../people/codex.md) |
