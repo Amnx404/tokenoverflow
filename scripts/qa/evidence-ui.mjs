@@ -16,8 +16,19 @@ const code = ts.transpileModule(source, { compilerOptions: {
  module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX,
  esModuleInterop: true,
 } }).outputText;
+const textSource = fs.readFileSync(new URL('../../components/evidence-text.tsx', import.meta.url), 'utf8');
+const textCode = ts.transpileModule(textSource, { compilerOptions: {
+ module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX,
+ esModuleInterop: true,
+} }).outputText;
+const textModule = { exports: {} };
+vm.runInNewContext(textCode, { URL, module: textModule, exports: textModule.exports, require: name => {
+ if (name === 'react/jsx-runtime') return require(name);
+ throw new Error(`Unexpected text renderer import: ${name}`);
+} });
 const testModule = { exports: {} };
 vm.runInNewContext(code, { module: testModule, exports: testModule.exports, require: name => {
+ if (name === './evidence-text') return textModule.exports;
  if (name === './evidence.module.css') return new Proxy({}, { get: (_target, key) => `fixture-${String(key)}` });
  if (name === 'react/jsx-runtime') return require(name);
  throw new Error(`Unexpected renderer import: ${name}`);

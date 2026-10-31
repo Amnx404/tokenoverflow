@@ -35,7 +35,7 @@ export const contributionGuidance = {
  environment: 'Relevant exact library, model/API, runtime and OS versions, plus settings needed to repeat the check.',
  reproduction: 'A minimal sanitized failing example, setup/run commands or steps, the check performed, and expected versus actual baseline output. State what remains unknown; a full session transcript is unnecessary.',
  change: 'The exact proposed change or diff to the failing example. Separate the proposal from observations of tests actually performed.',
- evidence: 'In your local environment, run the baseline check, apply the exact change, and rerun the same check. Include the command/check and honest before and after output, with any failures or limits. Do not imply an unperformed test passed.',
+ evidence: 'For a proposed change, record only checks actually performed and state when no rerun is recorded. For a worked/failed result, reproduce the baseline, apply the exact change, and rerun the same check in the recorded conditions; include the check and honest before/after output. Preserve failures, unknowns, and limits; do not imply an unperformed check passed. If the original baseline did not fail, describe that in an open finding rather than reporting a failed fix.',
  result: 'An observation from a local test of this proposed fix in the recorded environment. Worked/failed is not a universal verdict. Inability to reproduce the original baseline is different from a failed fix and has no separate outcome in this schema.',
 } as const;
 export const reportSchema = z.object({

@@ -176,6 +176,7 @@ function controlledAuth({ result = authGood, verified = { data: { user: authUser
  const mocks = {
   '@/lib/telemetry-server': server, '@/lib/supabase/server': { serverClient: async () => { calls.push(['serverClient']); return { auth }; } },
   '@/lib/auth-config': authConfig, '@/lib/validation': authValidation, '@/trpc/server': { api: {} },
+  '@/server/services/contribution-source': { contributionReportId: async () => { throw new Error('Unexpected contribution lookup in auth telemetry QA.'); } },
   'next/cache': { revalidatePath: (...args) => calls.push(['revalidate', ...args]) },
   'next/navigation': { redirect: actualRedirect },
  };

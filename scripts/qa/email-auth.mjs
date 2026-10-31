@@ -37,7 +37,7 @@ function actions({result=good,verified={data:{user},error:null},throws=false,cli
  const auth={};
  for(const method of ['signInWithPassword','signUp'])auth[method]=async args=>{calls.push([method,normalize(args)]);if(throws)throw new Error(rawFailure);return result;};
  auth.getUser=async()=>{calls.push(['getUser']);if(verifyThrows)throw new Error(rawFailure);return verified;};
- const loadedModule=load('app/actions.ts',{'@/lib/supabase/server':{serverClient:clientFactory??(async()=>{calls.push(['serverClient']);if(clientThrows)throw new Error(rawFailure);return {auth};})},'@/lib/auth-config':config,'@/lib/validation':validation,'@/trpc/server':{api:{}},'next/cache':{revalidatePath:(...args)=>calls.push(['revalidate',...args])},'next/navigation':{redirect:destination=>{calls.push(['redirect',destination]);throw new Redirect(destination);}}});
+ const loadedModule=load('app/actions.ts',{'@/lib/supabase/server':{serverClient:clientFactory??(async()=>{calls.push(['serverClient']);if(clientThrows)throw new Error(rawFailure);return {auth};})},'@/lib/auth-config':config,'@/lib/validation':validation,'@/trpc/server':{api:{}},'@/server/services/contribution-source':{contributionReportId:async()=>{throw new Error('Unexpected contribution lookup in auth QA.');}},'next/cache':{revalidatePath:(...args)=>calls.push(['revalidate',...args])},'next/navigation':{redirect:destination=>{calls.push(['redirect',destination]);throw new Redirect(destination);}}});
  return {module:loadedModule,calls};
 }
 let actionCases=0;
