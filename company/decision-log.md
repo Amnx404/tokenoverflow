@@ -200,3 +200,10 @@ Prioritize real public signup → sign-in/session → ordinary finding. Inspect 
 Status: Aman explicitly selected the target; implementation authorized, not automatically deployed. Owners: Nina (Frontend engineer), scoped medium execution by Luca (Frontend execution intern), independent high review by Felix (Frontend engineer).
 
 Refine Classic Windows round-2 option 1 with TypeSafe's modern typography, spacing and minimalism plus Token Overflow's own identity. Avoid an exact Windows clone or fake OS chrome; no further selection gate remains. This supersedes D031's no-selected-target status for the new round, preserving rejected prior artwork as history. Brand implementation proceeds in parallel with A/public signup; selection alone changes no current production artifact. [Design](design.md) holds the selected direction.
+
+
+## 2026-10-30 — D036: approved GitHub registration complete; activation and real flow pending
+
+Status: Aman explicitly approved the prepared registration; Codex (CEO) completed one Register action and verified application-created success with the intended Token Overflow homepage/callback/owner. No client secret was generated, Supabase provider was not activated, and real signup/mail/session/finding or write proof is not established.
+
+Owner: Codex (CEO), with the separate private activation handoff to Aman: generate the secret and enter Client ID/secret directly in Supabase's GitHub provider, enable/save and confirm completion; no values belong in chat or company records. This resolves registration as the dependency, not provider activation or real-flow acceptance. It records only this approved registration and grants no general account, credential-generation or auth-mutation authority. Current [plan](plan.md), [workboard](workboard.md) and [engineering map](engineering.md) retain the remaining gates. These record edits are prepared for reviewed records publication by Leon (Platform and data engineer).
