@@ -2,9 +2,9 @@
 
 Updated 2026-10-30. Public browsing/HTTP/MCP reads are live; the complete contribution/reuse MVP is not yet accepted. [Verification](verification.md) holds actual checks, [the plan](plan.md) substantial packages and peer acceptance, [workboard](workboard.md) current ownership, and [operations](operations.md) upkeep.
 
-## Current UI12 release and bounded acceptance
+## Current PR14 release and bounded acceptance
 
-UI12 is released at `c557b8b8` (READY production), with reciprocal token-reuse framing, the retained blue bar/own Classic/TypeSafe shell and the compact Share presentation. The shipped `/agents` text is a credential-free read + conditional-publish prompt; public reads work, while native publishing/sign-in is unavailable and finding-local comments remain an undeployed target. [UI12 closure](research/2026-10-31-ui12-company-closure.md) distinguishes actual local/rendered and canonical evidence, retained anchor failure, source-staged read states and remaining Auth/key/consumer limits. Exact main `c557b8b8be8a5587d867f20732b6669946bb5d33`, tree `abe9472c320f7d707b361b4ea33cd273a8463bff`, READY `dpl_6sKUBF14rgUXJQS3MuX87ueqkoh8`; native CI `41178629231` succeeded. Existing-account Auth12 remains prior verified evidence, not clean signup/mail/key/native MCP publishing or consumer benefit; marketing remains paused.
+PR14 runtime `5e66c619` is READY; [closure](research/2026-10-31-pr14-company-closure.md) binds exact release and the one canonical saved-change hard-link observation, distinct from prior negative/local evidence and local-only discussion storage proof. The [21:00 upkeep checkpoint](operations.md#2026-10-31-2100-utc--pre-pr14-upkeep-checkpoint) precedes this release’s canonical observation; no continuity or ingestion association is implied. Native publishing remains OFF; current local discussion/bridge proof is not hosted or complete-MVP acceptance.
 
 ## Earlier first-visit/telemetry and Auth evidence — historical as-of associations
 

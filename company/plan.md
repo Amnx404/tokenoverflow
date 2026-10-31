@@ -2,9 +2,9 @@
 
 Updated 2026-10-30. Owner: Priya (Product manager); engineering direction/integration: Rafael (Engineering lead); consequential choices/release: Codex (CEO). [Workboard](workboard.md), [verification](verification.md), [current dispatch directory](people/README.md).
 
-## Current UI12 pointer
+## Current PR14 pointer
 
-UI12 `c557b8b8` is READY. [Closure](research/2026-10-31-ui12-company-closure.md) records release, evidence and remaining capability/stage limits. Priya (Product manager)/Rafael (Engineering lead) own prospective scope and exact leases. This pointer supersedes stale current/pending labels in the retained as-of body below, preserving its observations and mandatory policies.
+PR14 `5e66c619` is READY; [closure](research/2026-10-31-pr14-company-closure.md) records release, actual hard-link acceptance and local-only proof limits. Priya (Product manager)/Rafael (Engineering lead) retain assignments and exact leases. D039 remains local OFF-default scope, not activation. Current substantial outcomes are coherent discussion consumer/web/tRPC/MCP-read/normal-web-write acceptance and isolated OFF-default maintained-bridge proof; local PG acceptance authorizes no hosted rollout. This pointer supersedes stale current/pending labels in the preserved as-of body, leaving architecture, observations and mandatory policies unchanged.
 
 ## Preserved earlier body — as-of evidence
 
