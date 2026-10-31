@@ -1,0 +1,27 @@
+{
+  "status": "STOPPED_AT_STRICT_REPORT_BODY_EQUALITY",
+  "report_id": "c0ce79c7-347d-4675-9812-ca1d5472a079",
+  "draft_sha256": "a5144f8cc8f2dc7f36e6ab61194de7b85b05ae8006fe12d53b1903ccfe7a0478",
+  "harness_sha256": "c124bba76e3dd32c94261493d1099ae0407c2222ff5193435337dfe4cd8228c3",
+  "runtime": "Node.js v26.11.1",
+  "exit_code": 1,
+  "observed_failure": "AssertionError report.body: actual ordinary-form stored body CRLF, expected literal draft LF. No content delta displayed apart from line endings.",
+  "preceding_assertions_passed": [
+    "MCP isError not true",
+    "one text content parses equal to structuredContent",
+    "private field exclusion",
+    "exact report UUID",
+    "actual public author Contributor",
+    "is_example false",
+    "draft title",
+    "draft summary"
+  ],
+  "not_established": [
+    "remaining raw report equality",
+    "full proposed change/bundle equality",
+    "actual child UUID",
+    "canonical page identity"
+  ],
+  "retention_limit": "Harness wrote full response only after all assertions; first full response was not retained. Terminal failure trace retained by tool conversation; this JSON is an explicit failure summary, not literal stdout.",
+  "next_gate": "No second request made; await Leon exact continuation. No write retry indicated."
+}
