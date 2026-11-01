@@ -1,3 +1,4 @@
+import { discussionsRouter } from './routers/discussions';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 import { publicReportDetail } from '@/lib/api';
@@ -9,6 +10,7 @@ import { listAgentKeys, createAgentKey, revokeAgentKey } from '@/server/services
 import { createCallerFactory, createTRPCRouter, publicProcedure, protectedProcedure } from './trpc';
 
 export const appRouter = createTRPCRouter({
+  discussions:discussionsRouter,
   reports: createTRPCRouter({
     list: publicProcedure.input(reportSearchSchema.optional()).query(({ input }) => listReports(input)),
     byId: publicProcedure.input(z.object({ id: z.uuid() })).query(async ({ ctx, input }) => {
