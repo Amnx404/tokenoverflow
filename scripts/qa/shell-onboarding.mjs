@@ -10,9 +10,10 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import ts from 'typescript';
 import postcss from 'postcss';
 const require = createRequire(import.meta.url);
+const p3HomeOnly = process.argv[2] === '--p3-home-composition';
 const setupHelpFoldOnly = process.argv[2] === '--setup-help-fold';
 const connectionHelpOnly = ['--connection-help', '--header-client-setup'].includes(process.argv[2]);
-const output = process.argv[connectionHelpOnly || setupHelpFoldOnly ? 3 : 2];
+const output = process.argv[connectionHelpOnly || setupHelpFoldOnly || p3HomeOnly ? 3 : 2];
 const sources = {}, cache = new Map(), checks = [];
 const fixture = { pathname: '/', user: null, keys: [], keyError: false, keyReads: 0, actionCalls: 0, reports: [], reportCalls: [] };
 const nativeLink = ({ href, children, ...props }) => React.createElement('a', { ...props, href }, children);
@@ -49,7 +50,26 @@ function load(relative, overrides = {}) {
  if (!Object.keys(overrides).length) cache.set(relative, loaded.exports);
  return loaded.exports;
 }
-if (setupHelpFoldOnly) {
+if (p3HomeOnly) {
+ const home = load('app/page.tsx');
+ const layout = load('app/layout.tsx');
+ fixture.pathname = '/';
+ const element = await home.default({ searchParams: Promise.resolve({ q: '  failure  ', category: 'APIs', view: 'needs-investigation', examples: '1', page: '2' }) });
+ const html = renderToStaticMarkup(await layout.default({ children: element }));
+ assert.match(html, /<header class="desktop-header">/); assert.doesNotMatch(html, /desktop-title/);
+ assert.match(html, /Find what others have learned\. Share what you learn\./);
+ assert.match(html, /Don’t waste tokens rediscovering what someone else already figured out\./);
+ assert.match(html, /No proposed changes/); assert.doesNotMatch(html, /Open investigations/);
+ const panel = /<div class="empty-state">([\s\S]*?)<\/div>/.exec(html)?.[1]; assert.ok(panel);
+ assert.match(panel, /Try another search or clear the filters/);
+ const first = /<a href="([^"]*)">([^<]*)/.exec(panel); assert.ok(first); assert.equal(first[2], 'Search community findings');
+ const url = new URL(first[1].replaceAll('&amp;', '&'), 'https://fixture.invalid');
+ for (const [key, value] of Object.entries({ q: 'failure', category: 'APIs', view: 'needs-investigation', examples: '', page: '1' })) assert.equal(url.searchParams.get(key), value);
+ assert.ok(panel.indexOf('Search community findings') < panel.indexOf('Share a finding'));
+ assert.equal(fixture.reportCalls.length, 1); assert.equal(fixture.actionCalls, 0); assert.equal(fixture.keyReads, 0);
+ if (output) { fs.mkdirSync(output, { recursive: true }); fs.writeFileSync(path.join(output, 'p3-home-composition.ssr.html'), html); }
+ console.log(JSON.stringify({ status: 'PASS', mode: 'p3-home-composition', sources, checks: ['current D040 shell with accepted P3 Home recovery and reciprocal intro'], limits: 'One actual-source SSR composition with established read/auth/font/router/CSS doubles; reused P3 case groups not rerun; no browser, discussion continuity, runtime, real Auth/storage or release proof.' }, null, 2));
+} else if (setupHelpFoldOnly) {
  let selected = '';
  const setup = load('app/agents/client-setup.tsx', { react: { useState: () => [selected, value => { selected = value; }] } });
  function find(node, type) { if (!node || typeof node !== 'object') return; if (node.type === type) return node; for (const child of React.Children.toArray(node.props?.children)) { const found = find(child, type); if (found) return found; } }
@@ -197,7 +217,7 @@ await check('optional existing fixed copy telemetry cannot turn successful clipb
 });
 await check('Home keeps one accessible H1 and existing search/filter/recovery contracts while adding compact copy', async () => {
  reset(); fixture.pathname = '/'; const element = await home.default({ searchParams: Promise.resolve({ q: '  failure  ', category: 'APIs', view: 'needs-investigation', examples: '1', page: '2' }) }); const html = render(element);
- assert.equal((html.match(/<h1\b/g) ?? []).length, 1); assert.match(html, /Find what others have learned\. Share what you learn\./); assert.match(html, /Don’t waste tokens rediscovering what someone else already figured out\./); assert.match(html, /Open investigations/); assert.match(html, /No matching findings/); assert.match(html, /Try a shorter error message or clear the filters/);
+ assert.equal((html.match(/<h1\b/g) ?? []).length, 1); assert.match(html, /Find what others have learned\. Share what you learn\./); assert.match(html, /Don’t waste tokens rediscovering what someone else already figured out\./); assert.match(html, /No proposed changes/); assert.match(html, /No matching findings/); assert.match(html, /Try another search or clear the filters/);
  assert.equal(fixture.reportCalls[0].q, 'failure'); assert.equal(fixture.reportCalls[0].category, 'APIs'); assert.equal(fixture.reportCalls[0].view, 'needs-investigation'); assert.equal(fixture.reportCalls[0].page, 2); assert.equal(fixture.reportCalls[0].examples, true); save('home-context.ssr.html', '<!doctype html>' + render(await layout.default({ children: element })));
  const meta = await home.generateMetadata({ searchParams: Promise.resolve({ q: 'failure' }) }); assert.equal(meta.robots.index, false); assert.equal(meta.alternates.canonical, 'https://tokenoverflow.app/');
 });

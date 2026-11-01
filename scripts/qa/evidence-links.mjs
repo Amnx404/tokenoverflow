@@ -144,7 +144,7 @@ check('observations, expected results, versions and legacy/null states remain te
  assert.equal(html.match(/Exit code: 0/g)?.length, 2);
  assert.match(renderRecord({ ...bundle, after_result: null }), /Rerun not recorded/);
  const baseline = renderRecord({ ...bundle, after_result: null }, 'report');
- assert.match(baseline, /investigation open/); assert.doesNotMatch(baseline, /After the change/);
+ assert.match(baseline, /Reported baseline/); assert.doesNotMatch(baseline, /After the change/);
  for (const absent of [null, undefined]) {
   const legacy = renderRecord(absent); assert.match(legacy, /No structured check recorded/); assert.deepEqual(anchors(legacy), []);
  }
@@ -162,6 +162,16 @@ const finding = { report: { ...draft.report, id: reportId, author_name: 'Fixture
 }] };
 const { default: Detail } = load('app/reports/[id]/page.tsx', {
  '@/components/report-fragment-landing': fragmentLanding,
+ '@/app/discussion-read-actions': {
+  readDiscussionPage: async input => { assert.deepEqual(JSON.parse(JSON.stringify(input)), { report_id: reportId, parent_id: null }); return { status: 'unavailable' }; },
+  readDiscussionContext: () => { throw new Error('Unexpected discussion context read'); },
+ },
+ '@/components/discussion/connected-thread': { ConnectedDiscussionThread: props => {
+  assert.equal(props.reportId, reportId); assert.equal(props.initialPage.status, 'unavailable');
+  assert.equal(props.initialContext, undefined); assert.equal(props.selectedCommentId, undefined); assert.equal(props.selectionRequested, false);
+  return null;
+ } },
+
  'next/link': ({ children, ...props }) => createElement('a', props, children),
  'next/navigation': { notFound: () => { throw new Error('Unexpected notFound'); } },
  zod: { z: { uuid: () => ({ safeParse: () => ({ success: true }) }) } },
@@ -186,7 +196,7 @@ check('actual detail render preserves raw reproduction Copy and exact child frag
  assert.ok(copied.includes(draft.report.reproduction));
  assert.ok(detailHtml.includes(`<article id="fix-${fixId}" class="fix-card">`));
  assert.ok(detailHtml.includes(`id="verification-${resultId}"`));
- assert.match(detailHtml, /0 worked results · 1 failed results/);
+ assert.match(detailHtml, /Independent results: 0 worked · 1 failed/);
  assert.match(detailHtml, /Not a global verdict/);
 });
 console.log(JSON.stringify({ status: 'PASS', checks, sources, limits: 'Pure isolated React server rendering with dependency/CSS stubs; no browser, application server, auth, storage, network, artifact replay or production verification.' }, null, 2));
