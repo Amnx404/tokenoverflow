@@ -4,7 +4,7 @@ Updated 2026-10-30. This is the current architecture and decision index, not a d
 
 ## Current delivery pointer
 
-[Progress](progress.md) is the single home for current release association. The [dated checkpoint](research/2026-10-31-help-and-first-party-checkpoint.md) separates closed help/first-party evidence, the initial local discussion save/context success and landing miss, a later Nov1 LOCAL link positive, and a held installation with subsequent scalar reconciliation. Rafael (Engineering lead) retains architecture and exact leases; next consumer integration and isolated OFF-default maintained-bridge proof remain separate from real Auth/hosted activation. This pointer supersedes stale current/pending labels in the retained as-of body without rewriting architecture, history or mandatory policies.
+[Progress](progress.md) is the single home for the latest verified release association. The [discussion/read-state closure](research/2026-11-01-discussion-and-read-state-closure.md) records deployed discussion/read-state scope, authenticated append activation and the same-curator web/REST/SDK journey, with retained negatives and limits. Native connected publishing and agent discussion writes remain unavailable; real bearer write/key-lifecycle proof remains unproved. Clean new-account/mail, independent formal results and consumer/full-MVP proof remain open. Rafael (Engineering lead) retains architecture, integration and exact leases; maintained-bridge protocol proof remains isolated and OFF-default. Earlier bodies below retain their as-of evidence, not current pending-stage claims.
 
 ## Preserved earlier body — as-of evidence
 
