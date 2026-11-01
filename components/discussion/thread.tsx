@@ -20,14 +20,14 @@ function loadedItems(page: DiscussionPage): DiscussionCommentView[] {
 function Branch({ page, onReply, onRedact, onRequestPage, tombstones, selectedPath, selectionIdentity, onPresentationRedact }: { page: DiscussionPage; onReply?: (item: DiscussionCommentView) => void } & Pick<Adapters, 'onRedact' | 'onRequestPage'> & Presentation) {
  if (!validPage(page)) return <p>Discussion page unavailable: invalid supplied context.</p>;
  return <>
-  <p className={styles.context}>{page.children.length} direct {page.parentId === null ? 'comments' : 'replies'} loaded in this page.</p>
+  <p className={styles.context}>{page.children.length} {page.parentId === null ? (page.children.length === 1 ? 'comment' : 'comments') : (page.children.length === 1 ? 'reply' : 'replies')} in this list.</p>
   <ul className={styles.list}>{page.children.map(original => {
    const comment = tombstones.get(identity(original)) ?? original;
    return <li key={comment.id}><DiscussionComment comment={comment} onReply={onReply} onRedact={onRedact} onRequestPage={onRequestPage} onPresentationRedact={onPresentationRedact} selectionIdentity={selectedPath.has(comment.id) ? selectionIdentity : undefined}>
     {original.replies ? (original.replies.reportId === comment.reportId && original.replies.parentId === comment.id ? <Branch page={original.replies} onReply={onReply} onRedact={onRedact} onRequestPage={onRequestPage} tombstones={tombstones} selectedPath={selectedPath} selectionIdentity={selectionIdentity} onPresentationRedact={onPresentationRedact}/> : <p>Reply context unavailable.</p>) : undefined}
    </DiscussionComment></li>;
   })}</ul>
-  {page.hasMore && <div className={styles.continuation}><p>Additional discussion is not loaded. This is not all of the discussion.</p>{page.nextCursor && onRequestPage ? <button type="button" onClick={() => onRequestPage({ reportId: page.reportId, parentId: page.parentId, cursor: page.nextCursor! })}>Load more {page.parentId === null ? 'comments' : 'replies'}</button> : <p>Continuation unavailable in this view.</p>}</div>}
+  {page.hasMore && <div className={styles.continuation}><p>More {page.parentId === null ? 'comments' : 'replies'} available.</p>{page.nextCursor && onRequestPage ? <button type="button" onClick={() => onRequestPage({ reportId: page.reportId, parentId: page.parentId, cursor: page.nextCursor! })}>Load more {page.parentId === null ? 'comments' : 'replies'}</button> : <p>Continuation unavailable in this view.</p>}</div>}
  </>;
 }
 /** Unwired presentation adapters only; these booleans/callbacks confer no authorization. */
@@ -63,7 +63,7 @@ export function DiscussionThread({ page, selectedContext, onRequestContext, sign
   <Branch page={page} onReply={capability === 'can-comment' ? item => setTarget({ reportId: item.reportId, parentId: item.id }) : undefined} onRedact={onRedact} onRequestPage={onRequestPage} tombstones={tombstones} selectedPath={selectedPath} selectionIdentity={selectionIdentity} onPresentationRedact={onPresentationRedact}/>
   {!targetAvailable && <p>Reply context unavailable. The previous target and draft are retained; no root fallback was made.</p>}
   <button type="button" onClick={() => setTarget({ reportId: page.reportId, parentId: page.parentId })}>{page.parentId === null ? 'New comment on finding' : `Reply to comment ${page.parentId}`}</button>
-  <p className={styles.notice}>Drafts stay with their original target while this panel is mounted. Select Reply to change targets explicitly.</p>
+  <p className={styles.notice}>Drafts stay separate for each comment or reply on this page. Copy yours before leaving or reloading.</p>
   <div hidden={!sameReport}><DiscussionComposer reportId={target.reportId} parentId={target.parentId} capability={sameReport ? capability : 'read-only'} newTargetAvailable={targetAvailable} signInHref={signInHref} onCreate={onCreate}/></div>
  </section>;
 }
