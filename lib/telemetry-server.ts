@@ -15,8 +15,8 @@ export const browserTelemetrySchema = z.discriminatedUnion('event', [
  z.strictObject({ event: z.literal('to_browser_error'), ...common, error_code: z.enum(['UNHANDLED_ERROR', 'UNHANDLED_REJECTION']) }),
 ]);
 
-export const telemetryOperationRoutes = ['/api/health', '/api/v1/reports', '/api/v1/reports/[id]', '/api/v1/fixes', '/api/v1/verifications', '/api/mcp', '/api/trpc'] as const;
-export const telemetryOperationNames = ['health', 'search_reports', 'get_report', 'publish_report', 'publish_fix', 'record_verification', 'mcp_transport', 'list_agent_keys', 'create_agent_key', 'revoke_agent_key', 'rpc'] as const;
+export const telemetryOperationRoutes = ['/api/health', '/api/v1/reports', '/api/v1/reports/[id]', '/api/v1/reports/[id]/comments', '/api/v1/reports/[id]/comments/[commentId]', '/api/v1/fixes', '/api/v1/verifications', '/api/mcp', '/api/trpc'] as const;
+export const telemetryOperationNames = ['health', 'search_reports', 'get_report', 'list_comments', 'get_comment_context', 'publish_report', 'publish_fix', 'record_verification', 'mcp_transport', 'list_agent_keys', 'create_agent_key', 'revoke_agent_key', 'rpc'] as const;
 export const telemetryErrorCodes = ['INVALID_INPUT', 'UNAUTHORIZED', 'FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'RATE_LIMITED', 'REQUEST_TOO_LARGE', 'UNSUPPORTED_MEDIA_TYPE', 'METHOD_NOT_ALLOWED', 'DEPENDENCY_UNAVAILABLE', 'CONFIGURATION_MISSING', 'INTERNAL_ERROR', 'TRANSPORT_ERROR'] as const;
 export const operationTelemetrySchema = z.strictObject({
  route: z.enum(telemetryOperationRoutes), operation: z.enum(telemetryOperationNames),

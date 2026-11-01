@@ -9,7 +9,7 @@ const root=new URL('../../',import.meta.url);
 const read=name=>fs.readFileSync(new URL(name,root),'utf8');
 const norm=value=>JSON.parse(JSON.stringify(value));
 const env={env:{NEXT_PUBLIC_SUPABASE_URL:'https://discussion-fixture.invalid'}};
-function load(name,mocks={}){const loaded={exports:{}};const code=ts.transpileModule(read(name),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;vm.runInNewContext(code,{Error,Set,WeakSet,Buffer,URL,Date,TextEncoder,FormData,Request,Response,process:env,module:loaded,exports:loaded.exports,require:id=>Object.hasOwn(mocks,id)?mocks[id]:require(id)});return loaded.exports;}
+function load(name,mocks={}){const loaded={exports:{}};const code=ts.transpileModule(read(name),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;vm.runInNewContext(code,{Error,Set,WeakSet,Buffer,URL,Date,TextEncoder,FormData,Request,Response,process:env,module:loaded,exports:loaded.exports,require:id=>Object.hasOwn(mocks,id)?mocks[id]:id==='@/lib/observability'?{startOperation:()=>({finish:response=>response}),requestTelemetryContext:()=>({synthetic:true})}:require(id)});return loaded.exports;}
 const validation=load('lib/discussion-validation.ts');
 const errors=load('server/services/discussion-errors.ts');
 // Narrow actual-action parser regression mode; no actor/writer/provider boundary may be reached.
