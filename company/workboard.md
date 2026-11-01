@@ -4,7 +4,7 @@ Updated 2026-10-30. Owner: Priya (Product manager); engineering direction/integr
 
 ## Current delivery pointer
 
-[Progress](progress.md) is the single home for current release association. The [dated checkpoint](research/2026-10-31-help-and-first-party-checkpoint.md) separates closed help/first-party evidence, the initial local discussion save/context success and landing miss, a later Nov1 LOCAL link positive, and a held installation with subsequent scalar reconciliation. Priya (Product manager)/Rafael (Engineering lead) own next discussion-consumer integration and isolated OFF-default maintained-bridge proof; the dated local/held results do not establish activated hosted readiness. This pointer supersedes stale current/pending labels in the retained as-of body without rewriting architecture, history or mandatory policies.
+[Progress](progress.md) is the single home for the latest verified release association. The [discussion/read-state closure](research/2026-11-01-discussion-and-read-state-closure.md) records deployed discussion/read-state scope, authenticated append activation and the same-curator web/REST/SDK journey, with retained negatives and limits. Native connected publishing and agent discussion writes remain unavailable; real bearer write/key-lifecycle proof remains unproved. Clean new-account/mail, independent formal results and consumer/full-MVP proof remain open. Priya (Product manager)/Rafael (Engineering lead) own the next substantial acceptance packages. Earlier bodies below retain their as-of evidence; neither comment success nor source/CI preparation establishes native authorization or independent benefit.
 
 ## Preserved earlier body — as-of evidence
 
