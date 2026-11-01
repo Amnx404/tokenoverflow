@@ -10,14 +10,17 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import ts from 'typescript';
 import postcss from 'postcss';
 const require = createRequire(import.meta.url);
-const connectionHelpOnly = process.argv[2] === '--connection-help';
-const output = process.argv[connectionHelpOnly ? 3 : 2];
+const setupHelpFoldOnly = process.argv[2] === '--setup-help-fold';
+const connectionHelpOnly = ['--connection-help', '--header-client-setup'].includes(process.argv[2]);
+const output = process.argv[connectionHelpOnly || setupHelpFoldOnly ? 3 : 2];
 const sources = {}, cache = new Map(), checks = [];
 const fixture = { pathname: '/', user: null, keys: [], keyError: false, keyReads: 0, actionCalls: 0, reports: [], reportCalls: [] };
 const nativeLink = ({ href, children, ...props }) => React.createElement('a', { ...props, href }, children);
 const forbiddenAction = () => { fixture.actionCalls++; throw new Error('Unexpected account action'); };
 const forms = { CopyButton: ({ value, label = 'Copy' }) => React.createElement('button', { 'data-raw-copy': value }, label), KeyForm: () => React.createElement('form', { 'data-existing-key-form': true }, 'Existing key creation controls'), ReportForm: () => React.createElement('form', { 'data-existing-report-form': true }, 'Existing report fields') };
+const allowedSources = new Set(['components/nav.tsx', 'components/agent-prompt.tsx', 'app/agents/page.tsx', 'app/agents/client-setup.tsx', 'app/layout.tsx', 'app/page.tsx', 'app/reports/new/page.tsx', 'components/report-card.tsx', 'lib/types.ts', 'lib/validation.ts', 'lib/feedback.ts']);
 function load(relative, overrides = {}) {
+ assert.ok(allowedSources.has(relative), `Unexpected source module: ${relative}`);
  if (!Object.keys(overrides).length && cache.has(relative)) return cache.get(relative);
  const text = fs.readFileSync(new URL(`../../${relative}`, import.meta.url), 'utf8'); sources[relative] = createHash('sha256').update(text).digest('hex');
  const compiled = ts.transpileModule(text, { reportDiagnostics: true, compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true } });
@@ -26,7 +29,7 @@ function load(relative, overrides = {}) {
  vm.runInNewContext(compiled.outputText, { URL, URLSearchParams, module: loaded, exports: loaded.exports, ...overrides.globals, require: name => {
   if (name === 'react') return overrides.react ?? React;
   if (name === 'react/jsx-runtime') return require(name);
-  if (name.endsWith('.module.css')) return { __esModule: true, default: new Proxy({}, { get: (_target, key) => `fixture-${path.basename(name, '.module.css')}-${String(key)}` }) };
+  if (['./agents.module.css', './shell.module.css', '@/components/shell.module.css', '@/app/agents/agents.module.css'].includes(name)) return { __esModule: true, default: new Proxy({}, { get: (_target, key) => `fixture-${path.basename(name, '.module.css')}-${String(key)}` }) };
   if (name === './globals.css') return {};
   if (name === 'next/link') return nativeLink;
   if (name === 'next/navigation') return { usePathname: () => fixture.pathname, redirect: value => { throw new Error(`Redirect:${value}`); } };
@@ -46,34 +49,91 @@ function load(relative, overrides = {}) {
  if (!Object.keys(overrides).length) cache.set(relative, loaded.exports);
  return loaded.exports;
 }
-if (connectionHelpOnly) {
+if (setupHelpFoldOnly) {
+ let selected = '';
+ const setup = load('app/agents/client-setup.tsx', { react: { useState: () => [selected, value => { selected = value; }] } });
+ function find(node, type) { if (!node || typeof node !== 'object') return; if (node.type === type) return node; for (const child of React.Children.toArray(node.props?.children)) { const found = find(child, type); if (found) return found; } }
+ for (const value of ['codex-app', 'codex-cli', 'claude-code', 'claude-remote']) {
+  find(setup.ClientSetup(), 'select').props.onChange({ target: { value } });
+  const html = renderToStaticMarkup(setup.ClientSetup());
+  const details = /<details\b[^>]*>[\s\S]*?<\/details>/.exec(html)?.[0];
+  assert.ok(details); assert.equal((html.match(/<details\b/g) ?? []).length, 1);
+  assert.doesNotMatch(/^<details[^>]*>/.exec(details)[0], /\bopen(?:=|\s|>)/);
+  assert.match(details, /<summary>Setup help<\/summary>/);
+  for (const text of ['Already registered? Check its status before adding it again.', 'Connection does not grant publishing permission.', 'supported public HTTP reading where available', 'unsubmitted draft']) assert.ok(details.includes(text), text);
+  assert.match(details, /<a href="\/">website search<\/a>/);
+  const visible = html.replace(details, '');
+  assert.match(visible, /<p>Once Token Overflow’s tools are available, use the prompt below\.<\/p>/);
+  assert.doesNotMatch(visible, /Already registered\?|Connection does not grant publishing permission|public HTTP reading|unsubmitted draft/);
+  if (value === 'codex-app') { assert.match(visible, /If your app has Settings → MCP servers/); assert.match(visible, /Official docs label this desktop path ChatGPT/); assert.match(visible, /use Codex CLI setup on the same host/); }
+  if (value === 'codex-cli') { assert.match(visible, /codex mcp add tokenoverflow --url https:\/\/tokenoverflow.app\/api\/mcp/); assert.match(visible, /user-level configuration/); }
+  if (value === 'claude-code') { assert.match(visible, /claude mcp add --transport http --scope local tokenoverflow https:\/\/tokenoverflow.app\/api\/mcp/); assert.match(visible, /For this project only/); }
+  if (value === 'claude-remote') { assert.match(visible, /Customize → Connectors → Add → Custom → Web/); assert.match(visible, /No sign in/); assert.match(visible, /Free allows one custom connector/); assert.match(visible, /organization owner/); }
+  assert.equal((html.match(/id="client-setup-guidance"/g) ?? []).length, 1);
+  if (output) { fs.mkdirSync(output, { recursive: true }); fs.writeFileSync(path.join(output, `${value}-folded.ssr.html`), html); }
+  checks.push(`${value}: one closed help, secondary text retained, tools line and essential instructions visible`);
+ }
+ console.log(JSON.stringify({ status: 'PASS', mode: 'setup-help-fold', sources, checks, limits: 'Actual selector source transpiled and rendered with a useState/handler double; native details initial markup only, no browser/keyboard/layout/client/connection/runtime proof.' }, null, 2));
+} else if (connectionHelpOnly) {
  const prompt = load('components/agent-prompt.tsx');
  const agents = load('app/agents/page.tsx');
- const element = await agents.default();
- const html = renderToStaticMarkup(element);
- const help = /<details class="fixture-agents-connectionHelp"[^>]*>[\s\S]*?<\/details>/.exec(html)?.[0];
- assert.ok(help, 'native setup help missing');
- assert.doesNotMatch(/^<details[^>]*>/.exec(help)[0], /\bopen(?:=|\s|>)/);
- assert.match(help, /<summary>First connection\? Setup help<\/summary>/);
- for (const text of ['supported MCP settings', 'intended scope', 'host or admin approval', 'Skip setup', 'once tools are available', 'does not grant publishing permission', 'supported public HTTP reading', 'unsubmitted draft']) assert.ok(help.includes(text), text);
- assert.match(help, /<a href="\/">website search<\/a>/);
- assert.doesNotMatch(help, /cursor:|claude:|codex:|Bearer|TOKENOVERFLOW_KEY|<button|<input|<textarea/);
- assert.ok(html.indexOf('fixture-agents-endpoint') < html.indexOf('fixture-agents-connectionHelp'));
- assert.ok(html.indexOf('fixture-agents-connectionHelp') < html.indexOf('fixture-agents-capability'));
- assert.ok(html.indexOf('fixture-agents-capability') < html.indexOf('Copy agent prompt'));
+ const layout = load('app/layout.tsx');
+ fixture.pathname = '/agents';
+ const html = renderToStaticMarkup(await agents.default());
+ const page = renderToStaticMarkup(await layout.default({ children: React.createElement('p', {}, 'Fixture content') }));
+ const header = /<header class="desktop-header">[\s\S]*?<\/header>/.exec(page)?.[0];
+ assert.ok(header); assert.equal((page.match(/<header\b/g) ?? []).length, 1); assert.doesNotMatch(page, /desktop-title/);
+ assert.ok(page.indexOf('class="app-area"') < page.indexOf('<header'));
+ assert.match(header, />tokenoverflow<\/a>/); assert.match(header, /href="\/login"/);
+ const taskLinks = [...header.matchAll(/<a\b([^>]*)>(Search|Share|Connect agent)<\/a>/g)].map(x => [/href="([^"]*)"/.exec(x[1])?.[1], /aria-current="([^"]*)"/.exec(x[1])?.[1], x[2]]);
+ assert.deepEqual(taskLinks, [['/', undefined, 'Search'], ['/reports/new', undefined, 'Share'], ['/agents', 'page', 'Connect agent']]);
+ fixture.user = { id: 'fixture-user', user_metadata: { display_name: 'Fixture account' } };
+ const signedIn = renderToStaticMarkup(await layout.default({ children: null }));
+ assert.match(signedIn, /Fixture account/); assert.match(signedIn, /aria-label="Sign out"/); assert.doesNotMatch(signedIn, /href="\/login"/); assert.equal(fixture.actionCalls, 0);
+ fixture.user = null;
+ assert.match(html, /<label for="setup-client">App or client<\/label>/);
+ assert.match(html, /aria-controls="client-setup-guidance"/);
+ assert.match(html, /<option value="" selected="">Choose your app<\/option>/);
+ assert.match(html, /<optgroup label="Codex">/); assert.match(html, /<optgroup label="Claude">/);
+ assert.equal((html.match(/id="client-setup-guidance"/g) ?? []).length, 1);
+ assert.ok(html.indexOf('fixture-agents-endpoint') < html.indexOf('setup-client'));
+ assert.ok(html.indexOf('client-setup-guidance') < html.indexOf('fixture-agents-capability'));
  assert.match(html, /Public reads are available\. Native publishing sign-in is not available yet\./);
  assert.equal(createHash('sha256').update(fs.readFileSync(new URL('../../components/agent-prompt.tsx', import.meta.url))).digest('hex'), '9461a59eefc6480416306740614c6a1c4f42d27b7dc201a43420f17461ae29b9');
  assert.equal(prompt.AGENT_PROMPT.length, 840);
  assert.equal(createHash('sha256').update(prompt.AGENT_PROMPT).digest('hex'), 'd9ab69bdd0c1423a7931fdb33c5df17f88b2949d86b5de8cbf2c65ac634f9bd9');
- assert.equal((html.match(/<textarea\b/g) ?? []).length, 1);
- assert.equal((html.match(/>Copy agent prompt<\/button>/g) ?? []).length, 1);
+ assert.equal((html.match(/<textarea\b/g) ?? []).length, 1); assert.equal((html.match(/>Copy agent prompt<\/button>/g) ?? []).length, 1);
  assert.equal(fixture.keyReads, 0); assert.equal(fixture.actionCalls, 0);
- const cssPath = 'app/agents/agents.module.css';
- const css = fs.readFileSync(new URL(`../../${cssPath}`, import.meta.url), 'utf8');
- postcss.parse(css, { from: cssPath }); sources[cssPath] = createHash('sha256').update(css).digest('hex');
- assert.match(css, /\.connectionHelp>summary:focus-visible/);
- if (output) { fs.mkdirSync(output, { recursive: true }); fs.writeFileSync(path.join(output, 'connection-help.ssr.html'), html); }
- console.log(JSON.stringify({ status: 'PASS', mode: 'connection-help', sources, checks: ['actual Agents SSR help is native and initially closed with conditional setup guidance', 'endpoint/help/capability/prompt order and unchanged exact prompt source/text', 'scoped CSS parses with summary focus rule'], limits: 'Static SSR with existing read/auth/form/CSS/native link doubles only; no actual layout, keyboard, connection, clipboard, runtime or browser proof.' }, null, 2));
+ // Exercise the actual selector handler with a useState double, without DOM/client configuration.
+ let selected = '';
+ const setup = load('app/agents/client-setup.tsx', { react: { useState: () => [selected, value => { selected = value; }] } });
+ function find(node, type) { if (!node || typeof node !== 'object') return; if (node.type === type) return node; for (const child of React.Children.toArray(node.props?.children)) { const found = find(child, type); if (found) return found; } }
+ const stateArtifacts = {};
+ for (const value of ['codex-app', 'codex-cli', 'claude-code', 'claude-remote']) {
+  find(setup.ClientSetup(), 'select').props.onChange({ target: { value } });
+  assert.equal(selected, value); const changed = renderToStaticMarkup(setup.ClientSetup());
+  assert.equal((changed.match(/id="client-setup-guidance"/g) ?? []).length, 1);
+  assert.ok(changed.includes(`<option value="${value}" selected="">`));
+  assert.doesNotMatch(changed, /<textarea|<button|cursor:\/\/|claude:\/\//);
+  assert.match(changed, /Connection does not grant publishing permission/); assert.match(changed, /unsubmitted draft/);
+  if (value === 'codex-app') { assert.match(changed, /Official docs label this desktop path ChatGPT/); assert.match(changed, /If your Codex app does not show it/); }
+  if (value === 'codex-cli') { assert.match(changed, /codex mcp add tokenoverflow --url https:\/\/tokenoverflow.app\/api\/mcp/); assert.match(changed, /user-level configuration/); }
+  if (value === 'claude-code') { assert.match(changed, /claude mcp add --transport http --scope local tokenoverflow https:\/\/tokenoverflow.app\/api\/mcp/); assert.match(changed, /For this project only/); }
+  if (value === 'claude-remote') { assert.match(changed, /No sign in/); assert.match(changed, /one custom connector/); }
+  stateArtifacts[value] = changed;
+ }
+ for (const value of ['unknown-client', 'toString']) { find(setup.ClientSetup(), 'select').props.onChange({ target: { value } }); const unknown = renderToStaticMarkup(setup.ClientSetup()); assert.match(unknown, /Choose your app/); assert.doesNotMatch(unknown, /Official setup|<pre>/); }
+ find(setup.ClientSetup(), 'select').props.onChange({ target: { value: '' } });
+ assert.match(renderToStaticMarkup(setup.ClientSetup()), /Choose your app/);
+ for (const relative of ['app/globals.css', 'components/shell.module.css', 'app/agents/agents.module.css']) {
+  const css = fs.readFileSync(new URL(`../../${relative}`, import.meta.url), 'utf8'); postcss.parse(css, { from: relative }); sources[relative] = createHash('sha256').update(css).digest('hex');
+ }
+ const globalCSS = fs.readFileSync(new URL('../../app/globals.css', import.meta.url), 'utf8');
+ assert.doesNotMatch(globalCSS, /desktop-title|font-size:43px/); assert.match(globalCSS, /\.desktop-header \.brand\{font-size:28px/);
+ const shellCSS = fs.readFileSync(new URL('../../components/shell.module.css', import.meta.url), 'utf8');
+ assert.match(shellCSS, /\[aria-current\]\{font-weight:600/); assert.match(shellCSS, /text-decoration:underline/); assert.match(shellCSS, /outline:2px solid #8ee1dc/);
+ if (output) { fs.mkdirSync(output, { recursive: true }); fs.writeFileSync(path.join(output, 'agents-initial.ssr.html'), html); fs.writeFileSync(path.join(output, 'header-signed-out.ssr.html'), page); fs.writeFileSync(path.join(output, 'header-signed-in.ssr.html'), signedIn); for (const [name, markup] of Object.entries(stateArtifacts)) fs.writeFileSync(path.join(output, `${name}.ssr.html`), markup); }
+ console.log(JSON.stringify({ status: 'PASS', mode: 'header-client-setup', sources, checks: ['one compact app-area header with native nav/auth utility branches', 'neutral native selector and actual handler changed-state double with one linked card', 'exact prompt source/text and capability unchanged', 'header/agents scoped CSS syntax and active/focus cues'], limits: 'Actual-source static SSR and deterministic selector hook double only; no browser, native fonts/layout, real focus, client connection/configuration, Auth, clipboard or runtime proof.' }, null, 2));
 } else {
 const nav = load('components/nav.tsx');
 const prompt = load('components/agent-prompt.tsx');
@@ -106,7 +166,7 @@ await check('signed-out agent page foregrounds one honest task; configuration/AP
  assert.match(html, /<summary>Advanced<\/summary>/); assert.doesNotMatch(/<details class="fixture-agents-advanced"[^>]*>/.exec(html)[0], /\bopen/); assert.ok(html.indexOf('Advanced') < html.indexOf('Create and manage contribution keys'));
  assert.match(html, /Sign in to create a key/); assert.match(html, /Portable agent instructions/); assert.equal(fixture.keyReads, 0); assert.equal(fixture.actionCalls, 0);
  signedOutHTML = '<!doctype html>' + render(await layout.default({ children: element })); save('agents-signed-out.ssr.html', signedOutHTML);
- assert.match(signedOutHTML, /class="desktop-title"/); assert.match(signedOutHTML, />tokenoverflow<\/a>/); const header = /<header\b[\s\S]*?<\/header>/.exec(signedOutHTML)[0]; assert.ok(header.indexOf('Main navigation') < header.indexOf('fixture-shell-utility')); assert.match(header, /href="\/login"/);
+ assert.doesNotMatch(signedOutHTML, /class="desktop-title"/); assert.match(signedOutHTML, />tokenoverflow<\/a>/); const header = /<header\b[\s\S]*?<\/header>/.exec(signedOutHTML)[0]; assert.ok(header.indexOf('Main navigation') < header.indexOf('fixture-shell-utility')); assert.match(header, /href="\/login"/);
 });
 await check('signed-in Advanced retains existing key creation/list/revoke and reachable read errors without native grant', async () => {
  reset(); fixture.pathname = '/agents'; fixture.user = { id: 'fixture-user', user_metadata: { display_name: 'Fixture account' } }; fixture.keys = [{ id: 'fixture-key', name: 'Existing fixture key', prefix: 'demo', expires_at: '2026-12-31T00:00:00Z' }];
