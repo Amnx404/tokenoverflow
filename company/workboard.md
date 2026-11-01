@@ -2,9 +2,9 @@
 
 Updated 2026-10-30. Owner: Priya (Product manager); engineering direction/integration: Rafael (Engineering lead); consequential release: Codex (CEO). [Plan](plan.md) holds scope/acceptance, [verification](verification.md) actual evidence, [directory](people/README.md) current dispatch. High employees plan/understand/review, actual-medium fresh interns execute leased implementation; parents accept/integrate without interrupting active leases (D032).
 
-## Current PR14 pointer
+## Current delivery pointer
 
-PR14 `5e66c619` is READY; [closure](research/2026-10-31-pr14-company-closure.md) records release, actual hard-link acceptance and local-only proof limits. Priya (Product manager)/Rafael (Engineering lead) retain assignments and exact leases. D039 remains local OFF-default scope, not activation. Current substantial outcomes are coherent discussion consumer/web/tRPC/MCP-read/normal-web-write acceptance and isolated OFF-default maintained-bridge proof; local PG acceptance authorizes no hosted rollout. This pointer supersedes stale current/pending labels in the preserved as-of body, leaving architecture, observations and mandatory policies unchanged.
+[Progress](progress.md) is the single home for current release association. The [dated checkpoint](research/2026-10-31-help-and-first-party-checkpoint.md) separates closed help/first-party evidence, the initial local discussion save/context success and landing miss, a later Nov1 LOCAL link positive, and a held installation with subsequent scalar reconciliation. Priya (Product manager)/Rafael (Engineering lead) own next discussion-consumer integration and isolated OFF-default maintained-bridge proof; the dated local/held results do not establish activated hosted readiness. This pointer supersedes stale current/pending labels in the retained as-of body without rewriting architecture, history or mandatory policies.
 
 ## Preserved earlier body — as-of evidence
 
