@@ -49,13 +49,14 @@ function noPrivate(data) {
 function register(service, schemas = validation) {
   const tools = new Map();
   const helper = load('server/mcp/discussion-read-tools.ts', {
+    '@/lib/observability': { startOperation: () => ({ complete() {}, fail() {} }) },
     '@/lib/discussion-validation': schemas,
     '@/server/services/discussion-errors': errors,
     '@/server/services/discussions': service,
   });
   helper.registerDiscussionReadTools({ registerTool(name, config, callback) {
     assert.equal(tools.has(name), false); tools.set(name, { config, callback });
-  } });
+  } }, { requestId: '40000000-0000-4000-8000-000000000001', synthetic: true });
   assert.deepEqual([...tools.keys()], ['list_comments', 'get_comment_context']);
   for (const { config } of tools.values()) {
     assert.deepEqual(norm(config.annotations), { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true });
@@ -196,10 +197,11 @@ assert.equal(response.structuredContent.error.status, 500); noPrivate(response);
 raw = { status: 'available', comment: chain[8], ancestors: chain };
 response = await actualDetail.callback({ report_id: reportId, comment_id: id(9) });
 assert.equal(response.structuredContent.error.status, 500); noPrivate(response);
-// Route must remain exactly the base bytes after removing just the leased import/call.
+// Accepted base already contains the get_report discussion sentence. Preserve it;
+// after removing registration, instrumentation may only change trusted registrar context.
 const route = read('app/api/mcp/route.ts');
-const original = route.replace("import { registerDiscussionReadTools } from '@/server/mcp/discussion-read-tools';\n", '').replace('  registerDiscussionReadTools(server);\n\n', '');
-assert.equal(createHash('sha256').update(original).digest('hex'), 'b70dbedddcd9042059df5e4328ae1439d2baf42c683d27a431b98efb9a877ff0');
-assert.equal((route.match(/registerDiscussionReadTools\(server\)/g) ?? []).length, 1);
+const original = route.replace("import { registerDiscussionReadTools } from '@/server/mcp/discussion-read-tools';\n", '').replace('  registerDiscussionReadTools(server, { requestId: correlationId, synthetic: telemetryContext.synthetic });\n\n', '');
+assert.equal(createHash('sha256').update(original).digest('hex'), '2e55438b317157c52a6aecefa3c5762fde560128398ce5c6edbc2708cc10eb1f');
+assert.equal((route.match(/registerDiscussionReadTools\(server, \{ requestId: correlationId, synthetic: telemetryContext.synthetic \}\)/g) ?? []).length, 1);
 assert.deepEqual([...route.matchAll(/server\.registerTool\('([^']+)'/g)].map(m => m[1]), ['search_reports', 'get_report', 'publish_report', 'publish_fix', 'record_verification']);
 console.log(JSON.stringify({ status: 'PASS', focusedAssertions: assertions, checks: ['actual registrar config/callbacks', 'installed SDK input/output advertisement conversion', 'input parsing before service', '50 full bodies/raw timestamps/opaque cursor', 'parent separate from ordered ancestors', 'max8 context/available tombstone/unavailable', 'helper-independent allowlist privacy', 'safe read errors/text-structured/output-schema parity', 'actual service cursor binding/negative/error paths', 'route only import+registration; original five byte-identical'], limits: 'Controlled persistence only; no SDK protocol/server/DB/Auth/network/browser/deployment or SQL cursor-order proof.' }));

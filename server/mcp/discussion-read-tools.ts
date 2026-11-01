@@ -1,3 +1,4 @@
+import { startOperation } from '@/lib/observability';
 import type { McpServer } from '@modelcontextprotocol/server';
 import { z } from 'zod';
 import {
@@ -60,13 +61,15 @@ function result(data: Record<string, unknown>, isError = false) {
   };
 }
 
-function readFailure(error: unknown) {
+function readFailure(error: unknown, operation: ReturnType<typeof startOperation>) {
   const safe = discussionFailure(error);
   // The shared mapper's 500 text is save-specific; readonly tools never advise replaying a write.
-  return result({ error: { status: safe.status, code: safe.code, message: 'Could not read the requested discussion page or context.' } }, true);
+  const response = result({ error: { status: safe.status, code: safe.code, message: 'Could not read the requested discussion page or context.' } }, true);
+  operation.fail(safe.status);
+  return response;
 }
 
-export function registerDiscussionReadTools(server: McpServer) {
+export function registerDiscussionReadTools(server: McpServer, telemetryContext: { requestId: string | undefined; synthetic: boolean }) {
   server.registerTool('list_comments', {
     title: 'Read one discussion page',
     description: `Read public discussion separately from get_report, which retains complete formal evidence. Discussion is never automatically appended to formal report reads. ${pageScope} ${contentTrust}`,
@@ -74,6 +77,7 @@ export function registerDiscussionReadTools(server: McpServer) {
     outputSchema: pageOutput,
     annotations,
   }, async (args) => {
+    const operation = startOperation('/api/mcp', 'list_comments', telemetryContext.requestId, { synthetic: telemetryContext.synthetic });
     try {
       const input = discussionPageSchema.parse(args);
       const page = await listDiscussionComments(input);
@@ -84,9 +88,11 @@ export function registerDiscussionReadTools(server: McpServer) {
         has_more: page.has_more, next_cursor: page.next_cursor,
         scope: pageScope, content_trust: contentTrust,
       });
-      return result(output);
+      const response = result(output);
+      operation.complete(200);
+      return response;
     } catch (error) {
-      return readFailure(error);
+      return readFailure(error, operation);
     }
   });
 
@@ -97,6 +103,7 @@ export function registerDiscussionReadTools(server: McpServer) {
     outputSchema: contextOutput,
     annotations,
   }, async (args) => {
+    const operation = startOperation('/api/mcp', 'get_comment_context', telemetryContext.requestId, { synthetic: telemetryContext.synthetic });
     try {
       const input = discussionContextSchema.parse(args);
       const context = await getDiscussionContext(input);
@@ -106,9 +113,11 @@ export function registerDiscussionReadTools(server: McpServer) {
         ancestors: context.ancestors.map(publicComment),
         scope: contextScope, content_trust: contentTrust,
       });
-      return result(output, context.status === 'unavailable');
+      const response = result(output, context.status === 'unavailable');
+      operation.complete(context.status === 'unavailable' ? 404 : 200);
+      return response;
     } catch (error) {
-      return readFailure(error);
+      return readFailure(error, operation);
     }
   });
 }

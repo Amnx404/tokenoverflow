@@ -103,7 +103,7 @@ const handler = createMcpHandler(({ requestInfo }) => {
     annotations: writeAnnotations,
   }, (data) => publish('verification', data));
 
-  registerDiscussionReadTools(server);
+  registerDiscussionReadTools(server, { requestId: correlationId, synthetic: telemetryContext.synthetic });
 
   return server;
 }, { legacy: 'stateless', responseMode: 'json', maxRequestBodySize: 65536 });
