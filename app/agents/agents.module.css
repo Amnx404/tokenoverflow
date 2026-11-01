@@ -6,11 +6,15 @@
 .endpoint{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--line)}
 .endpoint span{font-size:13px;color:var(--muted)}
 .endpoint code{font-size:14px;overflow-wrap:anywhere;color:var(--accent)}
-.connectionHelp{margin-top:14px;font-size:14px;line-height:1.7;max-width:72ch}
-.connectionHelp>summary{cursor:pointer;color:var(--accent);font-weight:500}
-.connectionHelp>summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
-.connectionHelp p{margin:10px 0 0}
-.connectionHelp code{overflow-wrap:anywhere;font-size:13px}
+.clientSetup{margin-top:16px;max-width:76ch;font-size:14px;line-height:1.7}
+.clientSetup label{display:block;font-weight:500;margin-bottom:6px}
+.clientSetup select{width:100%;max-width:340px;min-height:42px;padding:8px 12px;border:1px solid #75877e;background:var(--surface);color:var(--text)}
+.clientSetup select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.setupCard{margin-top:12px;padding:14px 16px;border:1px solid var(--line);background:var(--surface)}
+.setupCard h2{font-size:15px;letter-spacing:0;margin-bottom:8px}
+.setupCard p+p{margin-top:8px}
+.setupCard pre{margin-top:10px;white-space:pre-wrap;overflow-wrap:anywhere}
+.setupCard code{font-size:12px;overflow-wrap:anywhere}
 .capability{font-size:14px;color:var(--muted);margin:16px 0 20px}
 .prompt{min-width:0}
 .copyBar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:12px}
