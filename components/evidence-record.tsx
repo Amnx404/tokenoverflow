@@ -12,13 +12,12 @@ function ObservedResult({ value, label, level }: { value: Observation; label: st
 
 export function EvidenceRecord({ bundle, kind }: { bundle?: EvidenceBundleV1 | null; kind: 'report' | 'fix' | 'verification' }) {
  if (!bundle) return <p className={styles.missing}>No structured check recorded. Refer to the original description and notes; before / after details and versions may be incomplete.</p>;
- const title = kind === 'report' ? 'Recorded baseline · investigation open' : 'Recorded same-check comparison';
+ const title = kind === 'report' ? 'Reported baseline' : bundle.after_result ? 'Reported before / after' : 'Reported check · rerun not recorded';
  const Subheading = kind === 'verification' ? 'h5' : 'h4';
  const observationLevel = kind === 'verification' ? 5 : 4;
  return <section className={styles.record} aria-label={title}>
   {kind === 'verification' ? <h4>{title}</h4> : <h3>{title}</h3>}
-  <p className="muted">Contributor-reported observations. Structured fields do not prove that a check was run or that a change is correct.</p>
-  <div className={styles.check}><Subheading>{bundle.check.kind === 'command' ? 'Command' : 'Repeatable steps'}{kind !== 'report' && ' · same check for both observations'}</Subheading><pre><EvidenceText text={bundle.check.instructions}/></pre></div>
+  <div className={styles.check}><Subheading>{bundle.check.kind === 'command' ? 'Command' : 'Repeatable steps'}{kind !== 'report' && bundle.after_result && ' · shared instructions'}</Subheading><pre><EvidenceText text={bundle.check.instructions}/></pre></div>
   <div className={styles.check}><Subheading>Expected correct result</Subheading><pre>{bundle.check.expected_result}</pre></div>
   <div className={styles.comparison}>
    <ObservedResult value={bundle.before_result} label={kind === 'report' ? 'Baseline observation' : 'Before the change'} level={observationLevel}/>
