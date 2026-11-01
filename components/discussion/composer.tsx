@@ -75,7 +75,7 @@ export function DiscussionComposer({ reportId, parentId, capability = 'read-only
   <textarea id={id} value={draft.body} readOnly={!available || !newTargetAvailable || frozen} aria-describedby={`${id}-notice`} onChange={event => { session.edit(target, event.currentTarget.value); refresh(); }}/>
   <p id={`${id}-notice`} className={styles.notice}>Comments are public. Remove secrets and private data. Up to 2,000 characters / 8 KiB.</p>
   {!available && <p>{capability === 'signed-out' ? (signInHref ? <a href={signInHref}>Sign in to comment</a> : 'Sign in to comment.') : 'Comment creation is unavailable here.'}</p>}
-  {capability === 'signed-out' && draft.status === 'unknown' && <p>Draft and request ID are local to this mounted panel. Signing in may reload it; retain the exact attempt before leaving.</p>}
+  {capability === 'signed-out' && draft.status === 'unknown' && <p>Keep the draft and request ID before signing in or reloading; they may be cleared.</p>}
   <div role="status" aria-live="polite">
    {draft.status === 'editing' && draft.localError && !draft.attempt && !draft.createAttempt && <p>{rejectionText(draft.localError)}</p>}
    {draft.status === 'pending' && <p>Sending this exact attempt…</p>}

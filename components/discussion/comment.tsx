@@ -5,6 +5,20 @@ import { EvidenceText } from '../evidence-text';
 import { commentHref, rejectionText, type DiscussionCommentView, type RedactComment, type RequestPage } from './types';
 import styles from './discussion.module.css';
 
+/** Display precision only. Preserve the exact supplied timestamp in metadata.
+ * Recognize validated UTC ISO dates; unfamiliar or invalid values stay raw. */
+function readableTimestamp(value: string): string {
+ const match = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d{1,9})?Z$/.exec(value);
+ if (!match) return value;
+ const [, year, month, day, hour, minute, second] = match;
+ const y = Number(year), m = Number(month), d = Number(day);
+ const leap = y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0);
+ const days = [31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+ if (y < 1 || m < 1 || m > 12 || d < 1 || d > days[m - 1] || Number(hour) > 23 || Number(minute) > 59 || Number(second) > 59) return value;
+ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+ return `${d} ${months[m - 1]} ${year}, ${hour}:${minute} UTC`;
+}
+
 export function DiscussionComment({ comment, children, onReply, onRedact, onRequestPage, onPresentationRedact, selectionIdentity }: { comment: DiscussionCommentView; children?: ReactNode; onReply?: (comment: DiscussionCommentView) => void; onRedact?: RedactComment; onRequestPage?: RequestPage; onPresentationRedact?: (comment: DiscussionCommentView) => void; selectionIdentity?: string }) {
  const branchId = useId();
  const [collapse, setCollapse] = useState({ selectionIdentity, collapsed: false });
@@ -24,10 +38,13 @@ export function DiscussionComment({ comment, children, onReply, onRedact, onRequ
  const countLabel = shown.replyCount === undefined ? '' : ` (${shown.replyCount} known)`;
  return <article id={`comment-${shown.id}`} className={styles.comment}>
   <div className={styles.content} data-indent={Math.min(shown.depth, 3)} data-depth={shown.depth}>
-   <header><strong>{shown.state === 'visible' ? (shown.authorName ?? 'Author unavailable') : shown.state === 'redacted' ? 'Removed comment' : 'Author unavailable'}</strong> · <time>{shown.createdAt}</time> · {href ? <a href={href}>Comment link</a> : <span>Permalink unavailable</span>}</header>
-   <p className={styles.context}>Comment <code>{shown.id}</code>{shown.parentId !== null && <> · Parent <code>{shown.parentId}</code></>}</p>
+   <header><strong>{shown.state === 'visible' ? (shown.authorName ?? 'Author unavailable') : shown.state === 'redacted' ? 'Removed comment' : 'Author unavailable'}</strong> · <time dateTime={shown.createdAt}>{readableTimestamp(shown.createdAt)}</time> · {href ? <a href={href}>Comment link</a> : <span>Permalink unavailable</span>}</header>
+   <details className={styles.context}><summary>{shown.parentId === null ? 'Details' : 'Reply details'}</summary>
+    <p>Created <time dateTime={shown.createdAt}>{shown.createdAt}</time></p>
+    <p>Comment <code>{shown.id}</code>{shown.parentId !== null && <> · Parent <code>{shown.parentId}</code></>}</p>
+   </details>
    {shown.state === 'visible' ? <pre className={styles.body}><EvidenceText text={shown.body}/></pre> : <p>{shown.state === 'redacted' ? 'Comment removed. Replies and this ID are retained.' : 'Parent context unavailable.'}</p>}
-   <p className={styles.context}>{shown.replyCount === undefined ? 'Replies: total not supplied.' : `${shown.replyCount} known ${shown.replyCount === 1 ? 'reply' : 'replies'}`}</p>
+   <p className={styles.context}>{shown.replyCount === undefined ? 'Reply total unknown.' : `${shown.replyCount} known ${shown.replyCount === 1 ? 'reply' : 'replies'}`}</p>
    <div className={styles.controls}>
     {onReply && replyable && <button type="button" onClick={() => onReply(shown)}>Reply</button>}
     {shown.depth === 8 && <span>Reply depth limit reached.</span>}
@@ -55,6 +72,6 @@ export function DiscussionComment({ comment, children, onReply, onRedact, onRequ
    </div>}
    <p role="status" aria-live="polite">{notice}</p>
   </div>
-  <div id={branchId} hidden={hidden}>{children ?? (replyContext && shown.depth < 8 ? <div className={styles.notice}><p>Replies are not loaded in this view.</p>{onRequestPage ? <button type="button" onClick={() => onRequestPage({ reportId: shown.reportId, parentId: shown.id, cursor: null })}>Load replies</button> : <p>Reply loading unavailable in this view.</p>}</div> : null)}</div>
+  <div id={branchId} hidden={hidden}>{children ?? (replyContext && shown.depth < 8 ? <div className={styles.notice}><p>Replies not loaded.</p>{onRequestPage ? <button type="button" onClick={() => onRequestPage({ reportId: shown.reportId, parentId: shown.id, cursor: null })}>Load replies</button> : <p>Reply loading unavailable.</p>}</div> : null)}</div>
  </article>;
 }

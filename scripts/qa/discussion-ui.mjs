@@ -46,8 +46,10 @@ const ctx = { reportId: 'report-one', parentId: null };
 const comment = (id = 'c1', extra = {}) => ({ id, reportId: ctx.reportId, parentId: null, depth: 0, authorName: 'Same display name', createdAt: '2026-10-31T01:00:00Z', replyCount: 0, canRedact: false, state: 'visible', body: 'Question or partial attempt', ...extra });
 const page = (children = [], extra = {}) => ({ ...ctx, ancestors: [], children, hasMore: false, ...extra });
 const checks = [];
-function check(name, run) { run(); checks.push(name); }
-async function asyncCheck(name, run) { await run(); checks.push(name); }
+const compactOnly = process.argv.includes('--compact-metadata');
+const compactCheck = 'compact UTC metadata, exact native details and concise page-local copy preserve handlers';
+function check(name, run) { if (compactOnly) return; run(); checks.push(name); }
+async function asyncCheck(name, run) { if (compactOnly && name !== compactCheck) return; await run(); checks.push(name); }
 const text = node => node == null || typeof node === 'boolean' ? '' : typeof node === 'string' || typeof node === 'number' ? String(node) : Array.isArray(node) ? node.map(text).join('') : text(node.props?.children);
 function all(node, predicate, output = []) {
  if (Array.isArray(node)) { node.forEach(item => all(item, predicate, output)); return output; }
@@ -102,7 +104,7 @@ check('actual SSR unknown/redacted parent context, selected unloaded target and 
 check('actual SSR bounded chronological children, partial continuation and no silent reparenting', () => {
  const html = render(DiscussionThread, { page: page([comment('first'), comment('second', { createdAt: '2026-10-31T02:00:00Z' })], { hasMore: true, nextCursor: 'opaque' }) });
  assert.ok(html.indexOf('comment-first') < html.indexOf('comment-second'));
- assert.match(html, /This is not all of the discussion/); assert.match(html, /Continuation unavailable/);
+ assert.match(html, /More comments available/); assert.match(html, /Continuation unavailable/);
  assert.equal(validPage(page(Array.from({ length: 21 }, (_, index) => comment(`c${index}`)))), false);
  assert.equal(validPage(page(Array.from({ length: 50 }, (_, index) => comment(`c${index}`)), { limit: 50 })), true);
  assert.equal(validPage(page([], { limit: 51 })), false);
@@ -168,7 +170,7 @@ check('same display names confer no ownership; create unavailability does not re
 check('unknown reply totals do not become zero; tombstones show neutral author and retain first-page read access', () => {
  const unknown = comment('unknown'); delete unknown.replyCount;
  const html = render(DiscussionComment, { comment: unknown, onRequestPage() {} });
- assert.match(html, /total not supplied/); assert.match(html, /Load replies/); assert.doesNotMatch(html, /0 known replies/);
+ assert.match(html, /Reply total unknown/); assert.match(html, /Load replies/); assert.doesNotMatch(html, /0 known replies/);
  const removed = { ...unknown, state: 'redacted', authorName: 'stale private display name' }; delete removed.body;
  const redacted = render(DiscussionComment, { comment: removed, onRequestPage() {} });
  assert.match(redacted, /Removed comment/); assert.match(redacted, /Load replies/); assert.doesNotMatch(redacted, /stale private display name/);
@@ -268,6 +270,121 @@ await asyncCheck('actual redaction handlers with mocked hooks preserve authorita
  const html = renderToStaticMarkup(tree); assert.match(html, /Comment removed/); assert.match(html, /descendant stays/);
  assert.match(html, /id="comment-own"/); assert.doesNotMatch(html, /Question or partial attempt|>Reply<\/button>/);
 });
-console.log(JSON.stringify({ status: 'PASS', checks, sources,
+if (compactOnly) await asyncCheck(compactCheck, async () => {
+ const output = process.env.DISCUSSION_UI_EVIDENCE_DIR, baseline = process.env.DISCUSSION_UI_BASELINE_DIR;
+ assert.ok(output && baseline, 'Set private evidence and PR20 baseline directories for this focused mode');
+ fs.mkdirSync(output, { recursive: true });
+ const save = (name, html) => fs.writeFileSync(path.join(output, `${name}.static.html`), html);
+ const exactTime = '2026-10-31T22:18:44.123456Z';
+ const rootComment = comment('root-id', { createdAt: exactTime, replyCount: undefined, permalink: '/reports/report-one?comment=root-id#comment-root-id', body: '<raw> partial clue\nhttps://example.test/source' });
+ const rootHtml = render(DiscussionComment, { comment: rootComment, onRequestPage() {} });
+ save('compact-root', rootHtml);
+ assert.match(rootHtml, /31 Oct 2026, 22:18 UTC/); assert.ok(rootHtml.includes(`dateTime="${exactTime}"`));
+ assert.match(rootHtml, /<details class="fixture-context"><summary>Details<\/summary>/); assert.doesNotMatch(rootHtml, /<details[^>]*\bopen/);
+ assert.ok(rootHtml.includes(`<p>Created <time dateTime="${exactTime}">${exactTime}</time></p>`));
+ assert.match(rootHtml, /Comment <code>root-id<\/code>/); assert.doesNotMatch(rootHtml, /Parent <code>/);
+ assert.match(rootHtml, /id="comment-root-id"/); assert.match(rootHtml, /href="\/reports\/report-one\?comment=root-id#comment-root-id"/);
+ assert.match(rootHtml, /&lt;raw&gt; partial clue/); assert.match(rootHtml, /href="https:\/\/example.test\/source"/);
+ assert.match(rootHtml, /Reply total unknown\./); assert.match(rootHtml, /Replies not loaded\./); assert.doesNotMatch(rootHtml, /0 known replies/);
+ // The formatter does no timezone conversion, locale formatting or clock work.
+ const oldTZ = process.env.TZ;
+ try {
+  process.env.TZ = 'Pacific/Honolulu'; const west = render(DiscussionComment, { comment: rootComment, onRequestPage() {} });
+  process.env.TZ = 'Asia/Tokyo'; const east = render(DiscussionComment, { comment: rootComment, onRequestPage() {} });
+  assert.equal(west, east); assert.equal(east, rootHtml);
+ } finally { if (oldTZ === undefined) delete process.env.TZ; else process.env.TZ = oldTZ; }
+ const cases = [
+  ['2024-02-29T00:01:00.000001Z', '29 Feb 2024, 00:01 UTC'],
+  ['2026-02-29T22:18:00Z', '2026-02-29T22:18:00Z'],
+  ['2026-04-31T22:18:00Z', '2026-04-31T22:18:00Z'],
+  ['2026-10-31T24:18:00Z', '2026-10-31T24:18:00Z'],
+  ['2026-10-31T22:60:00Z', '2026-10-31T22:60:00Z'],
+  ['2026-10-31T22:18:60Z', '2026-10-31T22:18:60Z'],
+  ['2026-10-31T23:18:44.123456+01:00', '2026-10-31T23:18:44.123456+01:00'],
+  ['time not supplied', 'time not supplied'],
+ ];
+ const drawComment = hooks('components/discussion/comment.tsx', 'DiscussionComment');
+ for (const [raw, expected] of cases) {
+  const tree = drawComment({ comment: comment('date-case', { createdAt: raw }) });
+  const primary = all(tree, node => node.type === 'time')[0];
+  assert.equal(text(primary), expected); assert.equal(primary.props.dateTime, raw);
+ }
+ const reply = comment('reply-id', { parentId: 'root-id', depth: 1, createdAt: exactTime, replyCount: undefined, permalink: '/reports/report-one#comment-reply-id' });
+ const replyHtml = render(DiscussionComment, { comment: reply }); save('compact-reply', replyHtml);
+ assert.match(replyHtml, /<summary>Reply details<\/summary>/); assert.match(replyHtml, /Comment <code>reply-id<\/code> · Parent <code>root-id<\/code>/);
+ assert.match(replyHtml, /href="\/reports\/report-one#comment-reply-id"/); assert.doesNotMatch(replyHtml, /href="[^\"]*comment-root-id/);
+ assert.match(replyHtml, /Reply loading unavailable\./);
+ const wrongLink = render(DiscussionComment, { comment: { ...reply, permalink: '/reports/other#comment-reply-id' } });
+ assert.match(wrongLink, /Permalink unavailable/); assert.doesNotMatch(wrongLink, /Comment link<\/a>/);
+ for (const state of ['redacted', 'unavailable']) {
+  const item = { ...reply, state, authorName: 'stale name must not appear' }; delete item.body;
+  const html = render(DiscussionComment, { comment: item }); save(`compact-${state}`, html);
+  assert.doesNotMatch(html, /stale name must not appear|Question or partial attempt/);
+  assert.match(html, state === 'redacted' ? /Removed comment.*Comment removed/ : /Author unavailable.*Parent context unavailable/);
+  assert.match(html, /Reply details/); assert.match(html, /Reply total unknown/);
+ }
+ const partial = render(DiscussionThread, { page: page([rootComment], { hasMore: true, nextCursor: 'opaque-next' }), onRequestPage() {} });
+ save('compact-partial-page', partial);
+ assert.match(partial, /1 comment in this list\./); assert.match(partial, /More comments available\./); assert.match(partial, /Load more comments/);
+ assert.match(partial, /Drafts stay separate for each comment or reply on this page\. Copy yours before leaving or reloading\./);
+ const replyPage = render(DiscussionThread, { page: page([reply], { parentId: 'root-id', ancestors: [rootComment], hasMore: true, nextCursor: 'opaque-replies' }), onRequestPage() {} });
+ save('compact-reply-page', replyPage);
+ assert.match(replyPage, /1 reply in this list\./); assert.match(replyPage, /More replies available\./);
+ const empty = render(DiscussionThread, { page: page() }); assert.match(empty, /0 comments in this list\./); assert.doesNotMatch(empty, /More comments available/);
+ const plural = render(DiscussionThread, { page: page([rootComment, comment('second')]) }); assert.match(plural, /2 comments in this list\./);
+ const pluralReplies = render(DiscussionThread, { page: page([reply, { ...reply, id: 'second-reply' }], { parentId: 'root-id', ancestors: [rootComment] }) }); assert.match(pluralReplies, /2 replies in this list\./);
+ const missing = render(DiscussionThread, { page: page(), selectedContext: { state: 'not-loaded', reportId: ctx.reportId, id: reply.id } });
+ assert.match(missing, /Selected comment is not loaded/); assert.match(missing, /saved ID alone does not make its text readable/);
+ const selected = render(DiscussionThread, { page: page(), selectedContext: { state: 'loaded', target: reply, ancestors: [rootComment] } });
+ save('compact-selected-context', selected); assert.match(selected, /Selected comment context is supplied/); assert.match(selected, /id="comment-reply-id"/);
+ // Actual reply/collapse handlers still retain exact target, focus and children.
+ let requested, replied, focus = 0;
+ const props = { comment: rootComment, onReply: value => { replied = value; }, onRequestPage: value => { requested = value; } };
+ let tree = drawComment(props);
+ button(tree, 'Reply').props.onClick(); assert.equal(replied, rootComment);
+ button(tree, 'Load replies').props.onClick(); assert.equal(requested.reportId, ctx.reportId); assert.equal(requested.parentId, rootComment.id); assert.equal(requested.cursor, null);
+ button(tree, 'Collapse replies').props.onClick({ currentTarget: { focus() { focus++; } } });
+ tree = drawComment(props); assert.equal(focus, 1); assert.equal(button(tree, 'Show replies').props['aria-expanded'], false);
+ assert.ok(all(tree, node => node.props?.hidden === true).length);
+ // Only the one signed-out+unknown lifecycle sentence changes in Composer.
+ const recoveryOld = 'Draft and request ID are local to this mounted panel. Signing in may reload it; retain the exact attempt before leaving.';
+ const recoveryNew = 'Keep the draft and request ID before signing in or reloading; they may be cleared.';
+ const composerSource = fs.readFileSync(new URL('components/discussion/composer.tsx', root), 'utf8');
+ const composerBefore = fs.readFileSync(path.join(baseline, 'composer.tsx'), 'utf8');
+ assert.equal(composerSource.split(recoveryNew).length - 1, 1); assert.equal(composerSource.replace(recoveryNew, recoveryOld), composerBefore);
+ const drawComposer = hooks('components/discussion/composer.tsx', 'DiscussionComposer');
+ let calls = 0; const onCreate = async () => { calls++; return { status: 'unknown' }; };
+ const composerProps = { ...ctx, capability: 'can-comment', onCreate };
+ let form = drawComposer(composerProps); all(form, node => node.type === 'textarea')[0].props.onChange({ currentTarget: { value: 'raw draft\r\n' } });
+ await drawComposer(composerProps).props.onSubmit({ preventDefault() {} });
+ form = drawComposer({ ...composerProps, capability: 'signed-out' });
+ assert.equal(calls, 1); assert.equal(all(form, node => node.type === 'textarea')[0].props.value, 'raw draft\r\n');
+ assert.ok(all(form, node => node.type === 'textarea')[0].props.readOnly); assert.ok(button(form, 'Retry exact attempt').props.disabled);
+ assert.match(text(form), /Keep the draft and request ID before signing in or reloading; they may be cleared/);
+ assert.match(text(form), /Save outcome unknown/); assert.match(text(form), /Request ID:/); save('compact-hidden-recovery', renderToStaticMarkup(form));
+ // Source boundary: every existing event/action/key/state guard attribute and
+ // all non-return setup statements match the pinned PR20 before source exactly.
+ const preserved = {};
+ for (const name of ['comment.tsx', 'thread.tsx']) {
+  const beforeText = fs.readFileSync(path.join(baseline, name), 'utf8');
+  const afterText = fs.readFileSync(new URL(`components/discussion/${name}`, root), 'utf8');
+  function contract(source) {
+   const parsed = ts.createSourceFile(name, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX), attrs = [], setup = {};
+   function visit(node) {
+    if (ts.isJsxAttribute(node) && (/^on[A-Z]/.test(node.name.text) || ['key', 'disabled', 'readOnly', 'hidden', 'aria-expanded', 'aria-controls'].includes(node.name.text))) attrs.push(node.getText(parsed));
+    ts.forEachChild(node, visit);
+   }
+   visit(parsed);
+   for (const fn of parsed.statements.filter(ts.isFunctionDeclaration)) {
+    if (fn.name.text === 'readableTimestamp') continue;
+    setup[fn.name.text] = fn.body.statements.filter(statement => !ts.isReturnStatement(statement)).map(statement => statement.getText(parsed));
+   }
+   return { attrs, setup };
+  }
+  assert.deepEqual(contract(afterText), contract(beforeText)); preserved[name] = 'event/action/key/guard attributes and non-return setup exact';
+ }
+ fs.writeFileSync(path.join(output, 'compact-observations.json'), JSON.stringify({ recognized: exactTime, primary: '31 Oct 2026, 22:18 UTC', fullPrecisionPreserved: true, closedNativeDetails: true, timezoneOutputsEqual: true, timestampCases: cases, recognitionLimit: 'Validated canonical UTC Z only. Offset/invalid/unrecognized strings retain raw display; no date normalization or precision inference.', composerInverseLiteralRestoresBefore: true, preserved }, null, 2) + '\n');
+});
+console.log(JSON.stringify({ status: 'PASS', mode: compactOnly ? 'compact-metadata' : 'presentation', checks, sources,
  limits: 'Actual component React SSR plus actual exported local state/handler units with explicit mocked hooks/focus. CSS stubbed; structure checked, no computed layout. No DOM, hydration, real React update reconciliation, IAB/browser, transport, authorization, backend idempotency, DB or deployment proof. Presentation remains unwired.',
 }, null, 2));
