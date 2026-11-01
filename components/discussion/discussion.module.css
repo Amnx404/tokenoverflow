@@ -1,0 +1,17 @@
+.thread{border-top:1px solid var(--line);padding-top:24px;font-size:14px}
+.thread h2{font-size:18px}.thread h3{font-size:15px;margin-top:18px}
+.list{list-style:none;margin:0;padding:0}.comment{min-width:0;margin:0;padding:0}
+.content{border-top:1px solid var(--line);padding:16px 0;overflow-wrap:anywhere}
+/* Only the content moves; descendant lists remain at the root width. Total
+   visual indentation is capped, rather than added at every ancestor. */
+.content[data-indent="1"]{margin-inline-start:1rem}.content[data-indent="2"]{margin-inline-start:2rem}.content[data-indent="3"]{margin-inline-start:3rem}
+.content header,.context,.notice{font-size:12px;color:var(--muted)}
+.body{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.8;margin:12px 0}
+.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px}
+.thread button,.composer button{background:var(--raised);border:1px solid var(--line);padding:6px 10px;font-size:13px;cursor:pointer}
+.thread button:focus-visible,.composer button:focus-visible,.composer textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.thread button:disabled,.composer button:disabled{cursor:default;opacity:.6}
+.composer{display:flex;flex-direction:column;align-items:flex-start;gap:10px;border-top:1px solid var(--line);padding:18px 0}
+.composer label{font-size:14px}.composer textarea{width:100%;min-height:110px;resize:vertical;padding:10px;background:var(--surface);color:var(--text);border:1px solid var(--line);font-family:inherit;font-size:14px;line-height:1.7}
+.composer textarea[readonly]{opacity:.8}.confirm,.continuation{margin:12px 0;padding:12px;border:1px solid var(--line)}
+.confirm button{margin:10px 10px 0 0}.notice{margin:12px 0}

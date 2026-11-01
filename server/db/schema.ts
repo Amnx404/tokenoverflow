@@ -1,4 +1,4 @@
-import { boolean, integer, jsonb, pgTable, pgView, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import { customType, boolean, integer, jsonb, pgTable, pgView, text, timestamp, uuid } from 'drizzle-orm/pg-core';
 import type { EvidenceBundleV1 } from '@/lib/types';
 
 // Runtime mappings for the existing Supabase schema. supabase/schema.sql remains
@@ -29,3 +29,11 @@ export const reportFeed = pgView('report_feed', {
   is_example: boolean().notNull(), created_at: timestamp({withTimezone:true,mode:'string'}).notNull(),
   fix_count: integer().notNull(), worked_count: integer().notNull(), failed_count: integer().notNull(),
 }).existing();
+
+// Additive mapping only; discussion SQL owns its restrictive grants/immutable adjacency.
+const discussionFingerprint=customType<{data:Buffer}>({dataType(){return 'bytea';}});
+export const discussionComments=pgTable('discussion_comments',{
+ id:uuid().primaryKey(),report_id:uuid().notNull(),parent_id:uuid(),root_id:uuid().notNull(),depth:integer().notNull(),
+ author_id:uuid(),author_name:text(),body:text(),created_at:timestamp({withTimezone:true,mode:'string'}).notNull(),redacted_at:timestamp({withTimezone:true,mode:'string'}),
+ create_request_id:uuid().notNull(),create_fingerprint:discussionFingerprint().notNull(),
+});
