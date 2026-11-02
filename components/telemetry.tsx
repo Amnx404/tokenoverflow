@@ -10,6 +10,7 @@ function TelemetryObserver() {
  // Search/filter/example/page transitions commonly keep the same pathname.
  const search = useSearchParams();
  useEffect(() => {
+  if (pathname === null) return;
   captureTelemetryPage(pathname);
  }, [pathname, search]);
  useEffect(() => {
