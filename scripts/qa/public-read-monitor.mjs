@@ -62,6 +62,11 @@ export function searchFlags(result) {
     count: Number.isInteger(d?.count) ? d.count : null, returned: Array.isArray(d?.reports) ? d.reports.length : null };
 }
 const FAILURE_CODES = new Set(['BODY_LIMIT','REQUEST_BOUNDARY','REQUEST_BUDGET','FETCH_OR_BODY_FAILURE','JSON_FAILURE','TARGET_ABSENT','SERVICE_UNAVAILABLE','REST_METADATA','HEALTH_DEGRADED','SURFACE_FAILURE','SEARCH_FAILURE','TRANSPORT_FAILURE','PROTOCOL_FAILURE','CLOSE_FAILURE','LISTENER_STATUS_UNKNOWN']);
+// Settle a snapshot of already-owned bounded fetch work; never dispatch or add a timer.
+export async function settleBeforeClose(inFlight, close) {
+  try { await Promise.allSettled([...inFlight]); }
+  finally { await close(); }
+}
 export function terminalClassification(rows, protocolErrors, closed) {
   const unknown = failure_code => ({ result: 'UNKNOWN', failure_code });
   if (!closed) return unknown('CLOSE_FAILURE');
@@ -202,7 +207,9 @@ async function run(binding, output, nativeFetch, { Client, StreamableHTTPClientT
     receipt.logical_surfaces_pass = true; // Separate from terminal transport/package classification.
   } catch (e) { receipt.failure_code = FAILURE_CODES.has(e?.safeCode) ? e.safeCode : 'UNEXPECTED_FAILURE'; }
   finally {
-    if (client) { try { await client.close(); receipt.client_closed = true; } catch { receipt.failure_code = 'CLOSE_FAILURE'; receipt.result = 'UNKNOWN'; } }
+    await settleBeforeClose(inFlight, async () => {
+      if (client) { try { await client.close(); receipt.client_closed = true; } catch { receipt.failure_code = 'CLOSE_FAILURE'; receipt.result = 'UNKNOWN'; } }
+    });
     // Await only existing owned bounded fetch/save work, never another request or settling timer.
     await Promise.allSettled([...inFlight]);
     await saveChain;

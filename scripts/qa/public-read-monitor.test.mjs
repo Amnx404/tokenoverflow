@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 const originalFetch = globalThis.fetch;
 globalThis.fetch = () => { throw new Error('OFFLINE_NETWORK_FORBIDDEN'); };
-const { correlation, elapsed, healthFlags, detailFlags, searchFlags, privateKeysAbsent, requestPurpose, boundedBytes, terminalClassification, main } = await import('./public-read-monitor.mjs');
+const { correlation, elapsed, healthFlags, detailFlags, searchFlags, privateKeysAbsent, requestPurpose, boundedBytes, terminalClassification, settleBeforeClose, main } = await import('./public-read-monitor.mjs');
 test.after(() => { globalThis.fetch = originalFetch; });
 const id = 'c0ce79c7-347d-4675-9812-ca1d5472a079';
 const stamp = '2026-10-31 10:20:30.123456+00';
@@ -58,4 +58,39 @@ test('terminal package permits absent listener but preserves attempted-null and 
   assert.equal(terminalClassification(rows, 1, true).failure_code, 'PROTOCOL_FAILURE');
   assert.equal(terminalClassification(rows, 0, false).failure_code, 'CLOSE_FAILURE');
   assert.equal(terminalClassification([...rows, { purpose: 'listening', status: 405, no_store: true, failure_code: 'FETCH_OR_BODY_FAILURE' }], 0, true).failure_code, 'TRANSPORT_FAILURE');
+});
+
+test('cleanup settles existing response before close without a new dispatch; failures remain UNKNOWN', async () => {
+  const required = ['health','detail','initialize','notification','search'].map(purpose => ({ purpose, status: purpose === 'notification' ? 202 : 200, no_store: true }));
+  const pendingFetch = () => {
+    let resolve, reject, settled = false, closes = 0, dispatches = 0;
+    const row = { purpose: 'listening', status: null, no_store: null, failure_code: null };
+    const dispatch = () => { dispatches += 1; return new Promise((yes, no) => { resolve = yes; reject = no; }); };
+    const work = dispatch();
+    return { row, work, get dispatches() { return dispatches; }, get closes() { return closes; },
+      respond() { settled = true; row.status = 405; row.no_store = true; resolve(); },
+      fail() { settled = true; row.failure_code = 'FETCH_OR_BODY_FAILURE'; reject(new Error('FIXTURE_FAILURE')); },
+      async close() { closes += 1; if (!settled) { settled = true; row.failure_code = 'FETCH_OR_BODY_FAILURE'; reject(new Error('FIXTURE_CLOSE_ABORT')); } },
+    };
+  };
+  // Deterministic negative control: closing first aborts the still-owned deferred fetch.
+  const old = pendingFetch();
+  await old.close(); await Promise.allSettled([old.work]);
+  assert.equal(terminalClassification([...required, old.row], 0, true).result, 'UNKNOWN');
+  assert.equal(old.row.status, null); assert.equal(old.closes, 1); assert.equal(old.dispatches, 1);
+  // The actual cleanup helper waits for this existing work, with no timer or extra fetch.
+  const current = pendingFetch();
+  const cleanup = settleBeforeClose(new Set([current.work]), () => current.close());
+  assert.equal(current.closes, 0);
+  current.respond(); await cleanup;
+  assert.equal(current.closes, 1); assert.equal(current.dispatches, 1);
+  assert.equal(terminalClassification([...required, current.row], 0, true).result, 'PASS');
+  const rejected = pendingFetch();
+  const failedCleanup = settleBeforeClose(new Set([rejected.work]), () => rejected.close());
+  rejected.fail(); await failedCleanup;
+  assert.equal(rejected.closes, 1); assert.equal(rejected.dispatches, 1);
+  assert.equal(terminalClassification([...required, rejected.row], 0, true).result, 'UNKNOWN');
+  let closeCalls = 0;
+  await assert.rejects(settleBeforeClose(new Set(), async () => { closeCalls += 1; throw new Error('FIXTURE_CLOSE_FAILURE'); }));
+  assert.equal(closeCalls, 1); assert.equal(terminalClassification(required, 0, false).result, 'UNKNOWN');
 });
