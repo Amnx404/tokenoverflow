@@ -1,0 +1,219 @@
+{
+  "version": 1,
+  "status": "offline_proposal_requires_owner_review",
+  "contract": {
+    "target": {
+      "project_id": 700205,
+      "host": "us.posthog.com",
+      "environment": "production"
+    },
+    "events": [
+      "to_operation_completed",
+      "to_auth_outcome",
+      "to_browser_error",
+      "to_server_render_error"
+    ],
+    "dimensions": [
+      "event",
+      "release",
+      "traffic",
+      "route",
+      "operation",
+      "span_scope",
+      "http_status",
+      "outcome",
+      "error_code",
+      "auth_status"
+    ],
+    "measures": [
+      "observations",
+      "measured_count",
+      "p50_ms",
+      "p95_ms",
+      "first_observed_at",
+      "last_observed_at"
+    ],
+    "window": {
+      "minutes": 50,
+      "bounds": "start_inclusive_end_exclusive",
+      "end_format": "YYYY-MM-DDTHH:mm:ssZ",
+      "end_required": true,
+      "live_clock_freshness_checked": false
+    },
+    "limit": 200,
+    "filters": [
+      "timestamp",
+      "environment",
+      "event"
+    ],
+    "duration": {
+      "measured_events": [
+        "to_operation_completed",
+        "to_auth_outcome"
+      ],
+      "error_events_unmeasured": true,
+      "missing_is_null": true,
+      "unit": "milliseconds",
+      "meaning": "internal_span_not_full_response",
+      "source_bounds_ms": [
+        0,
+        300000
+      ],
+      "integer_required": true
+    },
+    "allowlists": {
+      "routes": [
+        "/api/health",
+        "/api/v1/reports",
+        "/api/v1/reports/[id]",
+        "/api/v1/reports/[id]/comments",
+        "/api/v1/reports/[id]/comments/[commentId]",
+        "/api/v1/fixes",
+        "/api/v1/verifications",
+        "/api/mcp",
+        "/api/trpc",
+        "/",
+        "/reports/[id]",
+        "/reports/new",
+        "/agents",
+        "/how-it-works",
+        "/login",
+        "/signup",
+        "/other",
+        "/auth/confirm",
+        "/auth/callback"
+      ],
+      "operations": [
+        "health",
+        "search_reports",
+        "get_report",
+        "list_comments",
+        "get_comment_context",
+        "publish_report",
+        "publish_fix",
+        "record_verification",
+        "mcp_transport",
+        "list_agent_keys",
+        "create_agent_key",
+        "revoke_agent_key",
+        "rpc",
+        "email_signup",
+        "email_signin",
+        "email_confirm",
+        "auth_callback",
+        "signout"
+      ],
+      "outcomes": [
+        "success",
+        "expected_rejection",
+        "failure"
+      ],
+      "auth_statuses": [
+        "neutral_confirmation_prompt",
+        "server_session_verified",
+        "session_returned",
+        "signout_returned",
+        "input_rejected",
+        "provider_rejected",
+        "rate_limited",
+        "unavailable",
+        "session_unverified"
+      ],
+      "error_codes": [
+        "INVALID_INPUT",
+        "UNAUTHORIZED",
+        "FORBIDDEN",
+        "NOT_FOUND",
+        "CONFLICT",
+        "RATE_LIMITED",
+        "REQUEST_TOO_LARGE",
+        "UNSUPPORTED_MEDIA_TYPE",
+        "METHOD_NOT_ALLOWED",
+        "DEPENDENCY_UNAVAILABLE",
+        "CONFIGURATION_MISSING",
+        "INTERNAL_ERROR",
+        "TRANSPORT_ERROR",
+        "UNHANDLED_ERROR",
+        "UNHANDLED_REJECTION"
+      ],
+      "traffic": [
+        "synthetic",
+        "unclassified"
+      ],
+      "scopes": [
+        "operation",
+        "transport"
+      ]
+    },
+    "bucketing": {
+      "unknown_label": "other",
+      "missing_label": null,
+      "release_pattern": "^[a-f0-9]{7,40}$",
+      "release_fallback": "unknown",
+      "status_event": "to_operation_completed",
+      "status_bounds": [
+        100,
+        599
+      ],
+      "status_integer": true
+    }
+  },
+  "provenance": {
+    "kind": "new_offline_proposal_not_recovered_history",
+    "history": "Original accepted temporary aggregate is absent. Nov5 monitoring stopped at zero analytics queries. Withdrawn reconstructed replacement is not an execution source. This recipe is newly authored and requires owner review and separate query authority.",
+    "source_scope": "Local older source hashes are recorded separately. Existing immutable040e Git objects were actually read under explicit read-only authority and include fixed discussion routes /api/v1/reports/[id]/comments and /api/v1/reports/[id]/comments/[commentId], and operations list_comments/get_comment_context. This is source-object binding, not deployed runtime/ingestion verification or an overlay comparison.",
+    "sources": [
+      {
+        "path": "lib/telemetry-server.ts",
+        "sha256": "f18c6e423887c4e708c55ffd3ed69af0453adb86f464eeb8098b3af8ffdec715"
+      },
+      {
+        "path": "lib/observability.ts",
+        "sha256": "2eb9a47115034746261283070b658022bb28ce73f3cfe3396a91bb9231f14f3b"
+      },
+      {
+        "path": "lib/telemetry-shared.ts",
+        "sha256": "b11e5b25c5d54d2ca71334e3c8ed5dd34f75b76ebd4c7a75cab6fc7901a0e611"
+      },
+      {
+        "path": "instrumentation.ts",
+        "sha256": "82c64ba7b8bcca1e8dd928452ed16cd4b0576f401fdcb6891c80692d2e7f7fbb"
+      },
+      {
+        "path": "scripts/observability/posthog-queries.sql",
+        "sha256": "1fc162eb67e9ecd0713f347e40ec937e637474d2f197ac93cdb30045135abc37"
+      }
+    ],
+    "syntax_status": "New proposed HogQL uses toFloatOrNull(toString(...)), conditional fixed-label bucketing, nullable bounded integer candidates, measured_count and explicit UTC toDateTime(..., UTC). These functions/timezone overloads and nullable aggregates require future authoritative syntax validation and separate live-query authority; no SQL execution or live validity claimed.",
+    "immutable_sources": [
+      {
+        "commit": "040e5d446fdda1447e9eb958183245b0b6ae9bf4",
+        "path": "lib/telemetry-server.ts",
+        "sha256": "3e00e28cbcb81e5c96f7740671e1b21057fe08f602727fb41471599f7e56b75a"
+      },
+      {
+        "commit": "040e5d446fdda1447e9eb958183245b0b6ae9bf4",
+        "path": "lib/observability.ts",
+        "sha256": "0d63f6e8f0ec1d7797d4e5fd338d1da0c2aef7c3acb3a81e902b685082c437cb"
+      },
+      {
+        "commit": "040e5d446fdda1447e9eb958183245b0b6ae9bf4",
+        "path": "lib/telemetry-shared.ts",
+        "sha256": "b11e5b25c5d54d2ca71334e3c8ed5dd34f75b76ebd4c7a75cab6fc7901a0e611"
+      }
+    ]
+  },
+  "limitations": [
+    "Captured observations only; no people, signup, adoption, conversion, rate, trend, continuity, causal release attribution or combined-window quantiles.",
+    "No release/traffic filters: synthetic QA and unclassified remain visible separately. Health is synthetic by source convention; unclassified does not establish organic usage.",
+    "Logical operation spans and MCP transport envelopes are separate; SDK pre-callback failures may have transport only. Expected4xx is distinct from service5xx. Batch request correlation is not a unique tool or session denominator.",
+    "Best effort bounded queue/rate guard, after lifecycle and SDK delivery can lose events; absence is not complete traffic or global error absence.",
+    "Last observed historical taxonomy warnings named both to_browser_error and to_server_render_error missing. They are not a current tool response; new offline source cannot resolve live taxonomy. Preserve future actual returned warnings literally, never as instructions or assumed coverage.",
+    "Browser/framework errors have fixed error codes and no measured HTTP status/duration. Operation/auth source durations are bounded internal spans; missing/unknown duration remains null, never manufactured zero/status/success.",
+    "Auth neutral_confirmation_prompt proves neither account creation nor mail; server_session_verified is fresh server verification, session_returned is only returned session, signout_returned only resolved provider call. No cross-stage identity/funnel proof.",
+    "Explicit endUTC is supplied by owner. Preparation does not read live clock, establish freshness, execute a query, parse a response, or prove reader/health ingestion.",
+    "Unexpected legacy/drifted stored labels are projected only through fixed current source allowlists into other/null; release accepts lowercase hex7..40 or unknown. No arbitrary stored strings leave grouped output.",
+    "Only operation events may carry HTTP status, validated integer100..599; auth/browser/framework status is NULL. Only operation/auth durations are nullable bounded integers0..300000; measured_count is separate from observations, error-family and empty latency is NULL.",
+    "LIMIT200, truncation or query failure cannot establish complete or zero traffic. A future authorized operator must retain complete response before parsing, stop at error/truncation/limit, and make no follow-up query."
+  ]
+}
